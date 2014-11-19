@@ -1,0 +1,49 @@
+[color]
+  status = auto
+  branch = auto
+[core]
+  excludesfile = ~/.gitignore
+[push]
+  default = simple
+[alias]
+  ds = diff --staged      # git ds - diff your staged changes == review before committing.
+  st = status -sb         # smarter status - include tag and branch info
+  fup = log --since '1 day ago' --oneline "--author=$(git config --get user.email)"  # Know what you did yesterday
+
+  # some resets without explanation
+  r = reset
+  unstage = reset HEAD
+  r1 = reset HEAD^
+  r2 = reset HEAD^^
+  rh = reset --hard
+  rh1 = reset HEAD^ --hard
+  rh2 = reset HEAD^^ --hard
+
+  # basic shortcuts
+  cp = cherry-pick
+  cl = clone
+  c = commit
+  cs = commit -S
+  co = checkout
+  br = branch
+  diff = diff --word-diff
+  dc = diff --cached
+  a = add
+  aa = add --all
+  A = add -A
+  au = add -u
+
+  # stash shortcuts
+  sl = stash list
+  sa = stash apply
+  ss = stash save
+
+  # log related
+  l = log
+  ls = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short  # pretty one-line log with tags, branches and authors
+  lsv = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short --numstat    # a verbose ls, shows changed files too
+  sig = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short --show-signature -1
+  lh = log --graph
+  la = !git lh --date-order --all 2> /dev/null
+  lb = log --graph --simplify-by-decoration
+  lba = !git lb --all
