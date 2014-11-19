@@ -550,8 +550,10 @@ call plug#begin('~/.vim/bundle')
       augroup indentGuidesAutoCommands
         autocmd!
 
-        " Enable Indent Guides when opening a file
-        autocmd VimEnter * IndentGuidesEnable
+        if exists(':IndentGuidesEnable')
+          " Enable Indent Guides when opening a file
+          autocmd VimEnter * IndentGuidesEnable
+        endif
       augroup END
     " }
 
