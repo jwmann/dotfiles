@@ -4,20 +4,20 @@ Some of my dotfiles made public, managed via [rcm][1].
 
 ### Install
 
-1) Install rcm via homebrew.
+1. Install rcm via homebrew.
 
 ```
 $ brew tap thoughtbot/formulae
 $ brew install rcm
 ```
 
-2) Clone this repository into your $HOME.
+2. Clone this repository into your $HOME.
 
 ```
 $ git clone git@github.com:jwmann/dotfiles.git ~/.dotfiles
 ```
 
-3) Link up dotfiles using `rcup`.
+3. Link up dotfiles using `rcup`.
 
 ```
 $ rcup -v
