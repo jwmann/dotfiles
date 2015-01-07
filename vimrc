@@ -4,26 +4,21 @@ set nocompatible
 " The default leader is '\', but many people prefer ',' as it's in a standard location
 let mapleader = ','
 
-augroup generalAutoCommands
+" Define a group 'vimrc' to be used for all auto commands and initialize.
+augroup vimrc
   autocmd!
-
-  " Reload vimrc if there are any changes.
-  " autocmd bufwritepost .vimrc source $MYVIMRC
-
-  " Automatically Save/Load Fold states
-  " autocmd BufWinLeave * silent! mkview
-  " autocmd BufWinEnter * silent! loadview
-
-  " Trailing Whitespace Autofix
-  autocmd BufWritePre *.{rb,py,js,php,html,xml,css,less} StripWhitespace
-
-  " Spellcheck for Git Commit messages
-  autocmd FileType gitcommit setlocal spell
-  autocmd FileType gitcommit setlocal spelllang=en
-
-  " Deletes swapfiles for unmodified buffers -- Provided by #vim, source from tpope
-  autocmd CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
 augroup END
+
+" Automatically Save/Load Fold states
+" autocmd vimrc BufWinLeave * silent! mkview
+" autocmd vimrc BufWinEnter * silent! loadview
+
+" Spellcheck for Git Commit messages
+autocmd vimrc FileType gitcommit setlocal spell
+autocmd vimrc FileType gitcommit setlocal spelllang=en
+
+" Deletes swapfiles for unmodified buffers -- Provided by #vim, from tpope
+autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
 
 " VimUI {
   " Set my color scheme
@@ -191,7 +186,7 @@ if empty( glob('~/.vim/autoload/plug.vim') )
   silent !mkdir -p ~/.vim/autoload
   silent !curl -fLo ~/.vim/autoload/plug.vim
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall
+  autocmd vimrc VimEnter * PlugInstall
 endif
 
 " Begin vim-plug!
@@ -242,15 +237,11 @@ call plug#begin('~/.vim/bundle')
       " Vim Git Wrapper
       Plug 'tpope/vim-fugitive'
 
-      augroup fugitiveAutoCommands
-        autocmd!
+      " Auto-delete vim buffers when browsing git object history using Fugitive
+      autocmd vimrc BufReadPost fugitive://* set bufhidden=delete
 
-        " Auto-delete vim buffers when browsing git object history using Fugitive
-        autocmd BufReadPost fugitive://* set bufhidden=delete
-
-        " Fancy Status Line using git branch
-        autocmd user Fugitive set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-      augroup END
+      " Fancy Status Line using git branch
+      autocmd vimrc User Fugitive set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
       " Mappings for most used commands
       nnoremap <leader>gs :Gstatus<CR>
@@ -335,12 +326,11 @@ call plug#begin('~/.vim/bundle')
       " Better whitespace highlighting and stripping for Vim
       Plug 'ntpeters/vim-better-whitespace'
 
-      augroup vimBetterWhitespaceAutoCommands
-        autocmd!
+      " Use Syntax Based highlighting to reduce performance hit
+      autocmd vimrc VimEnter * silent! CurrentLineWhitespaceOff soft
 
-        " Use Syntax Based highlighting to reduce performance hit
-        autocmd VimEnter * silent! CurrentLineWhitespaceOff soft
-      augroup END
+      " Trailing Whitespace Autofix
+      autocmd vimrc BufWritePre *.{rb,py,js,php,html,xml,css,less} StripWhitespace
 
       " Define custom highlight color ( Based on 'DiffDelete' color group in :highlight list )
       highlight ExtraWhitespace term=bold ctermfg=16 ctermbg=52 guifg=#40000A guibg=#700009
@@ -464,10 +454,10 @@ call plug#begin('~/.vim/bundle')
       Plug 'ervandew/matchem'
 
       " Delimitmate {
-      " autocmd FileType * let b:delimitMate_autoclose = 1
+      " autocmd vimrc FileType * let b:delimitMate_autoclose = 1
 
       " If using html auto complete (complete closing tag)
-      " autocmd FileType xml,html,xhtml let b:delimitMate_matchpairs = \"(:),[:],{:}"
+      " autocmd vimrc FileType xml,html,xhtml let b:delimitMate_matchpairs = \"(:),[:],{:}"
       " }
     " }
 
@@ -478,22 +468,18 @@ call plug#begin('~/.vim/bundle')
       " CSS style commenting ( 99 ASCII for 'c' ) e.g.: yssc
       let g:surround_99 = "/* \r */"
 
-      augroup surroundAutoCommands
-        autocmd!
+      " PHP {
+        " Enable PHP tag Surrounds ( 112 ASCII for 'p' ) e.g.: yssp
+        autocmd vimrc FileType php let b:surround_112 = "<?php \r ?>"
 
-        " PHP {
-          " Enable PHP tag Surrounds ( 112 ASCII for 'p' ) e.g.: yssp
-          autocmd FileType php let b:surround_112 = "<?php \r ?>"
+        " Enable easy PHP var_dump() ( 108 ASCII for 'l' ) e.g.: yssl
+        autocmd vimrc FileType php let b:surround_108 = "var_dump( \r );"
+      " }
 
-          " Enable easy PHP var_dump() ( 108 ASCII for 'l' ) e.g.: yssl
-          autocmd FileType php let b:surround_108 = "var_dump( \r );"
-        " }
-
-        " JS {
-          " Enable easy JS console.log() ( 108 ASCII for 'l' ) e.g.: yssl
-          autocmd FileType javascript let b:surround_108 = "console.log( \r );"
-        " }
-      augroup END
+      " JS {
+        " Enable easy JS console.log() ( 108 ASCII for 'l' ) e.g.: yssl
+        autocmd vimrc FileType javascript let b:surround_108 = "console.log( \r );"
+      " }
 
       " Surround Specifc Mappings {
         " Add spaces inside () quickly
@@ -510,12 +496,8 @@ call plug#begin('~/.vim/bundle')
       " Auto-Close HTML Tags
       Plug 'vim-scripts/HTML-AutoCloseTag'
 
-      augroup htmlAutoCloseTagsAutoCommands
-        autocmd!
-
-        " Make it so AutoCloseTag works for xml and xhtml files as well
-        autocmd FileType xhtml,xml,php so ~/.vim/bundle/HTML-AutoCloseTag/ftplugin/html_autoclosetag.vim
-      augroup END
+      " Make it so AutoCloseTag works for xml and xhtml files as well
+      autocmd vimrc FileType xhtml,xml,php so ~/.vim/bundle/HTML-AutoCloseTag/ftplugin/html_autoclosetag.vim
     " }
   " }
 
@@ -547,14 +529,10 @@ call plug#begin('~/.vim/bundle')
       let g:indent_guides_start_level = 2
       let g:indent_guides_guide_size = 1
 
-      augroup indentGuidesAutoCommands
-        autocmd!
-
-        if exists(':IndentGuidesEnable')
-          " Enable Indent Guides when opening a file
-          autocmd VimEnter * IndentGuidesEnable
-        endif
-      augroup END
+      if exists(':IndentGuidesEnable')
+        " Enable Indent Guides when opening a file
+        autocmd vimrc VimEnter * IndentGuidesEnable
+      endif
     " }
 
     " vim-airline {
