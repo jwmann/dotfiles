@@ -2,7 +2,7 @@
 set nocompatible
 
 " The default leader is '\', but many people prefer ',' as it's in a standard location
-let mapleader = ','
+let g:mapleader = ','
 
 " Define a group 'vimrc' to be used for all auto commands and initialize.
 augroup vimrc
