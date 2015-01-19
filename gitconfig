@@ -10,7 +10,8 @@
   st = status -sb         # smarter status - include tag and branch info
   fup = log --since '1 day ago' --oneline "--author=$(git config --get user.email)"  # Know what you did yesterday
 
-  # some resets without explanation
+  # Reset Helpers
+  # -------------
   r = reset
   unstage = reset HEAD
   r1 = reset HEAD^
@@ -19,7 +20,8 @@
   rh1 = reset HEAD^ --hard
   rh2 = reset HEAD^^ --hard
 
-  # basic shortcuts
+  # Basic Shortcuts
+  # ---------------
   cp = cherry-pick
   cl = clone
   c = commit
@@ -33,12 +35,14 @@
   A = add -A
   au = add -u
 
-  # stash shortcuts
+  # Stash Shortcuts
+  # ---------------
   sl = stash list
   sa = stash apply
   ss = stash save
 
-  # log related
+  # Logs
+  # ----
   l = log
   ls = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short  # pretty one-line log with tags, branches and authors
   lsv = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short --numstat    # a verbose ls, shows changed files too
