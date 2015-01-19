@@ -93,10 +93,6 @@ gituser() {
   return 0
 }
 
-# Generate a .gitignore based on given arguments ( For list of arguments do: gi list )
-# e.g.: gi osx, php, node, wordpress >> .gitignore
-gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
-
 #   -------------------------------
 #   FILE AND FOLDER MANAGEMENT
 #   -------------------------------
