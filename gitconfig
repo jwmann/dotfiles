@@ -14,6 +14,7 @@
   # -------------
   r = reset
   unstage = reset HEAD
+  undo = checkout HEAD -- 
   r1 = reset HEAD^
   r2 = reset HEAD^^
   rh = reset --hard
