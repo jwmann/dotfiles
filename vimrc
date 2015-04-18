@@ -286,11 +286,7 @@ call plug#begin('~/.vim/bundle')
 
     " vim-multiple-cursors {
       " Sublime-Style Multiple Cursors
-
-      " Plug 'terryma/vim-multiple-cursors'
-
-      " Using maintained fork of original repo
-      Plug 'kristijanhusak/vim-multiple-cursors'
+      Plug 'terryma/vim-multiple-cursors'
 
       " Set default modal exit key
       " let g:multi_cursor_quit_key = '<Esc>'
