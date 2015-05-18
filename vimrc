@@ -504,20 +504,6 @@ call plug#begin('~/.vim/bundle')
       " }
     " }
 
-    " vim-search-pulse {
-      " This plugin will 'pulse' the cursor line (by default) or the search pattern thus requiring your eyes attention.
-      Plug 'inside/vim-search-pulse'
-
-      " Set the pulse mode ( cursor_line / pattern )
-      let g:vim_search_pulse_mode = 'cursor_line'
-
-      " Set animation/pulse speed
-      let g:vim_search_pulse_duration = 100
-
-      " Enable plugin
-      set cursorline
-    " }
-
     " vim-indent-guides {
       " Shows semi-opaque markings to indicate indent levels
       Plug 'nathanaelkane/vim-indent-guides'
