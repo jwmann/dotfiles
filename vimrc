@@ -128,7 +128,7 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     nnoremap <leader>= :call Preserve("normal gg=G")<CR>
 
     " Open previously modified files determined by local git repository
-    noremap <leader>O :call OpenChangedFiles<CR>
+    noremap <leader>O :call OpenChangedFiles()<CR>
 
     " Quick Bash command (that also uses the login_shell and its profiles and aliases
     nnoremap !! :Bash 
