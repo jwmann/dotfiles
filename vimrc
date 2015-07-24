@@ -277,6 +277,8 @@ call plug#begin('~/.vim/bundle')
       nnoremap <leader>gC :Gcommit<CR>
       nnoremap <leader>gc :Gcommit -S<CR>
       nnoremap <leader>gd :Gdiff<CR>
+      nnoremap <leader>gp :Gpush<CR>
+      nnoremap <leader>gP :Gpull<CR>
       nnoremap <leader>dg :diffget<CR>
       nnoremap <leader>dp :diffput<CR>
     " }
