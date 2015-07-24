@@ -273,8 +273,9 @@ call plug#begin('~/.vim/bundle')
 
       " Mappings for most used commands
       nnoremap <leader>gs :Gstatus<CR>
-      nnoremap <leader>gc :Gcommit<CR>
-      nnoremap <leader>gC :Gcommit -S<CR>
+      nnoremap <leader>gw :Gwrite<CR>
+      nnoremap <leader>gC :Gcommit<CR>
+      nnoremap <leader>gc :Gcommit -S<CR>
       nnoremap <leader>gd :Gdiff<CR>
       nnoremap <leader>dg :diffget<CR>
       nnoremap <leader>dp :diffput<CR>
