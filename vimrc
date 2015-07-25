@@ -2,7 +2,7 @@
 set nocompatible
 
 " The default leader is '\', but many people prefer ',' as it's in a standard location
-let g:mapleader = ','
+let g:mapleader = "\<space>"                  " Use the <space> key as leader, key size is reachable from anywhere and its default function is not very useful
 
 " Define a group 'vimrc' to be used for all auto commands and initialize.
 augroup vimrc
@@ -89,7 +89,6 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
 
     " Map to remove highlighted search terms
     nnoremap <leader>l :noh<CR><C-l>
-    nnoremap <space> :noh<CR><C-l>
 
     " Change the Shift+k function to something more useful: The opposite of doing Shift+j
     nnoremap K i<CR><Esc>^
@@ -510,7 +509,7 @@ call plug#begin('~/.vim/bundle')
 
       " Surround Specifc Mappings {
         " Add spaces inside () quickly
-        nmap <Space><Space> vi(S<Space><Space>
+        nmap <leader><space> vi(S<space><space>
       " }
     " }
 
