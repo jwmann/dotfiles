@@ -223,7 +223,7 @@ call plug#begin('~/.vim/bundle')
   " File Navigation {
     " CtrlP {
       " Fuzzy Finding File Navigator
-      Plug 'kien/ctrlp.vim'
+      Plug 'ctrlpvim/ctrlp.vim'
 
       " Invoke CtrlP File Finder and Flush mapping
       nnoremap <leader>f :CtrlP<cr>
