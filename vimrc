@@ -332,17 +332,6 @@ call plug#begin('~/.vim/bundle')
       nnoremap <leader>n V:MultipleCursorsFind
     " }
 
-    " vim-easy-align {
-      " Text filtering and alignment
-      Plug 'junegunn/vim-easy-align'
-
-      " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-      vmap <Enter> <Plug>(EasyAlign)
-
-      " Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
-      nmap <Leader>a <Plug>(EasyAlign)
-    " }
-
     " LargeFile {
       " Edit large files quickly ( default: 100mb files )
       Plug 'vim-scripts/LargeFile'
@@ -378,25 +367,9 @@ call plug#begin('~/.vim/bundle')
       Plug 'tpope/vim-abolish'
     " }
 
-    " vim-indent-object {
-      " Text-Object for indented blocks
-      Plug 'michaeljsmith/vim-indent-object'
-    " }
-
-    " targets.vim {
-      " Gives additional text objects and allows you to manipulate said objects in a
-      " way that makes sense within their context's.
-      Plug 'wellle/targets.vim'
-
-      " Mappings do not work if they are non-recursive
-      nmap "" cI"
-      nmap '' cI'
-    " }
-
     " vim-unimpaired {
       " Provides many key bindings and functions for vim
       Plug 'tpope/vim-unimpaired'
-
 
       " Mappings do not work if they are non-recursive
       " Paste System Clipboard on a new line and Indent Pasted text
@@ -404,11 +377,6 @@ call plug#begin('~/.vim/bundle')
       nmap <leader>P "+=P
       xmap <leader>p d"+=P
       xmap <leader>P d"+=P
-    " }
-
-    " vim-commentary {
-      " Comment stuff out with a single command for many languages plus extendability
-      Plug 'tpope/vim-commentary'
     " }
 
     " vim-over {
@@ -454,32 +422,90 @@ call plug#begin('~/.vim/bundle')
       Plug 'AndrewRadev/splitjoin.vim'
     " }
 
-    " vim-grep-operator {
-      " Bring motion and visual selection to the :grep command
-      Plug 'inside/vim-grep-operator'
-
-      " Use Git's grep instead
-      set grepprg=git\ grep\ -n\ $*
-
-      " Suggested mappings
-      nmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
-      vmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
-      nmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
-      vmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
-    " }
-
     " vim-signature {
       " A plugin to place, toggle and display marks.
       Plug 'kshenoy/vim-signature'
     " }
  
+    " Custom Operators {
+      " vim-surround {
+        " Surround - quoting/parenthesizing made simple
+        Plug 'tpope/vim-surround'
+
+        " CSS style commenting ( 99 ASCII for 'c' ) e.g.: yssc
+        let g:surround_99 = "/* \r */"
+
+        " PHP {
+          " Enable PHP tag Surrounds ( 112 ASCII for 'p' ) e.g.: yssp
+          autocmd vimrc FileType php let b:surround_112 = "<?php \r ?>"
+
+          " Enable easy PHP var_dump() ( 108 ASCII for 'l' ) e.g.: yssl
+          autocmd vimrc FileType php let b:surround_108 = "var_dump( \r );"
+        " }
+
+        " JS {
+          " Enable easy JS console.log() ( 108 ASCII for 'l' ) e.g.: yssl
+          autocmd vimrc FileType javascript let b:surround_108 = "console.log( \r );"
+        " }
+
+        " Surround Specifc Mappings {
+          " Add spaces inside () quickly
+          nmap <leader><space> vi(S<space><space>
+        " }
+      " }
+
+      " vim-easy-align {
+        " Text filtering and alignment
+        Plug 'junegunn/vim-easy-align'
+
+        " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+        vmap <Enter> <Plug>(EasyAlign)
+
+        " Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
+        nmap <Leader>a <Plug>(EasyAlign)
+      " }
+
+      " vim-grep-operator {
+        " Bring motion and visual selection to the :grep command
+        Plug 'inside/vim-grep-operator'
+
+        " Use Git's grep instead
+        set grepprg=git\ grep\ -n\ $*
+
+        " Suggested mappings
+        nmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
+        vmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
+        nmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
+        vmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
+      " }
+
+      " vim-commentary {
+        " Comment stuff out with a single command for many languages plus extendability
+        Plug 'tpope/vim-commentary'
+      " }
+    " }
+
     " Custom Text Objects {
+      " targets.vim {
+        " Gives additional text objects and allows you to manipulate said objects in a
+        " way that makes sense within their context's.
+        Plug 'wellle/targets.vim'
+
+        " Mappings do not work if they are non-recursive
+        nmap "" cI"
+        nmap '' cI'
+      " }
+
       " vim-textobj-line {
-        " Line Text Object 
+        " Text Object for Lines
         " e.g.: dil is equivalent to ^dg_
         Plug 'kana/vim-textobj-line'
       " }
 
+      " vim-indent-object {
+        " Text Object for Indented Blocks
+        Plug 'michaeljsmith/vim-indent-object'
+      " }
     " }
   " }
 
@@ -493,32 +519,6 @@ call plug#begin('~/.vim/bundle')
 
       " If using html auto complete (complete closing tag)
       " autocmd vimrc FileType xml,html,xhtml let b:delimitMate_matchpairs = \"(:),[:],{:}"
-      " }
-    " }
-
-    " Surround {
-      " Dynamic Custom Surround ability
-      Plug 'tpope/vim-surround'
-
-      " CSS style commenting ( 99 ASCII for 'c' ) e.g.: yssc
-      let g:surround_99 = "/* \r */"
-
-      " PHP {
-        " Enable PHP tag Surrounds ( 112 ASCII for 'p' ) e.g.: yssp
-        autocmd vimrc FileType php let b:surround_112 = "<?php \r ?>"
-
-        " Enable easy PHP var_dump() ( 108 ASCII for 'l' ) e.g.: yssl
-        autocmd vimrc FileType php let b:surround_108 = "var_dump( \r );"
-      " }
-
-      " JS {
-        " Enable easy JS console.log() ( 108 ASCII for 'l' ) e.g.: yssl
-        autocmd vimrc FileType javascript let b:surround_108 = "console.log( \r );"
-      " }
-
-      " Surround Specifc Mappings {
-        " Add spaces inside () quickly
-        nmap <leader><space> vi(S<space><space>
       " }
     " }
 
