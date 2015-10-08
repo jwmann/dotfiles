@@ -486,6 +486,12 @@ call plug#begin('~/.vim/bundle')
     " }
 
     " Custom Text Objects {
+      " vim-textobj-user {
+        " Create your own text objects
+        " Is a dependency for other custom text objects
+        Plug 'kana/vim-textobj-user'
+      " }
+
       " targets.vim {
         " Gives additional text objects and allows you to manipulate said objects in a
         " way that makes sense within their context's.
