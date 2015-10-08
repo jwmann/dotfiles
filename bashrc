@@ -5,7 +5,7 @@
 #   Set Paths
 #   ------------------------------------------------------------
     export PATH="$PATH:/usr/local/bin/"
-    export PATH="/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/Cellar/gems/bin:$HOME/bin:$PATH"
+    export PATH="/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:$HOME/bin:$PATH"
 
     # Work Path for fast website dev environment switching
     CDPATH=.:~/work/webcakes
