@@ -289,7 +289,7 @@ call plug#begin('~/.vim/bundle')
 
     " YouCompleteMe {
       " Auto/Omni Completion
-      Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+      Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
     " }
 
     " Ultisnips {
