@@ -407,7 +407,7 @@ call plug#begin('~/.vim/bundle')
     " }
 
     " vim-commentary {
-      " Comment stuff out with a single command for many languages plus extendability "
+      " Comment stuff out with a single command for many languages plus extendability
       Plug 'tpope/vim-commentary'
     " }
 
@@ -471,6 +471,15 @@ call plug#begin('~/.vim/bundle')
     " vim-signature {
       " A plugin to place, toggle and display marks.
       Plug 'kshenoy/vim-signature'
+    " }
+ 
+    " Custom Text Objects {
+      " vim-textobj-line {
+        " Line Text Object 
+        " e.g.: dil is equivalent to ^dg_
+        Plug 'kana/vim-textobj-line'
+      " }
+
     " }
   " }
 
