@@ -88,4 +88,6 @@ alias fix_stty='stty sane'                # fix_stty:     Restore terminal setti
 alias cic='set completion-ignore-case On' # cic:          Make tab-completion case-insensitive
 mcd () { mkdir -p "$1" && cd "$1"; }      # mcd:          Makes new Dir and jumps inside
 alias dotfiles='cd ~/.dotfiles/'          # dotfiles:     Changes to the dotfiles directory
+alias profile='open ~/.dotfiles/profile'  # profile:      Opens Terminal login's config file in the default editor
+alias bashrc='open ~/.dotfiles/bashrc'    # bashrc:       Opens bash's config file in the default editor
 alias vimrc='open ~/.dotfiles/vimrc'      # vimrc:        Opens Vim's config file in the default editor
