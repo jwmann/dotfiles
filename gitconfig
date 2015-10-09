@@ -16,6 +16,7 @@
   r = reset
   unstage = reset HEAD
   undo = checkout HEAD -- 
+  undoall = checkout -f
   r1 = reset HEAD^
   r2 = reset HEAD^^
   rh = reset --hard
