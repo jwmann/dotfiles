@@ -195,10 +195,6 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
       " Removing the toolbar
       set guioptions=egmrt
 
-      " normal mode mappings
-      nnoremap <silent> <D-j> :call SwapWithNext()<CR>
-      nnoremap <silent> <D-k> :call SwapWithPrevious()<CR>
-
       " Set Default Window Size
       set lines=80 columns=200
 
