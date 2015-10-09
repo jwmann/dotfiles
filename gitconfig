@@ -9,6 +9,7 @@
   ds = diff --staged      # git ds - diff your staged changes == review before committing.
   st = status -sb         # smarter status - include tag and branch info
   fup = log --since '1 day ago' --oneline "--author=$(git config --get user.email)"  # Know what you did yesterday
+  session = "!git diff --name-only -z | xargs -0 bash -c '</dev/tty open \"$@\"' x"
 
   # Reset Helpers
   # -------------
