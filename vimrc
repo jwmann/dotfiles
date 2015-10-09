@@ -113,8 +113,8 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     nnoremap <Leader>t :tabe %<CR>
 
     " Edit or Reload vimrc on the fly
-    nnoremap <leader>ve :tabedit $MYVIMRC<CR>
-    nnoremap <leader>vr :source $MYVIMRC<CR>:echo "Reloaded."<cr>
+    nnoremap <leader>ve :tabedit <C-r>=resolve($MYVIMRC)<CR><CR>
+    nnoremap <leader>vr :source <C-r>=resolve($MYVIMRC)<CR><CR>:echo "Reloaded."<CR>
 
     " Quickly Debug Vim within a log
     nnoremap <leader>LL :profile start vim.log<CR> :profile func *<CR> :profile file *<CR> :echo "Ready to debug..."<CR>
