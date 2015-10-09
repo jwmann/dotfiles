@@ -227,10 +227,10 @@ call plug#begin('~/.vim/bundle')
       Plug 'ctrlpvim/ctrlp.vim'
 
       " Invoke CtrlP File Finder and Flush mapping
-      nnoremap <leader>f :CtrlP<cr>
+      nnoremap <leader>f :CtrlP<CR>
 
       " Invoke CtrlP Buffer Finder
-      nnoremap <leader>b :CtrlPBuffer<cr>
+      nnoremap <leader>b :CtrlPBuffer<CR>
 
       " CtrlP relative working path
       let g:ctrlp_working_path_mode = 'ra'
@@ -532,14 +532,6 @@ call plug#begin('~/.vim/bundle')
     " Syntastic {
       " Syntax Checking
       Plug 'scrooloose/syntastic'
-    " }
-
-    " HTML-AutoCloseTag {
-      " Auto-Close HTML Tags
-      Plug 'vim-scripts/HTML-AutoCloseTag'
-
-      " Make it so AutoCloseTag works for xml and xhtml files as well
-      autocmd vimrc FileType xhtml,xml,php so ~/.vim/bundle/HTML-AutoCloseTag/ftplugin/html_autoclosetag.vim
     " }
   " }
 
