@@ -46,7 +46,7 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     set wrap                                  " Enable wrapping
     set whichwrap=b,s,h,l,<,>,[,]             " Backspace and cursor keys wrap too
     set linebreak                             " Only Visually wrap lines at the breakat option
-    " set breakindent                           " Wrap long lines at the same indent level ( Only available in Version 7.4.338~354+ / MacVim 7.4-Snapshot 74 )
+    set breakindent                           " Wrap long lines at the same indent level ( Only available in Version 7.4.338~354+ / MacVim 7.4-Snapshot 74 )
     set nolist                                " list disables linebreak
     set textwidth=0                           " Prevent Vim from adding linebreaks for long lines
     set wrapmargin=0                          " Prevent Vim from adding linebreaks for long lines
