@@ -112,6 +112,11 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     " Make a new Tab with the current buffer ( Similar to :vs and :split )
     nnoremap <Leader>t :tabe %<CR>
 
+    " Follow current file's symlink to edit the source file instead
+    nnoremap <Leader>L :<C-u>execute 'file '.fnameescape(resolve(expand('%:p')))<bar>
+      \ call fugitive#detect(fnameescape(expand('%:p:h')))<CR>:AirlineRefresh<CR>
+      \ :echo "Followed Symlink to: '<C-r>=expand('%:p')<CR>'"<CR>
+
     " Edit or Reload vimrc on the fly
     nnoremap <leader>ve :tabedit <C-r>=resolve($MYVIMRC)<CR><CR>
     nnoremap <leader>vr :source <C-r>=resolve($MYVIMRC)<CR><CR>:echo "Reloaded."<CR>
