@@ -129,10 +129,7 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     cnoremap w!! w !sudo tee % >/dev/null
 
     " Auto indent entire file and :retab
-    nnoremap <leader>= :call Preserve("normal gg=G")<CR>
-
-    " Open previously modified files determined by local git repository
-    noremap <leader>O :call OpenChangedFiles()<CR>
+    nnoremap <leader>= :exec "normal! gg=G"<CR>
 
     " Quick Bash command (that also uses the login_shell and its profiles and aliases
     nnoremap !! :Bash 
@@ -144,44 +141,6 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
       " Use bash command as if it were invoked by the login shell
       " This allows aliases and functions from .bashrc/.bash_profile/.profile to be used
       :command! -nargs=* Bash !bash -c -l "<args>"
-
-      " Use this function to go back to the starting position of the cursor
-      function! Preserve(command)
-        " Preparation: save last search, and cursor position.
-        let _s=@/
-        let l = line(".")
-        let c = col(".")
-        " Do the business:
-        execute a:command
-        " Clean up: restore previous search history, and cursor position
-        let @/=_s
-        call cursor(l, c)
-      endfunction
-
-      " Open previously modified files determined by local git repository
-      " Source: https://www.reddit.com/r/vim/comments/3e29lv/cool_git_alias_to_launch_vim/ctbyiba
-      function! OpenChangedFiles()
-        only " Close all windows, unless they're modified
-
-        let status = system('git status -s | grep "^ \?\(M\|A\)" | cut -d " " -f 3')
-        let filenames = split(status, "\n")
-        let topdir = split(system('git rev-parse --show-toplevel'), "\n")[0]
-
-        if len(filenames) < 1
-          let status = system('git show --pretty="format:" --name-only')
-          let filenames = split(status, "\n")
-        endif
-
-        exec "edit " . topdir . "/" . filenames[0]
-
-        for filename in filenames[1:]
-          if len(filenames) > 4
-            exec "tabedit " . topdir . "/" . filename
-          else
-            exec "sp " . topdir . "/" . filename
-          endif
-        endfor
-      endfunction
     " }
   " }
 
