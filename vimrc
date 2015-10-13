@@ -387,7 +387,7 @@ call plug#begin('~/.vim/bundle')
       " A plugin to place, toggle and display marks.
       Plug 'kshenoy/vim-signature'
     " }
- 
+
     " Custom Operators {
       " vim-surround {
         " Surround - quoting/parenthesizing made simple
@@ -426,18 +426,27 @@ call plug#begin('~/.vim/bundle')
         nmap <Leader>a <Plug>(EasyAlign)
       " }
 
-      " vim-grep-operator {
-        " Bring motion and visual selection to the :grep command
-        Plug 'inside/vim-grep-operator'
+      " ctrlsf.vim {
+        " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
+        " DEPENDENCY: The Silver Searcher (Ag)
+        " DESCRIPTION: A code-searching tool similar to ack, but faster. http://geoff.greer.fm/ag/
+        " INSTALLATION: brew install the_silver_searcher
+        " SOURCE: https://github.com/ggreer/the_silver_searcher#installing
+        Plug 'dyng/ctrlsf.vim'
 
-        " Use Git's grep instead
-        set grepprg=git\ grep\ -n\ $*
+        " Use CtrlSF RegEx Mode by default
+        let g:ctrlsf_regex_pattern = 1
 
-        " Suggested mappings
-        nmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
-        vmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
-        nmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
-        vmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
+        " Mappings do not work if they are non-recursive
+        nmap     <leader>F <Plug>CtrlSFPrompt
+        " nmap     <leader>FF <Plug>CtrlSFCwordPath
+        nmap     <leader>FF <Plug>CtrlSFCwordExec
+        " vmap     <leader>F <Plug>CtrlSFVwordPath
+        vmap     <leader>F <Plug>CtrlSFVwordExec
+        nmap     <leader>Fp <Plug>CtrlSFPwordPath
+
+        nnoremap <leader>Fo :CtrlSFOpen<CR>
+        nnoremap <leader>Ft :CtrlSFToggle<CR>
       " }
 
       " vim-commentary {
