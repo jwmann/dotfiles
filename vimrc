@@ -346,6 +346,7 @@ call plug#begin('~/.vim/bundle')
       nnoremap <leader>s :OverCommandLine<CR>s/
       nnoremap <leader>S :OverCommandLine<CR>%s/
       xnoremap <leader>s :OverCommandLine<CR>s/
+      nnoremap <leader>/ :OverCommandLine<CR>/
     " }
 
     " vim-sneak {
