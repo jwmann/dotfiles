@@ -15,6 +15,7 @@
   # -------------
   r = reset
   unstage = reset HEAD
+  uncommit = reset --soft HEAD~1
   undo = checkout HEAD -- 
   undoall = checkout -f
   r1 = reset HEAD^
