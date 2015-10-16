@@ -2,7 +2,7 @@
 set nocompatible
 
 " The default leader is '\', but many people prefer ',' as it's in a standard location
-let g:mapleader = "\<space>"                  " Use the <space> key as leader, key size is reachable from anywhere and its default function is not very useful
+let g:mapleader = "\<Space>"                  " Use the <Space> key as leader, key size is reachable from anywhere and its default function is not very useful
 
 " Define a group 'vimrc' to be used for all auto commands and initialize.
 augroup vimrc
@@ -18,7 +18,7 @@ autocmd vimrc FileType gitcommit setlocal spell
 autocmd vimrc FileType gitcommit setlocal spelllang=en
 
 " Deletes swapfiles for unmodified buffers -- Provided by #vim, from tpope
-autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
+autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isdirectory(expand("<aMatch>:h")) | let &swapfile = &modified | endif
 
 " VimUI {
   " Set my color scheme
@@ -85,10 +85,10 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     nnoremap <C-l> <C-w>l
 
     " Map to change the working directory to the same directory of the current file
-    nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+    nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
 
     " Map to remove highlighted search terms
-    nnoremap <leader>l :noh<CR><C-l>
+    nnoremap <Leader>l :noh<CR><C-l>
 
     " Change the Shift+k function to something more useful: The opposite of doing Shift+j
     nnoremap K i<CR><Esc>^
@@ -113,23 +113,23 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     nnoremap <Leader>t :tabe %<CR>
 
     " Follow current file's symlink to edit the source file instead
-    nnoremap <Leader>L :<C-u>execute 'file '.fnameescape(resolve(expand('%:p')))<bar>
+    nnoremap <Leader>L :<C-u>execute 'file '.fnameescape(resolve(expand('%:p')))<Bar>
       \ call fugitive#detect(fnameescape(expand('%:p:h')))<CR>:AirlineRefresh<CR>
       \ :echo "Followed Symlink to: '<C-r>=expand('%:p')<CR>'"<CR>
 
     " Edit or Reload vimrc on the fly
-    nnoremap <leader>ve :tabedit <C-r>=resolve($MYVIMRC)<CR><CR>
-    nnoremap <leader>vr :source <C-r>=resolve($MYVIMRC)<CR><CR>:echo "Reloaded."<CR>
+    nnoremap <Leader>ve :tabedit <C-r>=resolve($MYVIMRC)<CR><CR>
+    nnoremap <Leader>vr :source <C-r>=resolve($MYVIMRC)<CR><CR>:echo "Reloaded."<CR>
 
     " Quickly Debug Vim within a log
-    nnoremap <leader>LL :profile start vim.log<CR> :profile func *<CR> :profile file *<CR> :echo "Ready to debug..."<CR>
-    nnoremap <leader>LS :profile pause<CR> :echo "Debugging Paused, Quit Vim to Generate Log." <CR>
+    nnoremap <Leader>LL :profile start vim.log<CR> :profile func *<CR> :profile file *<CR> :echo "Ready to debug..."<CR>
+    nnoremap <Leader>LS :profile pause<CR> :echo "Debugging Paused, Quit Vim to Generate Log." <CR>
 
     " For when you forget sudo.. Really Write the file.
     cnoremap w!! w !sudo tee % >/dev/null
 
     " Auto indent entire file and :retab
-    nnoremap <leader>= :exec "normal! gg=G"<CR>
+    nnoremap <Leader>= :exec "normal! gg=G"<CR>
 
     " Quick Bash command (that also uses the login_shell and its profiles and aliases
     nnoremap !! :Bash 
@@ -140,7 +140,7 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
 
       " Use bash command as if it were invoked by the login shell
       " This allows aliases and functions from .bashrc/.bash_profile/.profile to be used
-      :command! -nargs=* Bash !bash -c -l "<args>"
+      :command! -nargs=* Bash !bash -c -l "<Args>"
     " }
   " }
 
@@ -186,10 +186,10 @@ call plug#begin('~/.vim/bundle')
       Plug 'ctrlpvim/ctrlp.vim'
 
       " Invoke CtrlP File Finder and Flush mapping
-      nnoremap <leader>f :CtrlP<CR>
+      nnoremap <Leader>f :CtrlP<CR>
 
       " Invoke CtrlP Buffer Finder
-      nnoremap <leader>b :CtrlPBuffer<CR>
+      nnoremap <Leader>b :CtrlPBuffer<CR>
 
       " CtrlP relative working path
       let g:ctrlp_working_path_mode = 'ra'
@@ -206,9 +206,9 @@ call plug#begin('~/.vim/bundle')
       " Fast File/Directory Navigation
       Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
-      "noremap <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-      nnoremap <leader>e :NERDTreeToggle<CR>
-      nnoremap <leader>nt :NERDTreeFind<CR>
+      " noremap <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+      nnoremap <Leader>e :NERDTreeToggle<CR>
+      nnoremap <Leader>nt :NERDTreeFind<CR>
 
       let NERDTreeShowBookmarks=1
       let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
@@ -231,15 +231,15 @@ call plug#begin('~/.vim/bundle')
       autocmd vimrc User Fugitive set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
       " Mappings for most used commands
-      nnoremap <leader>gs :Gstatus<CR>
-      nnoremap <leader>gw :Gwrite<CR>
-      nnoremap <leader>gC :Gcommit<CR>
-      nnoremap <leader>gc :Gcommit -S<CR>
-      nnoremap <leader>gd :Gdiff<CR>
-      nnoremap <leader>gp :Gpush<CR>
-      nnoremap <leader>gP :Gpull<CR>
-      nnoremap <leader>dg :diffget<CR>
-      nnoremap <leader>dp :diffput<CR>
+      nnoremap <Leader>gs :Gstatus<CR>
+      nnoremap <Leader>gw :Gwrite<CR>
+      nnoremap <Leader>gC :Gcommit<CR>
+      nnoremap <Leader>gc :Gcommit -S<CR>
+      nnoremap <Leader>gd :Gdiff<CR>
+      nnoremap <Leader>gp :Gpush<CR>
+      nnoremap <Leader>gP :Gpull<CR>
+      nnoremap <Leader>dg :diffget<CR>
+      nnoremap <Leader>dp :diffput<CR>
     " }
 
     " vim-gitgutter {
@@ -264,11 +264,11 @@ call plug#begin('~/.vim/bundle')
       " Add additional use-case snippets
       Plug 'bonsaiben/bootstrap-snippets'
 
-      " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-      let g:UltiSnipsExpandTrigger = '<c-l>'
-      let g:UltiSnipsJumpForwardTrigger = '<c-j>'
-      let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
-      let g:UltiSnipsListSnippets = '<c-tab>'
+      " Trigger configuration. Do not use <Tab> if you use https://github.com/Valloric/YouCompleteMe.
+      let g:UltiSnipsExpandTrigger = '<C-l>'
+      let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+      let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+      let g:UltiSnipsListSnippets = '<C-Tab>'
 
       " If you want :UltiSnipsEdit to split your window.
       let g:UltiSnipsEditSplit="vertical"
@@ -288,8 +288,8 @@ call plug#begin('~/.vim/bundle')
       let g:multi_cursor_exit_from_insert_mode = 0
 
       " Quickly enter RegExp mode
-      xnoremap <leader>n :MultipleCursorsFind
-      nnoremap <leader>n V:MultipleCursorsFind
+      xnoremap <Leader>n :MultipleCursorsFind
+      nnoremap <Leader>n V:MultipleCursorsFind
     " }
 
     " LargeFile {
@@ -311,8 +311,8 @@ call plug#begin('~/.vim/bundle')
       highlight ExtraWhitespace term=bold ctermfg=16 ctermbg=52 guifg=#40000A guibg=#700009
 
       " Strip Trailing Whitespace
-      nnoremap <leader>$ :StripWhitespace<CR>
-      xnoremap <leader>$ :StripWhitespace<CR>
+      nnoremap <Leader>$ :StripWhitespace<CR>
+      xnoremap <Leader>$ :StripWhitespace<CR>
     " }
   " }
 
@@ -333,20 +333,20 @@ call plug#begin('~/.vim/bundle')
 
       " Mappings do not work if they are non-recursive
       " Paste System Clipboard on a new line and Indent Pasted text
-      nmap <leader>p "+=p
-      nmap <leader>P "+=P
-      xmap <leader>p d"+=P
-      xmap <leader>P d"+=P
+      nmap <Leader>p "+=p
+      nmap <Leader>P "+=P
+      xmap <Leader>p d"+=P
+      xmap <Leader>P d"+=P
     " }
 
     " vim-over {
       " Search & Replace preview
       Plug 'osyo-manga/vim-over'
 
-      nnoremap <leader>s :OverCommandLine<CR>s/
-      nnoremap <leader>S :OverCommandLine<CR>%s/
-      xnoremap <leader>s :OverCommandLine<CR>s/
-      nnoremap <leader>/ :OverCommandLine<CR>/
+      nnoremap <Leader>s :OverCommandLine<CR>s/
+      nnoremap <Leader>S :OverCommandLine<CR>%s/
+      xnoremap <Leader>s :OverCommandLine<CR>s/
+      nnoremap <Leader>/ :OverCommandLine<CR>/
     " }
 
     " vim-sneak {
@@ -411,7 +411,7 @@ call plug#begin('~/.vim/bundle')
 
         " Surround Specifc Mappings {
           " Add spaces inside () quickly
-          nmap <leader><space> vi(S<space><space>
+          nmap <Leader><Space> vi(S<Space><Space>
         " }
       " }
 
@@ -419,14 +419,14 @@ call plug#begin('~/.vim/bundle')
         " Text filtering and alignment
         Plug 'junegunn/vim-easy-align'
 
-        " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-        vmap <Enter> <Plug>(EasyAlign)
+        " Start interactive EasyAlign in visual mode (e.g. vip<CR>)
+        vmap <CR> <Plug>(EasyAlign)
 
-        " Start interactive EasyAlign in visual mode (e.g. vip<Enter>) already in RegEx input mode
-        vmap <leader>a <Plug>(EasyAlign)*<C-x>
+        " Start interactive EasyAlign in visual mode (e.g. vip<CR>) already in RegEx input mode
+        vmap <Leader>a <Plug>(EasyAlign)*<C-x>
 
         " Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
-        nmap <leader>a <Plug>(EasyAlign)
+        nmap <Leader>a <Plug>(EasyAlign)
       " }
 
       " ctrlsf.vim {
@@ -441,15 +441,15 @@ call plug#begin('~/.vim/bundle')
         let g:ctrlsf_regex_pattern = 1
 
         " Mappings do not work if they are non-recursive
-        nmap     <leader>F <Plug>CtrlSFPrompt
-        " nmap     <leader>FF <Plug>CtrlSFCwordPath
-        nmap     <leader>FF <Plug>CtrlSFCwordExec
-        " vmap     <leader>F <Plug>CtrlSFVwordPath
-        vmap     <leader>F <Plug>CtrlSFVwordExec
-        nmap     <leader>Fp <Plug>CtrlSFPwordPath
+        nmap     <Leader>F <Plug>CtrlSFPrompt
+        " nmap     <Leader>FF <Plug>CtrlSFCwordPath
+        nmap     <Leader>FF <Plug>CtrlSFCwordExec
+        " vmap     <Leader>F <Plug>CtrlSFVwordPath
+        vmap     <Leader>F <Plug>CtrlSFVwordExec
+        nmap     <Leader>Fp <Plug>CtrlSFPwordPath
 
-        nnoremap <leader>Fo :CtrlSFOpen<CR>
-        nnoremap <leader>Ft :CtrlSFToggle<CR>
+        nnoremap <Leader>Fo :CtrlSFOpen<CR>
+        nnoremap <Leader>Ft :CtrlSFToggle<CR>
       " }
 
       " vim-commentary {
