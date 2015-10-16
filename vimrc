@@ -152,7 +152,7 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
   " GUI Specifc {
     if has("gui_running")
       " Removing the toolbar
-      set guioptions=egmrt
+      set guioptions=mrg
 
       " Set Default Window Size
       set lines=80 columns=200
