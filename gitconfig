@@ -6,10 +6,11 @@
 [push]
   default = simple
 [alias]
-  ds = diff --staged      # git ds - diff your staged changes == review before committing.
-  st = status -sb         # smarter status - include tag and branch info
-  fup = log --since '1 day ago' --oneline "--author=$(git config --get user.email)"  # Know what you did yesterday
-  session = "!git diff --name-only -z | xargs -0 bash -c '</dev/tty open \"$@\"' x"
+  ds = diff --staged                                                                 #  git ds - Diff your staged changes == review before committing.
+  st = status -sb                                                                    #  Smarter status - include tag and branch info
+  fup = log --since '1 day ago' --oneline "--author=$(git config --get user.email)"  #  Know what you did yesterday
+  session = "!git diff --name-only -z | xargs -0 bash -c '</dev/tty open \"$@\"' x"  #  Open all modified tracked files within the current repo
+  user = "!bash -c -l 'gituser'"                                                     #  Set the user profile to be used when commiting by using the gituser function defined in ~/.profile
 
   # Reset Helpers
   # -------------
@@ -48,9 +49,9 @@
   # Logs
   # ----
   l = log
-  ls = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short  # pretty one-line log with tags, branches and authors
-  lsv = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short --numstat    # a verbose ls, shows changed files too
-  sig = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short --show-signature -1
+  ls = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short                       #  Pretty one-line log with tags, branches and authors
+  lsv = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short --numstat            #  A verbose ls, shows changed files too
+  sig = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short --show-signature -1  #  Check for GPG signatures
   lh = log --graph
   la = !git lh --date-order --all 2> /dev/null
   lb = log --graph --simplify-by-decoration
