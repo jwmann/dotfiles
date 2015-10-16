@@ -422,8 +422,11 @@ call plug#begin('~/.vim/bundle')
         " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
         vmap <Enter> <Plug>(EasyAlign)
 
+        " Start interactive EasyAlign in visual mode (e.g. vip<Enter>) already " in RegEx input mode
+        vmap <leader>a <Plug>(EasyAlign)*<C-x>
+
         " Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
-        nmap <Leader>a <Plug>(EasyAlign)
+        nmap <leader>a <Plug>(EasyAlign)
       " }
 
       " ctrlsf.vim {
