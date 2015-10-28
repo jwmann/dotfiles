@@ -270,6 +270,9 @@ call plug#begin('~/.vim/bundle')
       let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
       let g:UltiSnipsListSnippets = '<C-Tab>'
       let g:ulti_expand_or_jump_res = 0
+
+      " Allow Enter to Expand a Snippet within YCM's autocomplete list
+      " Source: https://github.com/Valloric/YouCompleteMe/issues/420#issuecomment-55940039
       function! ExpandSnippetOrCarriageReturn()
         let snippet = UltiSnips#ExpandSnippetOrJump()
         if g:ulti_expand_or_jump_res > 0
