@@ -269,6 +269,16 @@ call plug#begin('~/.vim/bundle')
       let g:UltiSnipsJumpForwardTrigger = '<C-j>'
       let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
       let g:UltiSnipsListSnippets = '<C-Tab>'
+      let g:ulti_expand_or_jump_res = 0
+      function! ExpandSnippetOrCarriageReturn()
+        let snippet = UltiSnips#ExpandSnippetOrJump()
+        if g:ulti_expand_or_jump_res > 0
+          return snippet
+        else
+          return "\<CR>"
+        endif
+      endfunction
+      inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
 
       " If you want :UltiSnipsEdit to split your window.
       let g:UltiSnipsEditSplit="vertical"
