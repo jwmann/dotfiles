@@ -10,7 +10,7 @@
   st = status -sb                                                                    #  Smarter status - include tag and branch info
   fup = log --since '1 day ago' --oneline "--author=$(git config --get user.email)"  #  Know what you did yesterday
   session = "!git diff --name-only -z | xargs -0 bash -c '</dev/tty open \"$@\"' x"  #  Open all modified tracked files within the current repo
-  user = "!bash -c -l 'gituser'"                                                     #  Set the user profile to be used when commiting by using the gituser function defined in ~/.profile
+  user = "!bash -c -l \"gituser $1\""                                                #  Set the user profile to be used when commiting by using the gituser function defined in ~/.profile
 
   # Reset Helpers
   # -------------
