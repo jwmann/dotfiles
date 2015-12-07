@@ -330,6 +330,12 @@ call plug#begin('~/.vim/bundle')
   " }
 
   " Plugs that extend basic Vim functions {
+    " vim-bbye {
+      " Delete buffers and close files in Vim without closing your windows or messing up your layout.
+      Plug 'moll/vim-bbye'
+      nnoremap <Leader>q :Bdelete<CR>
+    " }
+
     " Repeat.vim {
       " Use . repeat command that works with plugins
       Plug 'tpope/vim-repeat'
