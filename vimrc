@@ -189,7 +189,7 @@ call plug#begin('~/.vim/bundle')
       nnoremap <Leader>f :CtrlP<CR>
 
       " Invoke CtrlP Buffer Finder
-      nnoremap <Leader>b :CtrlPBuffer<CR>
+      nnoremap <CR> :CtrlPBuffer<CR>
 
       " CtrlP relative working path
       let g:ctrlp_working_path_mode = 'ra'
