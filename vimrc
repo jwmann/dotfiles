@@ -80,9 +80,13 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
   " General Mappings {
     " Easy Split Window Pane Navigation
     nnoremap <C-h> <C-w>h
+    nnoremap <Left> <C-w>h
     nnoremap <C-j> <C-w>j
+    nnoremap <Down> <C-w>j
     nnoremap <C-k> <C-w>k
+    nnoremap <Up> <C-w>k
     nnoremap <C-l> <C-w>l
+    nnoremap <Right> <C-w>l
 
     " Map to change the working directory to the same directory of the current file
     nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
