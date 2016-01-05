@@ -329,6 +329,13 @@ call plug#begin('~/.vim/bundle')
   " }
 
   " Plugs that extend basic Vim functions {
+  
+    " csscomplete.vim {
+      " Update the bult-in CSS complete function to latest CSS standard.
+      Plug 'othree/csscomplete.vim'
+      autocmd vimrc FileType css set omnifunc=csscomplete#CompleteCSS noci
+    " }
+  
     " vim-bbye {
       " Delete buffers and close files in Vim without closing your windows or messing up your layout.
       Plug 'moll/vim-bbye'
