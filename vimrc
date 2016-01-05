@@ -148,11 +148,6 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     " }
   " }
 
-  " Saved Macros {
-    " Take a line and add all browser css prefixes to it e.g.: -webkit-
-    let @b = 'qzq"zyy"zPI-webkit-"zPI-moz-"zPi-ms-"zPi-o-^4jqzq'
-  " }
-
   " GUI Specifc {
     if has("gui_running")
       " Removing the toolbar
