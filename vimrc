@@ -333,7 +333,7 @@ call plug#begin('~/.vim/bundle')
     " csscomplete.vim {
       " Update the bult-in CSS complete function to latest CSS standard.
       Plug 'othree/csscomplete.vim'
-      autocmd vimrc FileType css set omnifunc=csscomplete#CompleteCSS noci
+      autocmd vimrc FileType css,less,scss set omnifunc=csscomplete#CompleteCSS noci
     " }
   
     " vim-bbye {
