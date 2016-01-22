@@ -201,20 +201,11 @@ call plug#begin('~/.vim/bundle')
       \ }
     " }
 
-    " NerdTree {
-      " Fast File/Directory Navigation
-      Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-
-      " noremap <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-      nnoremap <Leader>e :NERDTreeToggle<CR>
-      nnoremap <Leader>nt :NERDTreeFind<CR>
-
-      let NERDTreeShowBookmarks=1
-      let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-      let NERDTreeChDirMode=0
-      let NERDTreeQuitOnOpen=1
-      let NERDTreeShowHidden=1
-      let NERDTreeKeepTreeInNewTab=1
+    " vinegar.vim {
+      " Combine with netrw to create a delicious salad dressing
+      " Expands the builtin File Explorer in Vim to something more useful and
+      " less bulky than Nerdtree
+      Plug 'tpope/vim-vinegar'
     " }
   " }
 
@@ -329,13 +320,13 @@ call plug#begin('~/.vim/bundle')
   " }
 
   " Plugs that extend basic Vim functions {
-  
+
     " csscomplete.vim {
       " Update the bult-in CSS complete function to latest CSS standard.
       Plug 'othree/csscomplete.vim'
       autocmd vimrc FileType css,less,scss set omnifunc=csscomplete#CompleteCSS noci
     " }
-  
+
     " vim-bbye {
       " Delete buffers and close files in Vim without closing your windows or messing up your layout.
       Plug 'moll/vim-bbye'
@@ -550,7 +541,7 @@ call plug#begin('~/.vim/bundle')
 
     " vim-airline {
       " Pretty looking Status Line
-      Plug 'bling/vim-airline'
+      Plug 'vim-airline/vim-airline'
 
       if has("gui_running")
         let g:airline_powerline_fonts = 1
