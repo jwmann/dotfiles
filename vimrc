@@ -320,7 +320,6 @@ call plug#begin('~/.vim/bundle')
   " }
 
   " Plugs that extend basic Vim functions {
-
     " csscomplete.vim {
       " Update the bult-in CSS complete function to latest CSS standard.
       Plug 'othree/csscomplete.vim'
@@ -363,6 +362,16 @@ call plug#begin('~/.vim/bundle')
       nnoremap <Leader>S :OverCommandLine<CR>%s/
       xnoremap <Leader>s :OverCommandLine<CR>s/
       nnoremap <Leader>/ :OverCommandLine<CR>/
+    " }
+
+    " incsearch.vim {
+      " Similar to vim-over except for searching only
+      Plug 'haya14busa/incsearch.vim'
+
+      " Replace default mapping to use fancier search
+      map /  <Plug>(incsearch-forward)
+      map ?  <Plug>(incsearch-backward)
+      map g/ <Plug>(incsearch-stay)
     " }
 
     " vim-sneak {
