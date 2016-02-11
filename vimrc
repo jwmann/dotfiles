@@ -277,24 +277,6 @@ call plug#begin('~/.vim/bundle')
       let g:UltiSnipsEditSplit="vertical"
     " }
 
-    " vim-multiple-cursors {
-      " Sublime-Style Multiple Cursors
-      Plug 'terryma/vim-multiple-cursors'
-
-      " Set default modal exit key
-      " let g:multi_cursor_quit_key = '<Esc>'
-
-      " pressing g:multi_cursor_quit_key in Visual mode will not quit and delete all existing cursors
-      let g:multi_cursor_exit_from_visual_mode = 0
-
-      " pressing g:multi_cursor_quit_key in Insert mode will not quit and delete all existing cursors
-      let g:multi_cursor_exit_from_insert_mode = 0
-
-      " Quickly enter RegExp mode
-      xnoremap <Leader>n :MultipleCursorsFind
-      nnoremap <Leader>n V:MultipleCursorsFind
-    " }
-
     " LargeFile {
       " Edit large files quickly ( default: 100mb files )
       Plug 'vim-scripts/LargeFile'
