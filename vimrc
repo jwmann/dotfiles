@@ -145,6 +145,15 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
       " Use bash command as if it were invoked by the login shell
       " This allows aliases and functions from .bashrc/.bash_profile/.profile to be used
       :command! -nargs=* Bash !bash -c -l "<Args>"
+
+      " Allow the ability to execute a Macro over a Visual Line Range
+      " Source: https://github.com/stoeffel/.dotfiles/blob/master/vim/visual-at.vim
+      xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+      function! ExecuteMacroOverVisualRange()
+        echo "@".getcmdline()
+        execute ":'<,'>normal @".nr2char(getchar())
+      endfunction
     " }
   " }
 
