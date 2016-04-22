@@ -365,6 +365,12 @@ call plug#begin('~/.vim/bundle')
       map g/ <Plug>(incsearch-stay)
     " }
 
+    "  vim-visual-star-search {
+      " Start a * or # search from a visual block 
+      " ( a visual mode for the normal mode * functionality)
+      Plug 'bronson/vim-visual-star-search'
+    "  }
+
     " vim-sneak {
       " The missing motion for Vim
       Plug 'justinmk/vim-sneak'
