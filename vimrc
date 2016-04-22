@@ -345,31 +345,33 @@ call plug#begin('~/.vim/bundle')
       xmap <Leader>P d"+=P
     " }
 
-    " vim-over {
-      " Search & Replace preview
-      Plug 'osyo-manga/vim-over'
+    " Searching {
+      " vim-over {
+        " Search & Replace preview
+        Plug 'osyo-manga/vim-over'
 
-      nnoremap <Leader>s :OverCommandLine<CR>s/
-      nnoremap <Leader>S :OverCommandLine<CR>%s/
-      xnoremap <Leader>s :OverCommandLine<CR>s/
-      nnoremap <Leader>/ :OverCommandLine<CR>/
+        nnoremap <Leader>s :OverCommandLine<CR>s/
+        nnoremap <Leader>S :OverCommandLine<CR>%s/
+        xnoremap <Leader>s :OverCommandLine<CR>s/
+        nnoremap <Leader>/ :OverCommandLine<CR>/
+      " }
+
+      " incsearch.vim {
+        " Similar to vim-over except for searching only
+        Plug 'haya14busa/incsearch.vim'
+
+        " Replace default mapping to use fancier search
+        map /  <Plug>(incsearch-forward)
+        map ?  <Plug>(incsearch-backward)
+        map g/ <Plug>(incsearch-stay)
+      " }
+
+      "  vim-visual-star-search {
+        " Start a * or # search from a visual block 
+        " ( a visual mode for the normal mode * functionality)
+        Plug 'bronson/vim-visual-star-search'
+      "  }
     " }
-
-    " incsearch.vim {
-      " Similar to vim-over except for searching only
-      Plug 'haya14busa/incsearch.vim'
-
-      " Replace default mapping to use fancier search
-      map /  <Plug>(incsearch-forward)
-      map ?  <Plug>(incsearch-backward)
-      map g/ <Plug>(incsearch-stay)
-    " }
-
-    "  vim-visual-star-search {
-      " Start a * or # search from a visual block 
-      " ( a visual mode for the normal mode * functionality)
-      Plug 'bronson/vim-visual-star-search'
-    "  }
 
     " vim-sneak {
       " The missing motion for Vim
