@@ -453,6 +453,9 @@ call plug#begin('~/.vim/bundle')
         " SOURCE: https://github.com/ggreer/the_silver_searcher#installing
         Plug 'dyng/ctrlsf.vim'
 
+        " Use Project Directory as root by searching VCS directory (.git, .hg, etc.) 
+        let g:ctrlsf_default_root = 'project'
+
         " Use CtrlSF RegEx Mode by default
         let g:ctrlsf_regex_pattern = 1
 
@@ -542,6 +545,7 @@ call plug#begin('~/.vim/bundle')
     " vim-airline {
       " Pretty looking Status Line
       Plug 'vim-airline/vim-airline'
+      Plug 'vim-airline/vim-airline-themes'
 
       if has("gui_running")
         let g:airline_powerline_fonts = 1
