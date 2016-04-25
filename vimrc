@@ -110,6 +110,11 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     " Yank from the cursor to the end of the line, to be consistent with C and D.
     nnoremap Y y$
 
+    " Yank without Jank
+    " Source: http://ddrscott.github.io/blog/2016/yank-without-jank/
+    vnoremap y myy`y
+    vnoremap Y myY`y
+
     " Highlight last pasted text in visual mode
     nnoremap gp `[v`]
 
