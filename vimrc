@@ -118,6 +118,9 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     " Highlight last pasted text in visual mode
     nnoremap gp `[v`]
 
+    " Go to last yank marker
+    nnoremap gy 'y
+
     " Make a new Tab with the current buffer ( Similar to :vs and :split )
     nnoremap <Leader>t :tabe %<CR>
 
