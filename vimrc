@@ -112,8 +112,8 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
 
     " Yank without Jank
     " Source: http://ddrscott.github.io/blog/2016/yank-without-jank/
-    vnoremap y myy`y
-    vnoremap Y myY`y
+    vnoremap <expr>y "my\"" . v:register . "y`y"
+    vnoremap <expr>Y "my\"" . v:register . "y`y"
 
     " Highlight last pasted text in visual mode
     nnoremap gp `[v`]
