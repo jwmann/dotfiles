@@ -195,35 +195,33 @@ endif
 " Begin vim-plug!
 call plug#begin('~/.vim/bundle')
 
-" Plugins, Bundles, Mappings, Settings, etc... {
-  " File Navigation {
-    " CtrlP {
-      " Fuzzy Finding File Navigator
-      Plug 'ctrlpvim/ctrlp.vim'
+" Plugins, and their Mappings, Settings, etc... {
+  " vim-ctrlspace {
+    " CtrlSpace
+    " Tabs / Buffers / Files management
+    " Fast fuzzy searching powered by Go
+    " Workspaces (sessions)
+    " Bookmarks for your favorite projects
+    " 
+    " DEPENDENCY: The Silver Searcher (Ag)
+    " DESCRIPTION: A code-searching tool similar to ack, but faster. http://geoff.greer.fm/ag/
+    " INSTALLATION: brew install the_silver_searcher
+    " SOURCE: https://github.com/ggreer/the_silver_searcher#installing
+    Plug 'vim-ctrlspace/vim-ctrlspace'
 
-      " Invoke CtrlP File Finder and Flush mapping
-      nnoremap <Leader>f :CtrlP<CR>
+    " Invoke CtrlSpace Fuzzy Search File Finder
+    nnoremap <Leader>f :CtrlSpace O<CR>
 
-      " Invoke CtrlP Buffer Finder
-      nnoremap <CR> :CtrlPBuffer<CR>
+    " Invoke CtrlSpace Buffer Finder
+    nnoremap <CR> :CtrlSpace h<CR>
 
-      " CtrlP relative working path
-      let g:ctrlp_working_path_mode = 'ra'
+    if executable("ag")
+      let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+    endif
 
-      " Exclude files or directories using CtrlP's own g:ctrlp_custom_ignore
-      let g:ctrlp_custom_ignore = {
-        \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-        \ 'file': '\v\.(exe|so|dll|swp|DS_Store|zip|png|jpg|pdf|gif)$',
-        \ 'link': 'some_bad_symbolic_links',
-      \ }
-    " }
-
-    " vinegar.vim {
-      " Combine with netrw to create a delicious salad dressing
-      " Expands the builtin File Explorer in Vim to something more useful and
-      " less bulky than Nerdtree
-      Plug 'tpope/vim-vinegar'
-    " }
+    let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
+    let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
+    let g:CtrlSpaceSaveWorkspaceOnExit = 1
   " }
 
   " Utilities {
@@ -319,6 +317,13 @@ call plug#begin('~/.vim/bundle')
   " }
 
   " Plugs that extend basic Vim functions {
+    " vinegar.vim {
+      " Combine with netrw to create a delicious salad dressing
+      " Expands the builtin File Explorer in Vim to something more useful and
+      " less bulky than Nerdtree
+      Plug 'tpope/vim-vinegar'
+    " }
+
     " csscomplete.vim {
       " Update the bult-in CSS complete function to latest CSS standard.
       Plug 'othree/csscomplete.vim'
