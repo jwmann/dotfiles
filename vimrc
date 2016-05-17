@@ -390,16 +390,24 @@ call plug#begin('~/.vim/bundle')
         " Similar to vim-over except for searching only
         Plug 'haya14busa/incsearch.vim'
 
+        " Mappings do not work if they are non-recursive
+
         " Replace default mapping to use fancier search
         map /  <Plug>(incsearch-forward)
         map ?  <Plug>(incsearch-backward)
         map g/ <Plug>(incsearch-stay)
       " }
 
-      "  vim-visual-star-search {
+      "  vim-visualstar {
         " Start a * or # search from a visual block 
         " ( a visual mode for the normal mode * functionality)
-        Plug 'bronson/vim-visual-star-search'
+        Plug 'thinca/vim-visualstar'
+
+        " Mappings do not work if they are non-recursive
+
+        " Replace default vim mapping for * and #
+        map * <Plug>(visualstar-*)N
+        map # <Plug>(visualstar-#)N
       "  }
     " }
 
