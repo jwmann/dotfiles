@@ -107,6 +107,11 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     cnoreabbrev Q q
     cnoremap Tabe tabe
 
+    " Make Ctrl-e jump to the end of the current line in the insert mode. This is
+    " handy when you are in the middle of a line and would like to go to its end
+    " without switching to the normal mode.
+    inoremap <C-e> <C-o>$
+
     " Yank from the cursor to the end of the line, to be consistent with C and D.
     nnoremap Y y$
 
@@ -115,8 +120,20 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     vnoremap <expr>y "my\"" . v:register . "y`y"
     vnoremap <expr>Y "my\"" . v:register . "y`y"
 
+    " Move up and down visually, not linewise. Useful for wrapped lines.
+    " Extra logic to keep 5k or 3j functionality using relative numbers.
+    " Sources: http://blog.petrzemek.net/2016/04/06/things-about-vim-i-wish-i-knew-earlier/
+    " http://stackoverflow.com/a/21000307/185731
+    noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+    noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+
     " Highlight last pasted text in visual mode
     nnoremap gp `[v`]
+
+    " Stay in visual mode when indenting. You will never have to run gv after
+    " performing an indentation.
+    vnoremap < <gv
+    vnoremap > >gv
 
     " Go to last yank marker
     nnoremap gy 'y
