@@ -3,6 +3,8 @@
   branch = auto
 [core]
   excludesfile = ~/.gitignore
+[status]
+	submoduleSummary = true
 [push]
   default = simple
 [alias]
