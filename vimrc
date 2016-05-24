@@ -230,7 +230,7 @@ call plug#begin('~/.vim/bundle')
     nnoremap <Leader>f :CtrlSpace O<CR>
 
     " Invoke CtrlSpace Buffer Finder
-    nnoremap <CR> :CtrlSpace h<CR>
+    nnoremap <CR> :CtrlSpace H<CR>
 
     if executable("ag")
       let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
