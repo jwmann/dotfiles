@@ -41,3 +41,12 @@ Thumbs.db
 *.swp
 *.swo
 .netrwhist
+
+# Vim Plugins
+#############
+
+# Ctrl-Space  #
+###############
+.cs_cache
+.cs_workspaces
+.cs_files
