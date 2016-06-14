@@ -5,6 +5,8 @@
   excludesfile = ~/.gitignore
 [status]
 	submoduleSummary = true
+[diff]
+  compactionHeuristic = true
 [push]
   default = simple
 [pull]
