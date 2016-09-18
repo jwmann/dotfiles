@@ -54,7 +54,7 @@
 
   # Logs
   # ----
-  l = log
+  l = log --show-signature
   ls = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short                       #  Pretty one-line log with tags, branches and authors
   lsv = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short --numstat            #  A verbose ls, shows changed files too
   sig = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short --show-signature -1  #  Check for GPG signatures
