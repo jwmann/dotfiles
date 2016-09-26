@@ -331,6 +331,17 @@ call plug#begin('~/.vim/bundle')
       nnoremap <Leader>$ :StripWhitespace<CR>
       xnoremap <Leader>$ :StripWhitespace<CR>
     " }
+    
+    " vim-gutentags {
+      " A Vim plugin that manages your tag files
+      "
+      " DEPENDENCY: Exuberant Ctags
+      " DESCRIPTION: Ctags generates an index (or tag) file of language objects found in source files that allows these items to be quickly and easily located by a text editor or other utility. A tag signifies a language object for which an index entry is available (or, alternatively, the index entry created for that object).
+      " INSTALLATION: brew install ctags
+      " SOURCE: http://ctags.sourceforge.net/
+
+      Plug 'ludovicchabant/vim-gutentags'
+    " }
   " }
 
   " Plugs that extend basic Vim functions {
@@ -520,6 +531,11 @@ call plug#begin('~/.vim/bundle')
       " vim-commentary {
         " Comment stuff out with a single command for many languages plus extendability
         Plug 'tpope/vim-commentary'
+      " }
+      
+      " vim-exchange {
+        " Easy text exchange operator for Vim.
+        Plug 'tommcdo/vim-exchange'
       " }
     " }
 
