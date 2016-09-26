@@ -41,6 +41,7 @@ Thumbs.db
 *.swp
 *.swo
 .netrwhist
+tags
 
 # Vim Plugins
 #############
