@@ -331,7 +331,7 @@ call plug#begin('~/.vim/bundle')
       nnoremap <Leader>$ :StripWhitespace<CR>
       xnoremap <Leader>$ :StripWhitespace<CR>
     " }
-    
+
     " vim-gutentags {
       " A Vim plugin that manages your tag files
       "
