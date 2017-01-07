@@ -412,13 +412,13 @@ call plug#begin('~/.vim/bundle')
       "  vim-visualstar {
         " Start a * or # search from a visual block 
         " ( a visual mode for the normal mode * functionality)
-        Plug 'thinca/vim-visualstar'
+        " Plug 'thinca/vim-visualstar'
 
         " Mappings do not work if they are non-recursive
 
         " Replace default vim mapping for * and #
-        map * <Plug>(visualstar-*)N
-        map # <Plug>(visualstar-#)N
+        " map * <Plug>(visualstar-*)N
+        " map # <Plug>(visualstar-#)N
       "  }
     " }
 
@@ -462,6 +462,18 @@ call plug#begin('~/.vim/bundle')
     " }
 
     " Custom Operators {
+      " sad.vim {
+        " Quick Search and Replace for Vim
+        " Similar to using 'cgn'
+        Plug 'hauleth/sad.vim'
+
+        nmap c <Plug>(sad-change-forward)
+        nmap C <Plug>(sad-change-backward)$
+
+        xmap c <Plug>(sad-change-forward)
+        xmap C <Plug>(sad-change-backward)
+      " }
+
       " vim-surround {
         " Surround - quoting/parenthesizing made simple
         Plug 'tpope/vim-surround'
@@ -532,7 +544,7 @@ call plug#begin('~/.vim/bundle')
         " Comment stuff out with a single command for many languages plus extendability
         Plug 'tpope/vim-commentary'
       " }
-      
+
       " vim-exchange {
         " Easy text exchange operator for Vim.
         Plug 'tommcdo/vim-exchange'
