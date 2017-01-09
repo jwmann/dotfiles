@@ -468,7 +468,7 @@ call plug#begin('~/.vim/bundle')
         Plug 'hauleth/sad.vim'
 
         nmap c <Plug>(sad-change-forward)
-        nmap C <Plug>(sad-change-backward)$
+        nmap C <Plug>(sad-change-forward)$
 
         xmap c <Plug>(sad-change-forward)
         xmap C <Plug>(sad-change-backward)
