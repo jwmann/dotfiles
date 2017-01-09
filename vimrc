@@ -306,6 +306,9 @@ call plug#begin('~/.vim/bundle')
       xnoremap <Leader>$ :StripWhitespace<CR>
     " }
 
+    " lion.vim {
+      Plug 'tommcdo/vim-lion'
+    " }
   " }
 
   " Plugs that extend basic Vim functions {
@@ -540,6 +543,11 @@ call plug#begin('~/.vim/bundle')
   " }
 
   " Syntax Helpers {
+    " ALE {
+      " Asynchronous Lint Engine
+      Plug 'w0rp/ale'
+    " }
+
     " Matchem {
       " Fixes Edge-Case delimitMate problems
       Plug 'ervandew/matchem'
