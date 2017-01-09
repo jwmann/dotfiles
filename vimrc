@@ -87,15 +87,20 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     nnoremap <C-l> <C-w>l
     nnoremap <Right> <C-w>l
 
+    " Move visual block
+    " Source: https://vimrcfu.com/snippet/77
+    vnoremap J :m '>+1<CR>gv=gv
+    vnoremap K :m '<-2<CR>gv=gv
+
+    " Change the Shift+k function to something more useful: The opposite of doing Shift+j
+    nnoremap K i<CR><Esc>^
+
     " Map to change the working directory to the same directory of the current file
     nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
 
     " Map to remove highlighted search terms
     nnoremap <Leader>l :noh<CR><C-l>
     nnoremap <Leader><Space> :noh<CR><C-l>
-
-    " Change the Shift+k function to something more useful: The opposite of doing Shift+j
-    nnoremap K i<CR><Esc>^
 
     " Making it so ; works like : for commands. Saves typing and eliminates :W style typos due to lazy holding shift.
     nnoremap ; :
