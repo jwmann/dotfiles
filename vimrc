@@ -429,6 +429,19 @@ call plug#begin('~/.vim/bundle')
     " }
 
     " Completion {
+      " VimCompletesMe {
+        " A super simple, super minimal, super light-weight tab completion plugin for Vim.
+        Plug 'ajh17/VimCompletesMe'
+      " }
+
+      " phpcomplete.vim {
+        Plug 'shawncplus/phpcomplete.vim'
+      " }
+
+      " vim-better-javascript-completion {
+        Plug '1995eaton/vim-better-javascript-completion'
+      " }
+
       " csscomplete.vim {
         " Update the bult-in CSS complete function to latest CSS standard.
         Plug 'othree/csscomplete.vim'
