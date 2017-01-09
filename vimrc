@@ -24,8 +24,7 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
   " Set my color scheme
   syntax on
   set background=dark
-  " colorscheme ir_black                      " Make sure ir_black is in ~/.vim
-  colorscheme jellybeans                      " Make sure jellybeans is in ~/.vim
+  colorscheme molokai                      " Make sure any custom colorschemes are in ~/.vim/colors ( jellybeans, ir_black and molokai )
 
   set guifont=Inconsolata\ for\ Powerline:h14 " Set Default Font ( Font included as a plugin, make sure to install into System )
 
