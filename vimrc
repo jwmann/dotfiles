@@ -93,6 +93,7 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
 
     " Map to remove highlighted search terms
     nnoremap <Leader>l :noh<CR><C-l>
+    nnoremap <Leader><Space> :noh<CR><C-l>
 
     " Change the Shift+k function to something more useful: The opposite of doing Shift+j
     nnoremap K i<CR><Esc>^
@@ -365,7 +366,7 @@ call plug#begin('~/.vim/bundle')
     " vim-bbye {
       " Delete buffers and close files in Vim without closing your windows or messing up your layout.
       Plug 'moll/vim-bbye'
-      nnoremap <Leader>q :Bdelete<CR>
+      nnoremap <Leader>bd :Bdelete<CR>
     " }
 
     " Repeat.vim {
@@ -445,6 +446,7 @@ call plug#begin('~/.vim/bundle')
 
         nmap c <Plug>(sad-change-forward)
         nmap C <Plug>(sad-change-forward)$
+        nmap cc 0<Plug>(sad-change-forward)$
 
         xmap c <Plug>(sad-change-forward)
         xmap C <Plug>(sad-change-backward)
@@ -472,7 +474,7 @@ call plug#begin('~/.vim/bundle')
 
         " Surround Specifc Mappings {
           " Add spaces inside () quickly
-          nmap <Leader><Space> vi(S<Space><Space>
+          nmap (( vi(S<Space><Space>
         " }
       " }
 
@@ -496,6 +498,9 @@ call plug#begin('~/.vim/bundle')
         " Mappings do not work if they are non-recursive
         nmap "" cI"
         nmap '' cI'
+
+        " Change inside ( foobar ) quickly
+        nmap )) cI(
       " }
 
       " vim-textobj-user {
