@@ -213,36 +213,9 @@ endif
 call plug#begin('~/.vim/bundle')
 
 " Plugins, and their Mappings, Settings, etc... {
-  " vim-ctrlspace {
-    " CtrlSpace
-    " Tabs / Buffers / Files management
-    " Fast fuzzy searching powered by Go
-    " Workspaces (sessions)
-    " Bookmarks for your favorite projects
-    " 
-    " DEPENDENCY: The Silver Searcher (Ag)
-    " DESCRIPTION: A code-searching tool similar to ack, but faster. http://geoff.greer.fm/ag/
-    " INSTALLATION: brew install the_silver_searcher
-    " SOURCE: https://github.com/ggreer/the_silver_searcher#installing
-    Plug 'vim-ctrlspace/vim-ctrlspace'
-
-    " Invoke CtrlSpace Fuzzy Search File Finder
-    nnoremap <Leader>f :CtrlSpace O<CR>
-
-    " Invoke CtrlSpace Buffer Finder
-    nnoremap <CR> :CtrlSpace H<CR>
-
-    if executable("ag")
-      let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
-    endif
-
-    let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
-    let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
-    let g:CtrlSpaceSaveWorkspaceOnExit = 1
-  " }
-
   " Utilities {
-    " Fugitive (Git) {
+    " Git {
+      " Fugitive {
       " Vim Git Wrapper
       Plug 'tpope/vim-fugitive'
 
@@ -262,16 +235,17 @@ call plug#begin('~/.vim/bundle')
       nnoremap <Leader>gP :Gpull<CR>
       nnoremap <Leader>dg :diffget<CR>
       nnoremap <Leader>dp :diffput<CR>
-    " }
+      " }
 
-    " vim-gitgutter {
+      " vim-gitgutter {
       " Provides easy Git Diff patching within a document
       Plug 'airblade/vim-gitgutter'
+      " }
     " }
 
-    " YouCompleteMe {
-      " Auto/Omni Completion
-      Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+    " vim-signature {
+      " A plugin to place, toggle and display marks.
+      Plug 'kshenoy/vim-signature'
     " }
 
     " Ultisnips {
@@ -309,11 +283,6 @@ call plug#begin('~/.vim/bundle')
       let g:UltiSnipsEditSplit="vertical"
     " }
 
-    " LargeFile {
-      " Edit large files quickly ( default: 100mb files )
-      Plug 'vim-scripts/LargeFile'
-    " }
-
     " vim-better-whitespace {
       " Better whitespace highlighting and stripping for Vim
       Plug 'ntpeters/vim-better-whitespace'
@@ -332,48 +301,9 @@ call plug#begin('~/.vim/bundle')
       xnoremap <Leader>$ :StripWhitespace<CR>
     " }
 
-    " vim-gutentags {
-      " A Vim plugin that manages your tag files
-      "
-      " DEPENDENCY: Exuberant Ctags
-      " DESCRIPTION: Ctags generates an index (or tag) file of language objects found in source files that allows these items to be quickly and easily located by a text editor or other utility. A tag signifies a language object for which an index entry is available (or, alternatively, the index entry created for that object).
-      " INSTALLATION: brew install ctags
-      " SOURCE: http://ctags.sourceforge.net/
-
-      Plug 'ludovicchabant/vim-gutentags'
-    " }
   " }
 
   " Plugs that extend basic Vim functions {
-    " vinegar.vim {
-      " Combine with netrw to create a delicious salad dressing
-      " Expands the builtin File Explorer in Vim to something more useful and
-      " less bulky than Nerdtree
-      Plug 'tpope/vim-vinegar'
-    " }
-
-    " csscomplete.vim {
-      " Update the bult-in CSS complete function to latest CSS standard.
-      Plug 'othree/csscomplete.vim'
-      autocmd vimrc FileType css,less,scss set omnifunc=csscomplete#CompleteCSS noci
-    " }
-
-    " vim-bbye {
-      " Delete buffers and close files in Vim without closing your windows or messing up your layout.
-      Plug 'moll/vim-bbye'
-      nnoremap <Leader>q :Bdelete<CR>
-    " }
-
-    " Repeat.vim {
-      " Use . repeat command that works with plugins
-      Plug 'tpope/vim-repeat'
-    " }
-
-    " Abolish {
-      " Advanced Search and Replace, 'Subvert'
-      Plug 'tpope/vim-abolish'
-    " }
-
     " vim-unimpaired {
       " Provides many key bindings and functions for vim
       Plug 'tpope/vim-unimpaired'
@@ -384,42 +314,6 @@ call plug#begin('~/.vim/bundle')
       nmap <Leader>P "+=P
       xmap <Leader>p d"+=P
       xmap <Leader>P d"+=P
-    " }
-
-    " Searching {
-      " vim-over {
-        " Search & Replace preview
-        Plug 'osyo-manga/vim-over'
-
-        nnoremap <Leader>s :OverCommandLine<CR>s/
-        nnoremap <Leader>S :OverCommandLine<CR>%s/
-        xnoremap <Leader>s :OverCommandLine<CR>s/
-        nnoremap <Leader>/ :OverCommandLine<CR>/
-      " }
-
-      " incsearch.vim {
-        " Similar to vim-over except for searching only
-        Plug 'haya14busa/incsearch.vim'
-
-        " Mappings do not work if they are non-recursive
-
-        " Replace default mapping to use fancier search
-        map /  <Plug>(incsearch-forward)
-        map ?  <Plug>(incsearch-backward)
-        map g/ <Plug>(incsearch-stay)
-      " }
-
-      "  vim-visualstar {
-        " Start a * or # search from a visual block 
-        " ( a visual mode for the normal mode * functionality)
-        " Plug 'thinca/vim-visualstar'
-
-        " Mappings do not work if they are non-recursive
-
-        " Replace default vim mapping for * and #
-        " map * <Plug>(visualstar-*)N
-        " map # <Plug>(visualstar-#)N
-      "  }
     " }
 
     " vim-sneak {
@@ -451,14 +345,96 @@ call plug#begin('~/.vim/bundle')
       omap T <Plug>Sneak_T
     " }
 
+    " vim-gutentags {
+      " A Vim plugin that manages your tag files
+      "
+      " DEPENDENCY: Exuberant Ctags
+      " DESCRIPTION: Ctags generates an index (or tag) file of language objects found in source files that allows these items to be quickly and easily located by a text editor or other utility. A tag signifies a language object for which an index entry is available (or, alternatively, the index entry created for that object).
+      " INSTALLATION: brew install ctags
+      " SOURCE: http://ctags.sourceforge.net/
+
+      Plug 'ludovicchabant/vim-gutentags'
+    " }
+
     " splitjoin.vim {
       " A vim plugin that simplifies the transition between multiline and single-line code
       Plug 'AndrewRadev/splitjoin.vim'
     " }
 
-    " vim-signature {
-      " A plugin to place, toggle and display marks.
-      Plug 'kshenoy/vim-signature'
+
+    " vim-bbye {
+      " Delete buffers and close files in Vim without closing your windows or messing up your layout.
+      Plug 'moll/vim-bbye'
+      nnoremap <Leader>q :Bdelete<CR>
+    " }
+
+    " Repeat.vim {
+      " Use . repeat command that works with plugins
+      Plug 'tpope/vim-repeat'
+    " }
+
+    " Searching {
+      " vim-over {
+        " Search & Replace preview
+        Plug 'osyo-manga/vim-over'
+
+        nnoremap <Leader>s :OverCommandLine<CR>s/
+        nnoremap <Leader>S :OverCommandLine<CR>%s/
+        xnoremap <Leader>s :OverCommandLine<CR>s/
+        nnoremap <Leader>/ :OverCommandLine<CR>/
+      " }
+
+      " incsearch.vim {
+        " Similar to vim-over except for searching only
+        Plug 'haya14busa/incsearch.vim'
+
+        " Mappings do not work if they are non-recursive
+
+        " Replace default mapping to use fancier search
+        map /  <Plug>(incsearch-forward)
+        map ?  <Plug>(incsearch-backward)
+        map g/ <Plug>(incsearch-stay)
+      " }
+
+      " Abolish {
+        " Advanced Search and Replace, 'Subvert'
+        Plug 'tpope/vim-abolish'
+      " }
+
+      " ctrlsf.vim {
+        " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
+        " DEPENDENCY: The Silver Searcher (Ag)
+        " DESCRIPTION: A code-searching tool similar to ack, but faster. http://geoff.greer.fm/ag/
+        " INSTALLATION: brew install the_silver_searcher
+        " SOURCE: https://github.com/ggreer/the_silver_searcher#installing
+        Plug 'dyng/ctrlsf.vim'
+
+        " Use Project Directory as root by searching VCS directory (.git, .hg, etc.) 
+        let g:ctrlsf_default_root = 'project'
+
+        " Use CtrlSF RegEx Mode by default
+        let g:ctrlsf_regex_pattern = 1
+
+        " Mappings do not work if they are non-recursive
+        nmap     <Leader>F <Plug>CtrlSFPrompt
+        " nmap     <Leader>FF <Plug>CtrlSFCwordPath
+        nmap     <Leader>FF <Plug>CtrlSFCwordExec
+        " vmap     <Leader>F <Plug>CtrlSFVwordPath
+        vmap     <Leader>F <Plug>CtrlSFVwordExec
+        nmap     <Leader>Fp <Plug>CtrlSFPwordPath
+
+        nnoremap <Leader>Fo :CtrlSFOpen<CR>
+        nnoremap <Leader>Ft :CtrlSFToggle<CR>
+      " }
+    " }
+
+    " Completion {
+      " csscomplete.vim {
+        " Update the bult-in CSS complete function to latest CSS standard.
+        Plug 'othree/csscomplete.vim'
+
+        autocmd vimrc FileType css,less,scss set omnifunc=csscomplete#CompleteCSS noci
+      " }
     " }
 
     " Custom Operators {
@@ -500,46 +476,6 @@ call plug#begin('~/.vim/bundle')
         " }
       " }
 
-      " vim-easy-align {
-        " Text filtering and alignment
-        Plug 'junegunn/vim-easy-align'
-
-        " Start interactive EasyAlign in visual mode (e.g. vip<CR>)
-        vmap <CR> <Plug>(EasyAlign)
-
-        " Start interactive EasyAlign in visual mode (e.g. vip<CR>) already in RegEx input mode
-        vmap <Leader>a <Plug>(EasyAlign)*<C-x>
-
-        " Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
-        nmap <Leader>a <Plug>(EasyAlign)
-      " }
-
-      " ctrlsf.vim {
-        " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
-        " DEPENDENCY: The Silver Searcher (Ag)
-        " DESCRIPTION: A code-searching tool similar to ack, but faster. http://geoff.greer.fm/ag/
-        " INSTALLATION: brew install the_silver_searcher
-        " SOURCE: https://github.com/ggreer/the_silver_searcher#installing
-        Plug 'dyng/ctrlsf.vim'
-
-        " Use Project Directory as root by searching VCS directory (.git, .hg, etc.) 
-        let g:ctrlsf_default_root = 'project'
-
-        " Use CtrlSF RegEx Mode by default
-        let g:ctrlsf_regex_pattern = 1
-
-        " Mappings do not work if they are non-recursive
-        nmap     <Leader>F <Plug>CtrlSFPrompt
-        " nmap     <Leader>FF <Plug>CtrlSFCwordPath
-        nmap     <Leader>FF <Plug>CtrlSFCwordExec
-        " vmap     <Leader>F <Plug>CtrlSFVwordPath
-        vmap     <Leader>F <Plug>CtrlSFVwordExec
-        nmap     <Leader>Fp <Plug>CtrlSFPwordPath
-
-        nnoremap <Leader>Fo :CtrlSFOpen<CR>
-        nnoremap <Leader>Ft :CtrlSFToggle<CR>
-      " }
-
       " vim-commentary {
         " Comment stuff out with a single command for many languages plus extendability
         Plug 'tpope/vim-commentary'
@@ -552,12 +488,6 @@ call plug#begin('~/.vim/bundle')
     " }
 
     " Custom Text Objects {
-      " vim-textobj-user {
-        " Create your own text objects
-        " Is a dependency for other custom text objects
-        Plug 'kana/vim-textobj-user'
-      " }
-
       " targets.vim {
         " Gives additional text objects and allows you to manipulate said objects in a
         " way that makes sense within their context's.
@@ -566,6 +496,12 @@ call plug#begin('~/.vim/bundle')
         " Mappings do not work if they are non-recursive
         nmap "" cI"
         nmap '' cI'
+      " }
+
+      " vim-textobj-user {
+        " Create your own text objects
+        " Is a dependency for other custom text objects
+        Plug 'kana/vim-textobj-user'
       " }
 
       " vim-textobj-line {
@@ -585,22 +521,10 @@ call plug#begin('~/.vim/bundle')
     " Matchem {
       " Fixes Edge-Case delimitMate problems
       Plug 'ervandew/matchem'
-
-      " Delimitmate {
-      " autocmd vimrc FileType * let b:delimitMate_autoclose = 1
-
-      " If using html auto complete (complete closing tag)
-      " autocmd vimrc FileType xml,html,xhtml let b:delimitMate_matchpairs = \"(:),[:],{:}"
-      " }
-    " }
-
-    " Syntastic {
-      " Syntax Checking
-      Plug 'scrooloose/syntastic'
     " }
   " }
 
-  " Aesthetic Plugs {
+  " A E S T H E T I C S {
     " Colour Schemes {
       " LESS {
         Plug 'groenewege/vim-less'
