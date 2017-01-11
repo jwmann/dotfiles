@@ -24,9 +24,9 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
   " Set my color scheme
   syntax on
   set background=dark
-  colorscheme molokai                         " Make sure any custom colorschemes are in ~/.vim/colors ( jellybeans, ir_black and molokai )
+  colorscheme atom-dark                         " Make sure any custom colorschemes are in ~/.vim/colors ( jellybeans, ir_black, atom-dark and molokai )
 
-  set guifont=Inconsolata\ for\ Powerline:h14 " Set Default Font ( Font included as a plugin, make sure to install into System )
+  set guifont=Inconsolata\ for\ Powerline:h14   " Set Default Font ( Font included as a plugin, make sure to install into System )
 
   " Indent Settings {
     set tabstop=2 shiftwidth=2 expandtab      " Make my tabs be 2 spaces **BE CAREFUL WITH THIS SETTING**
