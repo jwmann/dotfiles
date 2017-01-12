@@ -17,7 +17,7 @@ augroup END
 autocmd vimrc FileType gitcommit setlocal spell
 autocmd vimrc FileType gitcommit setlocal spelllang=en
 
-" Deletes swapfiles for unmodified buffers -- Provided by #vim, from tpope
+" Deletes swapfiles for unmodified buffers -- Provided by tpope from #vim
 autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isdirectory(expand("<aMatch>:h")) | let &swapfile = &modified | endif
 
 " VimUI {
@@ -52,7 +52,7 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     set scrolloff=6                           " Minimum lines to keep above and below cursor
     set sidescrolloff=15                      " Minimum lines to keep left and right of the cursor
     set sidescroll=1
-    let &showbreak='↪ '                         "  String to put at the start of lines that have been wrapped
+    let &showbreak='↪ '                         " String to put at the start of lines that have been wrapped
   " }
 
   " Search Settings {
@@ -224,30 +224,30 @@ call plug#begin('~/.vim/bundle')
   " Utilities {
     " Git {
       " Fugitive {
-      " Vim Git Wrapper
-      Plug 'tpope/vim-fugitive'
+        " Vim Git Wrapper
+        Plug 'tpope/vim-fugitive'
 
-      " Auto-delete vim buffers when browsing git object history using Fugitive
-      autocmd vimrc BufReadPost fugitive://* set bufhidden=delete
+        " Auto-delete vim buffers when browsing git object history using Fugitive
+        autocmd vimrc BufReadPost fugitive://* set bufhidden=delete
 
-      " Fancy Status Line using git branch
-      autocmd vimrc User Fugitive set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+        " Fancy Status Line using git branch
+        autocmd vimrc User Fugitive set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
-      " Mappings for most used commands
-      nnoremap <Leader>gs :Gstatus<CR>
-      nnoremap <Leader>gw :Gwrite<CR>
-      nnoremap <Leader>gC :Gcommit<CR>
-      nnoremap <Leader>gc :Gcommit -S<CR>
-      nnoremap <Leader>gd :Gdiff<CR>
-      nnoremap <Leader>gp :Gpush<CR>
-      nnoremap <Leader>gP :Gpull<CR>
-      nnoremap <Leader>dg :diffget<CR>
-      nnoremap <Leader>dp :diffput<CR>
+        " Mappings for most used commands
+        nnoremap <Leader>gs :Gstatus<CR>
+        nnoremap <Leader>gw :Gwrite<CR>
+        nnoremap <Leader>gC :Gcommit<CR>
+        nnoremap <Leader>gc :Gcommit -S<CR>
+        nnoremap <Leader>gd :Gdiff<CR>
+        nnoremap <Leader>gp :Gpush<CR>
+        nnoremap <Leader>gP :Gpull<CR>
+        nnoremap <Leader>dg :diffget<CR>
+        nnoremap <Leader>dp :diffput<CR>
       " }
 
       " vim-gitgutter {
-      " Provides easy Git Diff patching within a document
-      Plug 'airblade/vim-gitgutter'
+        " Provides easy Git Diff patching within a document
+        Plug 'airblade/vim-gitgutter'
       " }
     " }
 
