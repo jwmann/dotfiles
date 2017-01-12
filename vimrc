@@ -441,9 +441,53 @@ call plug#begin('~/.vim/bundle')
     " }
 
     " Completion {
-      " VimCompletesMe {
+      " vim-mucomplete {
         " A super simple, super minimal, super light-weight tab completion plugin for Vim.
-        Plug 'ajh17/VimCompletesMe'
+        " Chained completion that works the way you want!
+        Plug 'lifepillar/vim-mucomplete'
+
+        " Config shared by dza from #vim
+        " set completeopt+=menu,menuone
+        " both are recommended by mucomplete but menu,preview is already set
+        " so leave out menu below;
+        set completeopt+=menuone
+        set completeopt-=preview
+
+        " see :help shortmess TODO: customize this
+        set shortmess+=c
+
+        " add UltiSnips to chains
+        let g:mucomplete#chains = {'vim': ['file', 'cmd', 'keyn'], 'default': ['file', 'omni', 'keyn', 'dict', 'ulti']}
+
+        " toggle auto completion
+        function! s:toggle_completeopt()
+          if exists('#MUcompleteAuto')
+            set completeopt+=noinsert,noselect
+          else
+            set completeopt-=noinsert,noselect
+          endif
+        endfunction
+
+        command! MUcompleteAutoToggle call mucomplete#toggle_auto()
+              \  | call <SID>toggle_completeopt()
+        command! MUcompleteAutoOn     call mucomplete#enable_auto()
+              \  | call <SID>toggle_completeopt()
+        command! MUcompleteAutoOff    call mucomplete#disable_auto()
+              \  | call <SID>toggle_completeopt()
+
+        " make right/left switch completion methods
+        imap <expr> <Right> pumvisible() ? "<Plug>(MUcompleteCycFwd)" : "\<Right>"
+        imap <expr> <Left> pumvisible() ? "<Plug>(MUcompleteCycBwd)" : "\<Left>"
+
+        " Use down/up in completion popup
+        " http://vim.wikia.com/wiki/Improve_completion_popup_menu
+        inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
+        inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
+
+        " CTRL+Y select item without newline in popup
+        " and prevent newline/CR on selecting completion
+        " http://superuser.com/a/941082/141399
+        imap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
       " }
 
       " phpcomplete.vim {
