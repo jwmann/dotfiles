@@ -52,6 +52,7 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     set scrolloff=6                           " Minimum lines to keep above and below cursor
     set sidescrolloff=15                      " Minimum lines to keep left and right of the cursor
     set sidescroll=1
+    let &showbreak='↪ '                         "  String to put at the start of lines that have been wrapped
   " }
 
   " Search Settings {
@@ -74,7 +75,9 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     set t_Co=256                              " Tell vim that your terminal supports 256 colors
   " }
 
-  let &showbreak='↪ '                         "  String to put at the start of lines that have been wrapped
+  " Fuzzy Finding Files {
+    " TODO: Search for nice implementation of vim-only finding, perhaps using fuzzy pathing
+  " }
 
   " General Mappings {
     " Easy Split Window Pane Navigation
@@ -254,6 +257,7 @@ call plug#begin('~/.vim/bundle')
     " }
 
     " Ultisnips {
+      " TODO: Get Ultisnips to work with VimCompletesMe like it worked with YCM
       " Easily accessible, configurable and reusable snippets of code.
       " Track the engine.
       Plug 'SirVer/ultisnips'
@@ -563,6 +567,7 @@ call plug#begin('~/.vim/bundle')
 
     " vim-indent-guides {
       " Shows semi-opaque markings to indicate indent levels
+      " TODO: https://github.com/nathanaelkane/vim-indent-guides/issues/55
       Plug 'nathanaelkane/vim-indent-guides'
 
       let g:indent_guides_enable_on_vim_startup = 1
