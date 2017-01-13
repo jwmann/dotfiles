@@ -63,21 +63,22 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     set smartcase                             " ...unless there's a capital letter in the query
   " }
 
+  " Fuzzy Finding Files {
+    " Working Directory is handled by vim-rooter
+    " Path is set using vim-rooters FindRootDirectory() function
+    set wildmenu                              " Show list instead of just completing
+    set wildmode=list:longest,full            " Command <Tab> completion, list matches, then longest common part, then all.
+  " }
+
   " General Settings {
     set cursorline                            " Highlight cursor line
     set showmatch                             " Show matching brackets/parenthesis
-    set wildmenu                              " Show list instead of just completing
-    set wildmode=list:longest,full            " Command <Tab> completion, list matches, then longest common part, then all.
     set foldenable                            " Auto fold code
     set hidden                                " Dont unload buffer when it is abandoned
     set visualbell                            " Use a Visual Bell instead of an audible one
     set undolevels=1000                       " More undos
     set title                                 " Vim can set the title of the terminal window
     set t_Co=256                              " Tell vim that your terminal supports 256 colors
-  " }
-
-  " Fuzzy Finding Files {
-    " TODO: Search for nice implementation of vim-only finding, perhaps using fuzzy pathing
   " }
 
   " General Mappings {
@@ -151,6 +152,9 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
 
     " Make a new Tab with the current buffer ( Similar to :vs and :split )
     nnoremap <C-w>t :tabe %<CR>
+
+    " Quick Find File
+    nnoremap <Leader>f :find 
 
     " Follow current file's symlink to edit the source file instead
     nnoremap <Leader>L :<C-u>execute 'file '.fnameescape(resolve(expand('%:p')))<Bar>
@@ -228,6 +232,11 @@ call plug#begin('~/.vim/bundle')
     " vim-rooter {
       " Changes Vim working directory to project root (identified by presence of known directory or file).
       Plug 'airblade/vim-rooter'
+
+      " Working Directory is handled by vim-rooter
+      " Path is set using vim-rooters FindRootDirectory() function
+      " This allows for some dynamic fuzzy finding regardless of project structure
+      let &path = FindRootDirectory() . '/**'
     " }
 
     " Git {
