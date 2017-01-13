@@ -99,9 +99,6 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     " Change the Shift+k function to something more useful: The opposite of doing Shift+j
     nnoremap K i<CR><Esc>^
 
-    " Map to change the working directory to the same directory of the current file
-    nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
-
     " Map to remove highlighted search terms
     nnoremap <Leader>l :noh<CR><C-l>
     nnoremap <Leader><Space> :noh<CR><C-l>
@@ -228,6 +225,11 @@ call plug#begin('~/.vim/bundle')
 
 " Plugins, and their Mappings, Settings, etc... {
   " Utilities {
+    " vim-rooter {
+      " Changes Vim working directory to project root (identified by presence of known directory or file).
+      Plug 'airblade/vim-rooter'
+    " }
+
     " Git {
       " Fugitive {
         " Vim Git Wrapper
