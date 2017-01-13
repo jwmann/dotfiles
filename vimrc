@@ -317,7 +317,9 @@ call plug#begin('~/.vim/bundle')
       xnoremap <Leader>$ :StripWhitespace<CR>
     " }
 
-    " lion.vim {
+    " vim-lion {
+      " TODO: Add config option for clearing spaces/alignment before aligning
+      " https://github.com/tommcdo/vim-lion/issues/15#issuecomment-272492597
       Plug 'tommcdo/vim-lion'
     " }
   " }
