@@ -257,7 +257,7 @@ call plug#begin('~/.vim/bundle')
     " }
 
     " Ultisnips {
-      " TODO: Get Ultisnips to work with VimCompletesMe like it worked with YCM
+      " TODO: Fix template insertion, current stops working after the first entry
       " Easily accessible, configurable and reusable snippets of code.
       " Track the engine.
       Plug 'SirVer/ultisnips'
@@ -276,20 +276,19 @@ call plug#begin('~/.vim/bundle')
       let g:UltiSnipsListSnippets = '<C-Tab>'
       let g:ulti_expand_or_jump_res = 0
 
-      " Allow Enter to Expand a Snippet within YCM's autocomplete list
-      " Source: https://github.com/Valloric/YouCompleteMe/issues/420#issuecomment-55940039
-      function! ExpandSnippetOrCarriageReturn()
+      " UltiSnips works with MUcomplete this way on ENTER
+      " https://github.com/SirVer/ultisnips/issues/376#issuecomment-69033351
+      " Config shared by dza from #vim
+      function! <SID>ExpandSnippetOrReturn()
         let snippet = UltiSnips#ExpandSnippetOrJump()
         if g:ulti_expand_or_jump_res > 0
           return snippet
         else
-          return "\<CR>"
+          return "\<C-Y>"
         endif
       endfunction
-      inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
 
-      " If you want :UltiSnipsEdit to split your window.
-      let g:UltiSnipsEditSplit="vertical"
+      inoremap <silent> <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "\<CR>"
     " }
 
     " vim-better-whitespace {
@@ -446,48 +445,23 @@ call plug#begin('~/.vim/bundle')
         " Chained completion that works the way you want!
         Plug 'lifepillar/vim-mucomplete'
 
-        " Config shared by dza from #vim
         " set completeopt+=menu,menuone
         " both are recommended by mucomplete but menu,preview is already set
         " so leave out menu below;
         set completeopt+=menuone
         set completeopt-=preview
 
-        " see :help shortmess TODO: customize this
+        " Don't give |ins-completion-menu| messages.  For example,
+        " -- XXX completion (YYY)", "match 1 of 2", "The only match",
+        " Pattern not found", "Back at original", etc.
         set shortmess+=c
+
+        " Set Auto Complete
+        set completeopt+=noinsert
+        let g:mucomplete#enable_auto_at_startup = 1
 
         " add UltiSnips to chains
         let g:mucomplete#chains = {'vim': ['file', 'cmd', 'keyn'], 'default': ['file', 'omni', 'keyn', 'dict', 'ulti']}
-
-        " toggle auto completion
-        function! s:toggle_completeopt()
-          if exists('#MUcompleteAuto')
-            set completeopt+=noinsert,noselect
-          else
-            set completeopt-=noinsert,noselect
-          endif
-        endfunction
-
-        command! MUcompleteAutoToggle call mucomplete#toggle_auto()
-              \  | call <SID>toggle_completeopt()
-        command! MUcompleteAutoOn     call mucomplete#enable_auto()
-              \  | call <SID>toggle_completeopt()
-        command! MUcompleteAutoOff    call mucomplete#disable_auto()
-              \  | call <SID>toggle_completeopt()
-
-        " make right/left switch completion methods
-        imap <expr> <Right> pumvisible() ? "<Plug>(MUcompleteCycFwd)" : "\<Right>"
-        imap <expr> <Left> pumvisible() ? "<Plug>(MUcompleteCycBwd)" : "\<Left>"
-
-        " Use down/up in completion popup
-        " http://vim.wikia.com/wiki/Improve_completion_popup_menu
-        inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
-        inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
-
-        " CTRL+Y select item without newline in popup
-        " and prevent newline/CR on selecting completion
-        " http://superuser.com/a/941082/141399
-        imap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
       " }
 
       " phpcomplete.vim {
