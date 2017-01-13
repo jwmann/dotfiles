@@ -457,7 +457,7 @@ call plug#begin('~/.vim/bundle')
         set shortmess+=c
 
         " Set Auto Complete
-        set completeopt+=noinsert
+        set completeopt+=noinsert,noselect
         let g:mucomplete#enable_auto_at_startup = 1
 
         " add UltiSnips to chains
