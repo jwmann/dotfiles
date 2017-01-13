@@ -245,6 +245,14 @@ call plug#begin('~/.vim/bundle')
         nnoremap <Leader>dp :diffput<CR>
       " }
 
+      " gv.vim {
+        " A git commit browser
+        " DEPENDENCY: Fugitive
+        Plug 'junegunn/gv.vim'
+
+        nnoremap <Leader>gl :GV<CR>
+      " }
+
       " vim-gitgutter {
         " Provides easy Git Diff patching within a document
         Plug 'airblade/vim-gitgutter'
