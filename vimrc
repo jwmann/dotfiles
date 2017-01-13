@@ -439,7 +439,7 @@ call plug#begin('~/.vim/bundle')
         " SOURCE: https://github.com/ggreer/the_silver_searcher#installing
         Plug 'dyng/ctrlsf.vim'
 
-        " Use Project Directory as root by searching VCS directory (.git, .hg, etc.) 
+        " Use Project Directory as root by searching VCS directory (.git, .hg, etc.)
         let g:ctrlsf_default_root = 'project'
 
         " Use CtrlSF RegEx Mode by default
