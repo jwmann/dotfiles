@@ -1,3 +1,4 @@
+" TODO: Wrap version/command dependencies with IF blocks that check first
 " Use Vim not vi
 set nocompatible
 
