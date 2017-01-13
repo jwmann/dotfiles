@@ -133,6 +133,11 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     " Extra logic to keep 5k or 3j functionality using relative numbers.
     " Sources: http://blog.petrzemek.net/2016/04/06/things-about-vim-i-wish-i-knew-earlier/
     " http://stackoverflow.com/a/21000307/185731
+
+    " FIXME: This doesn't play very well with the 'd' operator.
+    " dj will sometimes delete the entire line + the entire line underneath
+    " Other times it will delete character wise downwards. Inconsistent.
+    " I suspect parenthesis () will conflict the functionality.
     noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
     noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
