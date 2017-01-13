@@ -384,10 +384,11 @@ call plug#begin('~/.vim/bundle')
     " }
 
 
-    " vim-bbye {
+    " vim-sayonara {
       " Delete buffers and close files in Vim without closing your windows or messing up your layout.
-      Plug 'moll/vim-bbye'
-      nnoremap <Leader>bd :Bdelete<CR>
+      Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
+      nnoremap <Leader>q :Sayonara<CR>
+      nnoremap <Leader>bd :Sayonara!<CR>
     " }
 
     " Repeat.vim {
