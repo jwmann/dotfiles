@@ -147,7 +147,7 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     nnoremap gy 'y
 
     " Make a new Tab with the current buffer ( Similar to :vs and :split )
-    nnoremap <Leader>t :tabe %<CR>
+    nnoremap <C-w>t :tabe %<CR>
 
     " Follow current file's symlink to edit the source file instead
     nnoremap <Leader>L :<C-u>execute 'file '.fnameescape(resolve(expand('%:p')))<Bar>
