@@ -81,122 +81,6 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
     set t_Co=256                              " Tell vim that your terminal supports 256 colors
   " }
 
-  " General Mappings {
-    " Easy Split Window Pane Navigation
-    nnoremap <C-h> <C-w>h
-    nnoremap <Left> <C-w>h
-    nnoremap <C-j> <C-w>j
-    nnoremap <Down> <C-w>j
-    nnoremap <C-k> <C-w>k
-    nnoremap <Up> <C-w>k
-    nnoremap <C-l> <C-w>l
-    nnoremap <Right> <C-w>l
-
-    " Move visual block
-    " Source: https://vimrcfu.com/snippet/77
-    vnoremap J :m '>+1<CR>gv=gv
-    vnoremap K :m '<-2<CR>gv=gv
-
-    " Change the Shift+k function to something more useful: The opposite of doing Shift+j
-    nnoremap K i<CR><Esc>^
-
-    " Map to remove highlighted search terms
-    nnoremap <Leader>l :noh<CR><C-l>
-    nnoremap <Leader><Space> :noh<CR><C-l>
-
-    " Making it so ; works like : for commands. Saves typing and eliminates :W style typos due to lazy holding shift.
-    nnoremap ; :
-
-    " Stupid shift key fixes
-    cnoreabbrev W w
-    cnoreabbrev WQ wq
-    cnoreabbrev wQ wq
-    cnoreabbrev Q q
-    cnoremap Tabe tabe
-
-    " Make Ctrl-e jump to the end of the current line in the insert mode. This is
-    " handy when you are in the middle of a line and would like to go to its end
-    " without switching to the normal mode.
-    inoremap <C-e> <C-o>$
-
-    " Yank from the cursor to the end of the line, to be consistent with C and D.
-    nnoremap Y y$
-
-    " Yank without Jank
-    " Source: http://ddrscott.github.io/blog/2016/yank-without-jank/
-    vnoremap <expr>y "my\"" . v:register . "y`y"
-    vnoremap <expr>Y "my\"" . v:register . "y`y"
-
-    " Move up and down visually, not linewise. Useful for wrapped lines.
-    " Extra logic to keep 5k or 3j functionality using relative numbers.
-    " Sources: http://blog.petrzemek.net/2016/04/06/things-about-vim-i-wish-i-knew-earlier/
-    " http://stackoverflow.com/a/21000307/185731
-
-    " FIXME: This doesn't play very well with the 'd' operator.
-    " dj will sometimes delete the entire line + the entire line underneath
-    " Other times it will delete character wise downwards. Inconsistent.
-    " I suspect parenthesis () will conflict the functionality.
-    noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
-    noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
-
-    " Highlight last pasted text in visual mode
-    nnoremap gp `[v`]
-
-    " Stay in visual mode when indenting. You will never have to run gv after
-    " performing an indentation.
-    vnoremap < <gv
-    vnoremap > >gv
-
-    " Go to last yank marker
-    nnoremap gy 'y
-
-    " Make a new Tab with the current buffer ( Similar to :vs and :split )
-    nnoremap <C-w>t :tabe %<CR>
-
-    " Quick Find File
-    nnoremap <Leader>f :find 
-
-    " Follow current file's symlink to edit the source file instead
-    nnoremap <Leader>L :<C-u>execute 'file '.fnameescape(resolve(expand('%:p')))<Bar>
-      \ call fugitive#detect(fnameescape(expand('%:p:h')))<CR>:AirlineRefresh<CR>
-      \ :echo "Followed Symlink to: '<C-r>=expand('%:p')<CR>'"<CR>
-
-    " Edit or Reload vimrc on the fly
-    nnoremap <Leader>ve :tabedit <C-r>=resolve($MYVIMRC)<CR><CR>
-    nnoremap <Leader>vr :source <C-r>=resolve($MYVIMRC)<CR><CR>:echo "Reloaded."<CR>
-
-    " Quickly Debug Vim within a log
-    nnoremap <Leader>LL :profile start vim.log<CR> :profile func *<CR> :profile file *<CR> :echo "Ready to debug..."<CR>
-    nnoremap <Leader>LS :profile pause<CR> :echo "Debugging Paused, Quit Vim to Generate Log." <CR>
-
-    " For when you forget sudo.. Really Write the file.
-    cnoremap w!! w !sudo tee % >/dev/null
-
-    " Auto indent entire file and :retab
-    nnoremap <Leader>= :exec "normal! gg=G"<CR>
-
-    " Quick Bash command (that also uses the login_shell and its profiles and aliases
-    nnoremap !! :Bash 
-
-    " Commands & Functions {
-      " Convert Tabs to Spaces
-      :command! -range=% -nargs=0 Tab2Space execute '<line1>,<line2>s#^\t\+#\=repeat(" ", len(submatch(0))*' . &ts . ')'
-
-      " Use bash command as if it were invoked by the login shell
-      " This allows aliases and functions from .bashrc/.bash_profile/.profile to be used
-      :command! -nargs=* Bash !bash -c -l "<Args>"
-
-      " Allow the ability to execute a Macro over a Visual Line Range
-      " Source: https://github.com/stoeffel/.dotfiles/blob/master/vim/visual-at.vim
-      xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
-
-      function! ExecuteMacroOverVisualRange()
-        echo "@".getcmdline()
-        execute ":'<,'>normal @".nr2char(getchar())
-      endfunction
-    " }
-  " }
-
   " GUI Specifc {
     if has("gui_running")
       " Removing the toolbar
@@ -213,6 +97,131 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
       " }
     endif
   " }
+" }
+
+" Mappings {
+  " Making it so ; works like : for commands. Saves typing and eliminates :W style typos due to lazy holding shift.
+  nnoremap ; :
+
+  " Stupid shift key fixes
+  cnoreabbrev W w
+  cnoreabbrev WQ wq
+  cnoreabbrev wQ wq
+  cnoreabbrev Q q
+  cnoremap Tabe tabe
+
+  " Map to remove highlighted search terms
+  nnoremap <Leader>l :noh<CR><C-l>
+  nnoremap <Leader><Space> :noh<CR><C-l>
+
+  " Quick Find File
+  nnoremap <Leader>f :find 
+
+  " For when you forget sudo.. Really Write the file.
+  cnoremap w!! w !sudo tee % >/dev/null
+
+  " Auto indent entire file and :retab
+  nnoremap <Leader>= :exec "normal! gg=G"<CR>
+
+  " Edit or Reload vimrc on the fly
+  nnoremap <Leader>ve :tabedit <C-r>=resolve($MYVIMRC)<CR><CR>
+  nnoremap <Leader>vr :source <C-r>=resolve($MYVIMRC)<CR><CR>:echo "Reloaded."<CR>
+
+  " Quick Bash command (that also uses the login_shell and its profiles and aliases
+  nnoremap !! :Bash 
+
+  " Extend/Improve upon Default Vim mapping conventions {
+    " Easy Split Window Pane Navigation
+    nnoremap <C-h> <C-w>h
+    nnoremap <Left> <C-w>h
+    nnoremap <C-j> <C-w>j
+    nnoremap <Down> <C-w>j
+    nnoremap <C-k> <C-w>k
+    nnoremap <Up> <C-w>k
+    nnoremap <C-l> <C-w>l
+    nnoremap <Right> <C-w>l
+
+    " Change the Shift+k function to something more useful: The opposite of doing Shift+j
+    nnoremap K i<CR><Esc>^
+
+    " Go to last yank marker
+    nnoremap gy 'y
+
+    " Make Ctrl-e jump to the end of the current line in the insert mode. This is
+    " handy when you are in the middle of a line and would like to go to its end
+    " without switching to the normal mode.
+    inoremap <C-e> <C-o>$
+
+    " Yank from the cursor to the end of the line, to be consistent with C and D.
+    nnoremap Y y$
+
+    " Highlight last pasted text in visual mode
+    nnoremap gp `[v`]
+
+    " Make a new Tab with the current buffer ( Similar to :vs and :split )
+    nnoremap <C-w>t :tabe %<CR>
+  " }
+
+  " Visual Block Manipulation {
+    " Move visual block
+    " Source: https://vimrcfu.com/snippet/77
+    " TODO: Allow this to accept counts e.g.: 4J will bring it down 4 lines
+    vnoremap J :m '>+1<CR>gv=gv
+    vnoremap K :m '<-2<CR>gv=gv
+
+    " Stay in visual mode when indenting. You will never have to run gv after
+    " performing an indentation.
+    vnoremap < <gv
+    vnoremap > >gv
+  " }
+
+  " Fix Some Vim quirks {
+    " Yank without Jank
+    " Source: http://ddrscott.github.io/blog/2016/yank-without-jank/
+    vnoremap <expr>y "my\"" . v:register . "y`y"
+    vnoremap <expr>Y "my\"" . v:register . "y`y"
+
+    " Move up and down visually, not linewise. Useful for wrapped lines.
+    " Extra logic to keep 5k or 3j functionality using relative numbers.
+    " Sources: http://blog.petrzemek.net/2016/04/06/things-about-vim-i-wish-i-knew-earlier/
+    " http://stackoverflow.com/a/21000307/185731
+
+    " FIXME: This doesn't play very well with the 'd' operator.
+    " dj will sometimes delete the entire line + the entire line underneath
+    " Other times it will delete character wise downwards. Inconsistent.
+    " I suspect parenthesis () will conflict the functionality.
+    noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+    noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+  " }
+
+  " Logging {
+    " Follow current file's symlink to edit the source file instead
+    nnoremap <Leader>L :<C-u>execute 'file '.fnameescape(resolve(expand('%:p')))<Bar>
+          \ call fugitive#detect(fnameescape(expand('%:p:h')))<CR>:AirlineRefresh<CR>
+          \ :echo "Followed Symlink to: '<C-r>=expand('%:p')<CR>'"<CR>
+
+    " Quickly Debug Vim within a log
+    nnoremap <Leader>LL :profile start vim.log<CR> :profile func *<CR> :profile file *<CR> :echo "Ready to debug..."<CR>
+    nnoremap <Leader>LS :profile pause<CR> :echo "Debugging Paused, Quit Vim to Generate Log." <CR>
+  " }
+" }
+
+" Commands & Functions {
+  " Convert Tabs to Spaces
+  :command! -range=% -nargs=0 Tab2Space execute '<line1>,<line2>s#^\t\+#\=repeat(" ", len(submatch(0))*' . &ts . ')'
+
+  " Use bash command as if it were invoked by the login shell
+  " This allows aliases and functions from .bashrc/.bash_profile/.profile to be used
+  :command! -nargs=* Bash !bash -c -l "<Args>"
+
+  " Allow the ability to execute a Macro over a Visual Line Range
+  " Source: https://github.com/stoeffel/.dotfiles/blob/master/vim/visual-at.vim
+  xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+  function! ExecuteMacroOverVisualRange()
+    echo "@".getcmdline()
+    execute ":'<,'>normal @".nr2char(getchar())
+  endfunction
 " }
 
 " Setting up vim-plug - the vim plugin bundler
