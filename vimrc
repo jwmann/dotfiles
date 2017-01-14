@@ -124,7 +124,7 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
   nnoremap <Leader>= :exec "normal! gg=G"<CR>
 
   " Edit or Reload vimrc on the fly
-  nnoremap <Leader>ve :tabedit <C-r>=resolve($MYVIMRC)<CR><CR>
+  nnoremap <Leader>ve :tabedit <C-r>=resolve($MYVIMRC)<CR><CR><CR>
   nnoremap <Leader>vr :source <C-r>=resolve($MYVIMRC)<CR><CR>:echo "Reloaded."<CR>
 
   " Quick Bash command (that also uses the login_shell and its profiles and aliases
