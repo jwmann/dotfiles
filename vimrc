@@ -10,6 +10,9 @@ augroup vimrc
   autocmd!
 augroup END
 
+" Deletes swapfiles for unmodified buffers -- Provided by tpope from #vim
+autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isdirectory(expand("<aMatch>:h")) | let &swapfile = &modified | endif
+
 " Automatically Save/Load Fold states
 " autocmd vimrc BufWinLeave * silent! mkview
 " autocmd vimrc BufWinEnter * silent! loadview
@@ -17,9 +20,6 @@ augroup END
 " Spellcheck for Git Commit messages
 autocmd vimrc FileType gitcommit setlocal spell
 autocmd vimrc FileType gitcommit setlocal spelllang=en
-
-" Deletes swapfiles for unmodified buffers -- Provided by tpope from #vim
-autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isdirectory(expand("<aMatch>:h")) | let &swapfile = &modified | endif
 
 " VimUI {
   " Set my color scheme
@@ -64,8 +64,6 @@ autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isd
   " }
 
   " Fuzzy Finding Files {
-    " Working Directory is handled by vim-rooter
-    " Path is set using vim-rooters FindRootDirectory() function
     set wildmenu                              " Show list instead of just completing
     set wildmode=list:longest,full            " Command <Tab> completion, list matches, then longest common part, then all.
   " }
@@ -243,9 +241,10 @@ call plug#begin('~/.vim/bundle')
       Plug 'airblade/vim-rooter'
 
       " Working Directory is handled by vim-rooter
-      " Path is set using vim-rooters FindRootDirectory() function
-      " This allows for some dynamic fuzzy finding regardless of project structure
-      let &path = FindRootDirectory() . '/**'
+      " Using the User event 'RooterChDir' set by vim-rooter as a trigger
+      " the Path is then set using the found project root
+      " This allows for some decent dynamic file finding regardless of project structure
+      autocmd vimrc User RooterChDir let &path = FindRootDirectory() . '/**'
     " }
 
     " Git {
