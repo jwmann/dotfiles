@@ -650,8 +650,8 @@ call plug#begin('~/.vim/bundle')
       Plug 'edkolev/promptline.vim'
 
       let g:promptline_preset = {
-            \'b' : [ promptline#slices#user() ],
-            \'c' : [ promptline#slices#cwd() ],
+            \'a' : [ promptline#slices#user() ],
+            \'b' : [ promptline#slices#cwd() ],
             \'y' : [ promptline#slices#vcs_branch() ],
             \'warn' : [ promptline#slices#last_exit_code() ]}
     " }
