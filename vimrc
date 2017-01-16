@@ -53,7 +53,7 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
     set scrolloff=6                           " Minimum lines to keep above and below cursor
     set sidescrolloff=15                      " Minimum lines to keep left and right of the cursor
     set sidescroll=1
-    let &showbreak='↪ '                         " String to put at the start of lines that have been wrapped
+    let &showbreak='↪ '                       " String to put at the start of lines that have been wrapped
   " }
 
   " Search Settings {
@@ -222,6 +222,7 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
   endfunction
 " }
 
+" TODO: Use the variable $HOME instead of a literal '~' character?
 " Setting up vim-plug - the vim plugin bundler
 " If vim-plug doesn't exist, download it.
 if empty( glob('~/.vim/autoload/plug.vim') )
