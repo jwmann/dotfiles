@@ -240,6 +240,9 @@ call plug#begin('~/.vim/bundle')
       " Changes Vim working directory to project root (identified by presence of known directory or file).
       Plug 'airblade/vim-rooter'
 
+      " Add custom roots to the front so they take priorty over the defaults
+      let g:rooter_patterns = ['package.json'] + g:rooter_patterns
+
       " Working Directory is handled by vim-rooter
       " Using the User event 'RooterChDir' set by vim-rooter as a trigger
       " the Path is then set using the found project root
