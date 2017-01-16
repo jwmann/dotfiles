@@ -240,7 +240,7 @@ call plug#begin('~/.vim/bundle')
       " Changes Vim working directory to project root (identified by presence of known directory or file).
       Plug 'airblade/vim-rooter'
 
-      " Add custom roots to the front so they take priorty over the defaults
+      " Add custom roots to the front so they take priority over the defaults
       let g:rooter_patterns = ['package.json'] + g:rooter_patterns
 
       " Working Directory is handled by vim-rooter
@@ -346,9 +346,10 @@ call plug#begin('~/.vim/bundle')
     " }
 
     " vim-lion {
-      " TODO: Add config option for clearing spaces/alignment before aligning
-      " https://github.com/tommcdo/vim-lion/issues/15#issuecomment-272492597
       Plug 'tommcdo/vim-lion'
+
+      " Trim any excess spaces when aligning, as if aligning for the first time
+      let g:lion_squeeze_spaces = 1
     " }
   " }
 
