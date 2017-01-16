@@ -653,8 +653,7 @@ call plug#begin('~/.vim/bundle')
         \'a' : [ promptline#slices#user() ],
         \'b' : [ promptline#slices#cwd() ],
         \'y' : [ promptline#slices#vcs_branch() ],
-        \'warn' : [ promptline#slices#last_exit_code() ]
-      }
+        \'warn' : [ promptline#slices#last_exit_code() ]}
     " }
   " }
 
