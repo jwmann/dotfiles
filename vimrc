@@ -410,6 +410,31 @@ call plug#begin('~/.vim/bundle')
       Plug 'ludovicchabant/vim-gutentags'
     " }
 
+    " NeoMake {
+      " Async :make and linting framework for Neovim/Vim
+      Plug 'neomake/neomake'
+
+      " Verbose Level
+      let g:neomake_verbose = 2
+
+      " Job Finish Message
+      autocmd vimrc User NeomakeFinished echo "Finished." 
+
+      " Gulp Builder
+      let g:neomake_gulp_maker = {
+        \ 'exe': 'gulp',
+        \ 'errorformat': '%f:%l:%c: %m',
+      \ }
+      nnoremap <Leader>ngu :Neomake! gulp<CR>
+
+      " Grunt Builder
+      let g:neomake_grunt_maker = {
+        \ 'exe': 'grunt',
+        \ 'errorformat': '%f:%l:%c: %m',
+      \ }
+      nnoremap <Leader>ngr :Neomake! grunt<CR>
+    " }
+
     " splitjoin.vim {
       " A vim plugin that simplifies the transition between multiline and single-line code
       Plug 'AndrewRadev/splitjoin.vim'
