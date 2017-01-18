@@ -245,7 +245,7 @@ call plug#begin('~/.vim/bundle')
       let g:rooter_silent_chdir = 1
 
       " Add custom roots to the front so they take priority over the defaults
-      let g:rooter_patterns = ['package.json'] + g:rooter_patterns
+      let g:rooter_patterns = [ 'package.json', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/' ]
 
       " Working Directory is handled by vim-rooter
       " Using the User event 'RooterChDir' set by vim-rooter as a trigger
