@@ -418,7 +418,7 @@ call plug#begin('~/.vim/bundle')
       let g:neomake_verbose = 2
 
       " Job Finish Message
-      autocmd vimrc User NeomakeFinished echo "Finished." 
+      autocmd vimrc User NeomakeFinished echo 'Neomake: [' . g:neomake_hook_context.make_id . '] Complete.'
 
       " Gulp Builder
       let g:neomake_gulp_maker = {
