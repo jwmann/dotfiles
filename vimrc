@@ -529,6 +529,9 @@ call plug#begin('~/.vim/bundle')
         set completeopt+=noinsert,noselect
         let g:mucomplete#enable_auto_at_startup = 1
 
+        " Avoid conflicts (especially with Matchem)
+        let g:mucomplete#ctrlx_mode_out = "\<c-x>\<c-b>\<bs>"
+
         " add UltiSnips to chains
         let g:mucomplete#chains = {'vim': ['file', 'cmd', 'keyn'], 'default': ['file', 'omni', 'keyn', 'dict', 'ulti']}
       " }
