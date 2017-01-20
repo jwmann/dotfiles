@@ -50,7 +50,7 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
     set nolist                                " list disables linebreak
     set textwidth=0                           " Prevent Vim from adding linebreaks for long lines
     set wrapmargin=0                          " Prevent Vim from adding linebreaks for long lines
-    set scrolloff=6                           " Minimum lines to keep above and below cursor
+    set scrolloff=25                           " Minimum lines to keep above and below cursor
     set sidescrolloff=15                      " Minimum lines to keep left and right of the cursor
     set sidescroll=1
     let &showbreak='↪ '                       " String to put at the start of lines that have been wrapped
