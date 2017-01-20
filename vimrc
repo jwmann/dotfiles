@@ -596,11 +596,6 @@ call plug#begin('~/.vim/bundle')
         " Comment stuff out with a single command for many languages plus extendability
         Plug 'tpope/vim-commentary'
       " }
-
-      " vim-exchange {
-        " Easy text exchange operator for Vim.
-        Plug 'tommcdo/vim-exchange'
-      " }
     " }
 
     " Custom Text Objects {
