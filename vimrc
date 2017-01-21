@@ -529,9 +529,6 @@ call plug#begin('~/.vim/bundle')
         set completeopt+=noinsert,noselect
         let g:mucomplete#enable_auto_at_startup = 1
 
-        " Avoid conflicts (especially with Matchem)
-        let g:mucomplete#ctrlx_mode_out = "\<c-x>\<c-b>\<bs>"
-
         " add UltiSnips to chains
         let g:mucomplete#chains = {'vim': ['file', 'cmd', 'keyn'], 'default': ['file', 'omni', 'keyn', 'dict', 'ulti']}
       " }
@@ -589,6 +586,22 @@ call plug#begin('~/.vim/bundle')
         " Surround Specifc Mappings {
           " Add spaces inside () quickly
           nmap (( vi(S<Space><Space>
+        " }
+
+        " ReplaceWithRegister.vim {
+          Plug 'vim-scripts/ReplaceWithRegister'
+
+          " Map the default r to gr and default R to gR
+          nmap r gr
+          nmap R gR
+          xmap r gr
+          xmap R gR
+
+          " Replace default r command with the replace operator
+          nmap r <Plug>ReplaceWithRegisterOperator
+          nmap rr <Plug>ReplaceWithRegisterLine
+          nmap R <Plug>ReplaceWithRegisterLine
+          xmap r <Plug>ReplaceWithRegisterVisual
         " }
       " }
 
