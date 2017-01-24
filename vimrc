@@ -355,6 +355,20 @@ call plug#begin('~/.vim/bundle')
       " Trim any excess spaces when aligning, as if aligning for the first time
       let g:lion_squeeze_spaces = 1
     " }
+
+    " vim-gtfo {
+      " Go to Terminal or File manager
+      Plug 'justinmk/vim-gtfo'
+
+      " Regular mappings open the working directory
+      nnoremap <silent> gof :<C-u>call gtfo#open#file(getcwd())<CR>
+      nnoremap <silent> goF :<C-u>call gtfo#open#file("%:p")<CR>
+      nnoremap <silent> got :<C-u>call gtfo#open#term(getcwd(), "")<CR>
+      nnoremap <silent> goT :<C-u>call gtfo#open#term("%:p:h", "")<CR>
+
+      " Force it to use iTerm for the terminal on the mac
+      let g:gtfo#terminals = { 'mac' : 'iterm' }
+    " }
   " }
 
   " Plugs that extend basic Vim functions {
