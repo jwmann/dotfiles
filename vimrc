@@ -266,14 +266,14 @@ call plug#begin('~/.vim/bundle')
         autocmd vimrc User Fugitive set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
         " Mappings for most used commands
-        nnoremap <Leader>gs :Gstatus<CR>
-        nnoremap <Leader>gw :Gwrite<CR>
-        nnoremap <Leader>gc :Gcommit<CR>
-        nnoremap <Leader>gd :Gdiff<CR>
-        nnoremap <Leader>gp :Gpush<CR>
-        nnoremap <Leader>gP :Gpull<CR>
-        nnoremap <Leader>dg :diffget<CR>
-        nnoremap <Leader>dp :diffput<CR>
+        nnoremap <silent> <Leader>gs :Gstatus<CR>
+        nnoremap <silent> <Leader>gw :Gwrite<CR>
+        nnoremap <silent> <Leader>gc :Gcommit<CR>
+        nnoremap <silent> <Leader>gd :Gdiff<CR>
+        nnoremap <silent> <Leader>gp :Gpush<CR>
+        nnoremap <silent> <Leader>gP :Gpull<CR>
+        nnoremap <silent> <Leader>dg :diffget<CR>
+        nnoremap <silent> <Leader>dp :diffput<CR>
       " }
 
       " gv.vim {
@@ -457,8 +457,8 @@ call plug#begin('~/.vim/bundle')
     " vim-sayonara {
       " Delete buffers and close files in Vim without closing your windows or messing up your layout.
       Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
-      nnoremap <Leader>q :Sayonara<CR>
-      nnoremap <Leader>bd :Sayonara!<CR>
+      nnoremap <silent> <Leader>q :Sayonara<CR>
+      nnoremap <silent> <Leader>bd :Sayonara!<CR>
     " }
 
     " Repeat.vim {
