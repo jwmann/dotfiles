@@ -13,6 +13,8 @@
 	rebase = preserve
 [commit]
 	gpgsign = true
+[branch]
+	autosetupmerge = always
 [alias]
   ds = diff --staged                                                                 #  git ds - Diff your staged changes == review before committing.
   st = status -sb                                                                    #  Smarter status - include tag and branch info
