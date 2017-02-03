@@ -662,6 +662,10 @@ call plug#begin('~/.vim/bundle')
     " ALE {
       " Asynchronous Lint Engine
       Plug 'w0rp/ale'
+
+      " Navigate errors and warnings
+      nmap <silent> [w <Plug>(ale_previous_wrap)
+      nmap <silent> ]w <Plug>(ale_next_wrap)
     " }
 
     " Matchem {
