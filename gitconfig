@@ -42,6 +42,7 @@
   c = commit
   cs = commit -S
   co = checkout
+  cob = checkout -b
   br = branch
   diff = diff --word-diff
   dc = diff --cached
