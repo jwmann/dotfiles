@@ -70,6 +70,7 @@ alias mkdir='mkdir -pv'                   # Preferred 'mkdir' implementation
 alias ll='ls -FGlAhp'                     # Preferred 'ls' implementation
 alias less='less -FSRXc'                  # Preferred 'less' implementation
 cdl() { builtin cd "$@"; ll; }            # List directory contents upon 'cd'
+alias pd='cd -'                           # Go back to the previous PATH
 alias cd..='cd ../'                       # Go back 1 directory level (for fast typers)
 alias ..='cd ../'                         # Go back 1 directory level
 alias ...='cd ../../'                     # Go back 2 directory levels
