@@ -49,6 +49,7 @@
   aa = add --all
   A = add -A
   au = add -u
+  mr = merge --no-edit
 
   # Stash Shortcuts
   # ---------------
