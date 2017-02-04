@@ -91,3 +91,4 @@ alias dotfiles='cd ~/.dotfiles/'          # dotfiles:     Changes to the dotfile
 alias profile='open ~/.dotfiles/profile'  # profile:      Opens Terminal login's config file in the default editor
 alias bashrc='open ~/.dotfiles/bashrc'    # bashrc:       Opens bash's config file in the default editor
 alias vimrc='open ~/.dotfiles/vimrc'      # vimrc:        Opens Vim's config file in the default editor
+alias gitconfig='open ~/.dotfiles/gitconfig' # gitconfig: Opens git's config file in the default editor
