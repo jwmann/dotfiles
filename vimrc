@@ -139,6 +139,10 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
     nnoremap <C-l> <C-w>l
     nnoremap <Right> <C-w>l
 
+    " Change the Shift+h / Shift+l to mimic ^ and $ in their respective directions
+    nnoremap H ^
+    nnoremap L $
+
     " Change the Shift+k function to something more useful: The opposite of doing Shift+j
     nnoremap K i<CR><Esc>^
 
