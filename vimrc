@@ -508,7 +508,7 @@ call plug#begin('~/.vim/bundle')
         Plug 'dyng/ctrlsf.vim'
 
         " Use Project Directory as root by searching VCS directory (.git, .hg, etc.)
-        let g:ctrlsf_default_root = 'project'
+        let g:ctrlsf_default_root = 'cwd'
 
         " Use CtrlSF RegEx Mode by default
         let g:ctrlsf_regex_pattern = 1
