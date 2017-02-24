@@ -507,6 +507,9 @@ call plug#begin('~/.vim/bundle')
         " SOURCE: https://github.com/BurntSushi/ripgrep#installation
         Plug 'dyng/ctrlsf.vim'
 
+        " Use ripgrep by default
+        let g:ctrlsf_ackprg = 'rg'
+
         " Use Project Directory as root by searching VCS directory (.git, .hg, etc.)
         let g:ctrlsf_default_root = 'cwd'
 
