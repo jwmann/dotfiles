@@ -77,6 +77,7 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
     set undolevels=1000                       " More undos
     set title                                 " Vim can set the title of the terminal window
     set t_Co=256                              " Tell vim that your terminal supports 256 colors
+    set grepprg=rg\ --vimgrep
   " }
 
   " GUI Specifc {
@@ -500,10 +501,10 @@ call plug#begin('~/.vim/bundle')
 
       " ctrlsf.vim {
         " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
-        " DEPENDENCY: The Silver Searcher (Ag)
-        " DESCRIPTION: A code-searching tool similar to ack, but faster. http://geoff.greer.fm/ag/
-        " INSTALLATION: brew install the_silver_searcher
-        " SOURCE: https://github.com/ggreer/the_silver_searcher#installing
+        " DEPENDENCY: ripgrep (rg)
+        " DESCRIPTION: ripgrep is a line oriented search tool that combines the usability of The Silver Searcher(Ag) with the raw speed of GNU grep
+        " INSTALLATION: brew install ripgrep
+        " SOURCE: https://github.com/BurntSushi/ripgrep#installation
         Plug 'dyng/ctrlsf.vim'
 
         " Use Project Directory as root by searching VCS directory (.git, .hg, etc.)
