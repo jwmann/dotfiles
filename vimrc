@@ -22,12 +22,17 @@ autocmd vimrc FileType gitcommit setlocal spell
 autocmd vimrc FileType gitcommit setlocal spelllang=en
 
 " VimUI {
-  " Set my color scheme
-  syntax on
-  set background=dark
-  colorscheme atom-dark                         " Make sure any custom colorschemes are in ~/.vim/colors ( jellybeans, ir_black, atom-dark and molokai )
+  " Colors {
+    set t_Co=256                              " Tell vim that your terminal supports 256 colors
+    set background=dark
+    colorscheme atom-dark                     " Make sure any custom colorschemes are in ~/.vim/colors ( jellybeans, ir_black, atom-dark and molokai )
+    syntax on
 
-  set guifont=Inconsolata\ for\ Powerline:h14   " Set Default Font ( Font included as a plugin, make sure to install into System )
+    " Set the cursor line as a background highlight rather than an underline in terminals
+    hi CursorLine   cterm=NONE ctermbg=234 ctermfg=NONE
+  " }
+
+  set guifont=Inconsolata\ for\ Powerline:h14 " Set Default Font ( Font included as a plugin, make sure to install into System )
 
   " Indent Settings {
     set tabstop=2 shiftwidth=2 expandtab      " Make my tabs be 2 spaces **BE CAREFUL WITH THIS SETTING**
@@ -78,7 +83,6 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
     set visualbell                            " Use a Visual Bell instead of an audible one
     set undolevels=1000                       " More undos
     set title                                 " Vim can set the title of the terminal window
-    set t_Co=256                              " Tell vim that your terminal supports 256 colors
     set grepprg=rg\ --vimgrep
   " }
 
@@ -706,8 +710,7 @@ call plug#begin('~/.vim/bundle')
 
     " vim-airline {
       " Pretty looking Status Line
-      Plug 'vim-airline/vim-airline'
-      Plug 'vim-airline/vim-airline-themes'
+      Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 
       set laststatus=2                             " Always display the statusline in all windows
       set noshowmode                               " Hide the default mode text (e.g. -- INSERT -- below the statusline)
