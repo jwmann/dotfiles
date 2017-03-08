@@ -673,6 +673,9 @@ call plug#begin('~/.vim/bundle')
       " Asynchronous Lint Engine
       Plug 'w0rp/ale'
 
+      " ALE complains that it conflicts with Neomake but I use them for different purposes so tell ALE to shush.
+      let g:ale_emit_conflict_warnings = 0
+
       " Navigate errors and warnings
       nmap <silent> [w <Plug>(ale_previous_wrap)
       nmap <silent> ]w <Plug>(ale_next_wrap)
@@ -706,14 +709,11 @@ call plug#begin('~/.vim/bundle')
       Plug 'vim-airline/vim-airline'
       Plug 'vim-airline/vim-airline-themes'
 
-      if has("gui_running")
-        let g:airline_powerline_fonts = 1
-        set laststatus=2 " Always display the statusline in all windows
-        set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-      endif
+      set laststatus=2                             " Always display the statusline in all windows
+      set noshowmode                               " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
-      " Enable Smarter Tab Line
-      let g:airline#extensions#tabline#enabled = 1
+      let g:airline_powerline_fonts = 1            " Use special patched fonts to display glyphs on the statusline
+      let g:airline#extensions#tabline#enabled = 1 " Enable Smarter Tab Line
     " }
 
     " promptline.vim {
