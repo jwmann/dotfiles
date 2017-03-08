@@ -50,7 +50,7 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
     set nolist                                " list disables linebreak
     set textwidth=0                           " Prevent Vim from adding linebreaks for long lines
     set wrapmargin=0                          " Prevent Vim from adding linebreaks for long lines
-    set scrolloff=20                           " Minimum lines to keep above and below cursor
+    set scrolloff=20                          " Minimum lines to keep above and below cursor
     set sidescrolloff=15                      " Minimum lines to keep left and right of the cursor
     set sidescroll=1
     let &showbreak='↪ '                       " String to put at the start of lines that have been wrapped
@@ -88,11 +88,12 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
       set guioptions=mrg
 
       " Set Default Window Size
-      set lines=80 columns=200
+      set lines=80
+      set columns=200
 
       " MacVim Specifc {
       if has("gui_macvim")
-        "Set my transparency
+        " Set my transparency
         set transparency=10
       endif
       " }
