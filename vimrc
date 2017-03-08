@@ -64,10 +64,10 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
   " }
 
   " Fuzzy Finding Files {
-    set wildmenu                              " Show list instead of just completing
     set wildmode=list:longest,full            " Command <Tab> completion, list matches, then longest common part, then all.
-    set wildignore+=**/node_modules           " Ignores the 'node_modules' directory from wildmenu suggestions
-    set wildignore+=**/bower_components       " Ignores the 'bower_components' directory from wildmenu suggestions
+    set wildignore+=**/node_modules/**        " Ignores the 'node_modules' directory and its children from wildmenu suggestions
+    set wildignore+=**/bower_components/**    " Ignores the 'bower_components' directory and its children from wildmenu suggestions
+    set wildmenu                              " Show list instead of just completing
   " }
 
   " General Settings {
