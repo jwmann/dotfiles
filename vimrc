@@ -720,12 +720,6 @@ call plug#begin('~/.vim/bundle')
       " Consistent colorscheme for Vim and bash/zsh shell based on airline
       " themes and powerline fonts
       Plug 'edkolev/promptline.vim'
-
-      let g:promptline_preset = {
-        \'a' : [ promptline#slices#user() ],
-        \'b' : [ promptline#slices#cwd() ],
-        \'y' : [ promptline#slices#vcs_branch() ],
-        \'warn' : [ promptline#slices#last_exit_code() ]}
     " }
   " }
 
@@ -739,3 +733,12 @@ call plug#begin('~/.vim/bundle')
 
 " vim-plug is done!
 call plug#end()
+
+" Settings to be loaded AFTER plugins are initialized {
+  " Set promptline_preset
+  let g:promptline_preset = {
+        \'a' : [ promptline#slices#user() ],
+        \'b' : [ promptline#slices#cwd() ],
+        \'y' : [ promptline#slices#vcs_branch() ],
+        \'warn' : [ promptline#slices#last_exit_code() ]}
+" }
