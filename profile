@@ -55,7 +55,9 @@ alias blockreload='sudo launchctl unload /Library/LaunchDaemons/com.objectiveSee
 # Usage: gituser home => ~/config/git/home.user.config
 # Usage: gituser "Work GitHub" => ~/config/git/Work Github.user.config
 gituser() {
+  # Set the directory where these configs exist
   configdir="$HOME/.config/git"
+
   # Sanity check
   if [ -z "$(which git)" ]
   then
