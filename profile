@@ -55,6 +55,7 @@ alias blockreload='sudo launchctl unload /Library/LaunchDaemons/com.objectiveSee
 # Usage: gituser home => ~/config/git/home.user.config
 # Usage: gituser "Work GitHub" => ~/config/git/Work Github.user.config
 gituser() {
+  configdir="$HOME/.config/git"
   # Sanity check
   if [ -z "$(which git)" ]
   then
@@ -70,9 +71,9 @@ gituser() {
   fi
 
   # Check for the config file
-  if [ ! -e "$HOME/config/git/$1.user.config" ]
+  if [ ! -e "$configdir/$1.user.config" ]
   then
-    echo "Error: '$1.user.config' not found in: ~/config/git/" >&2
+    echo "Error: '$1.user.config' not found in: $configdir" >&2
     return 255
   fi
 
@@ -88,7 +89,7 @@ gituser() {
   fi
 
   # Time to include the user profile!
-  git config include.path "~/config/git/$1.user.config"
+  git config include.path "$configdir/$1.user.config"
   echo "User Profile: $1.user.config has been included."
 
   return 0
