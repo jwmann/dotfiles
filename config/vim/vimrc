@@ -282,9 +282,6 @@ call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
         " Auto-delete vim buffers when browsing git object history using Fugitive
         autocmd vimrc BufReadPost fugitive://* set bufhidden=delete
 
-        " Fancy Status Line using git branch
-        autocmd vimrc User Fugitive set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-
         " Mappings for most used commands
         nnoremap <silent> <Leader>gs :Gstatus<CR>
         nnoremap <silent> <Leader>gw :Gwrite<CR>
