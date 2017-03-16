@@ -9,9 +9,19 @@
     # Work Path for fast website dev environment switching
     CDPATH=.:~/work/webcakes
 
+#   Set XDG Spec for OSX
+#   ------------------------------------------------------------
+    export XDG_CONFIG_HOME="$HOME/.config"
+    export XDG_CACHE_HOME="$HOME/.cache"
+    export XDG_DATA_HOME="$HOME/.local/share"
+
 #   Set Default Editor (default is 'nano')
 #   ------------------------------------------------------------
     export EDITOR=vim
+
+    # Set vimrc's location and source it on vim startup
+    export MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
+    export VIMINIT='source $MYVIMRC'
 
 #   Set Default ReadLine (default is 'emacs')
 #   ------------------------------------------------------------

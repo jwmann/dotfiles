@@ -2,6 +2,10 @@
 " Use Vim not vi
 set nocompatible
 
+if filereadable( 'xdg.vim' )
+  source xdg.vim
+endif
+
 " The default leader is '\', but many people prefer ',' as it's in a standard location
 let g:mapleader = "\<Space>"                  " Use the <Space> key as leader, key size is reachable from anywhere and its default function is not very useful
 
@@ -234,18 +238,22 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
   endfunction
 " }
 
-" TODO: Use the variable $HOME instead of a literal '~' character?
 " Setting up vim-plug - the vim plugin bundler
 " If vim-plug doesn't exist, download it.
-if empty( glob('~/.vim/autoload/plug.vim') )
-  silent !mkdir -p ~/.vim/autoload
-  silent !curl -fLo ~/.vim/autoload/plug.vim
+if empty( glob("$XDG_CONFIG_HOME/vim/autoload/plug.vim") )
+  silent !mkdir -p $XDG_CONFIG_HOME/vim/autoload
+  silent !curl -fLo $XDG_CONFIG_HOME/vim/autoload/plug.vim
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd vimrc VimEnter * PlugInstall
 endif
 
+" If our Plugins aren't installed at all, Initate Install before anything
+if empty( glob("$XDG_CONFIG_HOME/vim/bundle") )
+  autocmd vimrc VimEnter * PlugInstall
+endif
+
 " Begin vim-plug!
-call plug#begin('~/.vim/bundle')
+call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
 
 " Plugins, and their Mappings, Settings, etc... {
   " Utilities {
