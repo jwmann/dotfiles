@@ -2,13 +2,6 @@
 #   ENVIRONMENT CONFIGURATION
 #   -------------------------------
 
-#   Check for MacVim's mvim binary and replace default vim with it
-#   ------------------------------------------------------------
-    if [ -n "$(which mvim)"  ]; then
-      export EDITOR='mvim -v'
-      alias vim='mvim -v'
-    fi
-
 #   Set Variables for Ruby Gems for Homebrew
 #   ------------------------------------------------------------
     export GEM_HOME="/usr/local/Cellar/gems"
