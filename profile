@@ -4,7 +4,7 @@
 
 #   Check for MacVim's mvim binary and replace default vim with it
 #   ------------------------------------------------------------
-    if [ -n "$(which mvim)"  ]; then
+    if hash mvim 2>/dev/null; then
       export EDITOR='mvim -v'
       alias vim='mvim -v'
     fi
