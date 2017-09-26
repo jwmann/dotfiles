@@ -65,8 +65,12 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
 " VimUI {
   " Colors {
     set t_Co=256                              " Tell vim that your terminal supports 256 colors
+    set termguicolors
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     set background=dark
-    colorscheme atom-dark                     " Make sure any custom colorschemes are in ~/.vim/colors ( jellybeans, ir_black, atom-dark and molokai )
+    let g:deus_termcolors=256
+    colorscheme deus                     " Make sure any custom colorschemes are in ~/.vim/colors ( jellybeans, ir_black, atom-dark, molokai, deus )
     syntax on
 
     " Set the cursor line as a background highlight rather than an underline in terminals
