@@ -88,8 +88,10 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
 
   " Line Numbers {
     " Setting both of these in order enables a Hybrid Line Number mode
-    set relativenumber                        " Relative Line Numbers
-    set number                                " Normal Line Numbers
+    set relativenumber                                " Relative Line Numbers
+    set number                                        " Normal Line Numbers
+    autocmd InsertEnter * set number norelativenumber " Use Normal Line Numbers while in Insert Mode
+    autocmd InsertLeave * set number relativenumber   " Use Hybrid Relative Line Numbers when we leave Insert Mode
   " } Hybrid Mode only works in Vim 7.4+
 
   " Margin and Wrapping settings {
