@@ -734,9 +734,9 @@ call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
       nmap <silent> ]w <Plug>(ale_next_wrap)
     " }
 
-    " Matchem {
-      " Fixes Edge-Case delimitMate problems
-      Plug 'ervandew/matchem'
+    " auto-pairs {
+      " Insert or delete brackets, parens, quotes in pair
+      Plug 'jiangmiao/auto-pairs'
     " }
   " }
 
