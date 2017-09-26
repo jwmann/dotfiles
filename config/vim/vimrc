@@ -95,42 +95,43 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
   " } Hybrid Mode only works in Vim 7.4+
 
   " Margin and Wrapping settings {
-    set wrap                                  " Enable wrapping
-    set whichwrap=b,s,h,l,<,>,[,]             " Backspace and cursor keys wrap too
-    set linebreak                             " Only Visually wrap lines at the breakat option
-    set breakindent                           " Wrap long lines at the same indent level ( Only available in Version 7.4.338~354+ / MacVim 7.4-Snapshot 74 )
-    set nolist                                " list disables linebreak
-    set textwidth=0                           " Prevent Vim from adding linebreaks for long lines
-    set wrapmargin=0                          " Prevent Vim from adding linebreaks for long lines
-    set scrolloff=20                          " Minimum lines to keep above and below cursor
-    set sidescrolloff=15                      " Minimum lines to keep left and right of the cursor
+    set wrap                               " Enable wrapping
+    set whichwrap=b,s,h,l,<,>,[,]          " Backspace and cursor keys wrap too
+    set linebreak                          " Only Visually wrap lines at the breakat option
+    set breakindent                        " Wrap long lines at the same indent level ( Only available in Version 7.4.338~354+ / MacVim 7.4-Snapshot 74 )
+    set nolist                             " list disables linebreak
+    set textwidth=0                        " Prevent Vim from adding linebreaks for long lines
+    set wrapmargin=0                       " Prevent Vim from adding linebreaks for long lines
+    set scrolloff=20                       " Minimum lines to keep above and below cursor
+    set sidescrolloff=15                   " Minimum lines to keep left and right of the cursor
     set sidescroll=1
-    let &showbreak='↪ '                       " String to put at the start of lines that have been wrapped
-  " }
+    let &showbreak='↪ '                    " String to put at the start of lines that have been wrapped
+    " }
 
-  " Search Settings {
-    set hlsearch                              " Highlight search terms
-    set incsearch                             " Find as you type search
-    set ignorecase                            " Ignore case when searching
-    set smartcase                             " ...unless there's a capital letter in the query
-  " }
+    " Search Settings {
+    set hlsearch                           " Highlight search terms
+    set incsearch                          " Find as you type search
+    set ignorecase                         " Ignore case when searching
+    set smartcase                          " ...unless there's a capital letter in the query
+    " }
 
-  " Fuzzy Finding Files {
-    set wildmode=longest:full,full            " Command <Tab> completion, list matches, then longest common part, then all.
-    set wildignore+=**/node_modules/**        " Ignores the 'node_modules' directory and its children from wildmenu suggestions
-    set wildignore+=**/bower_components/**    " Ignores the 'bower_components' directory and its children from wildmenu suggestions
-    set wildmenu                              " Show list instead of just completing
-  " }
+                                           " Fuzzy Finding Files {
+    set wildmode=longest:full,full         " Command <Tab> completion, list matches, then longest common part, then all.
+    set wildignore+=**/node_modules/**     " Ignores the 'node_modules' directory and its children from wildmenu suggestions
+    set wildignore+=**/bower_components/** " Ignores the 'bower_components' directory and its children from wildmenu suggestions
+    set wildmenu                           " Show list instead of just completing
+    " }
 
-  " General Settings {
-    set cursorline                            " Highlight cursor line
-    set showmatch                             " Show matching brackets/parenthesis
-    set foldenable                            " Auto fold code
-    set hidden                                " Dont unload buffer when it is abandoned
-    set visualbell                            " Use a Visual Bell instead of an audible one
-    set undolevels=1000                       " More undos
-    set title                                 " Vim can set the title of the terminal window
-    set grepprg=rg\ --vimgrep
+    " General Settings {
+    set cursorline                         " Highlight cursor line
+    set showmatch                          " Show matching brackets/parenthesis
+    set foldenable                         " Auto fold code
+    set hidden                             " Dont unload buffer when it is abandoned
+    set visualbell                         " Use a Visual Bell instead of an audible one
+    set undolevels=1000                    " More undos
+    set title                              " Vim can set the title of the terminal window
+    set grepprg=rg\ --vimgrep              " Set default grep to use ripgrep
+    set timeoutlen=600                     " Change how long vim waits for double keystroke mappings Default: 1000
   " }
 
   " GUI Specifc {
