@@ -737,6 +737,10 @@ call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
       " Navigate errors and warnings
       nmap <silent> [w <Plug>(ale_previous_wrap)
       nmap <silent> ]w <Plug>(ale_next_wrap)
+
+      let g:ale_linters = {'jsx': ['stylelint', 'eslint']}
+      let g:ale_linter_aliases = {'jsx': 'css'}
+      let g:ale_javascript_eslint_options = {"indent": "off", "object-curly-spacing" : "off", "space-in-parens" : "off"}
     " }
 
     " lexima.vim {
