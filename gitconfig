@@ -3,6 +3,7 @@
   branch = auto
 [core]
   excludesfile = ~/.gitignore
+	autocrlf = input
 [status]
 	submoduleSummary = true
 [diff]
