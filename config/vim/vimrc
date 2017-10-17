@@ -740,7 +740,7 @@ call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
 
       let g:ale_linters = {'jsx': ['stylelint', 'eslint']}
       let g:ale_linter_aliases = {'jsx': 'css'}
-      let g:ale_javascript_eslint_options = "--rule 'indent: off' --rule 'object-curly-spacing: off' --rule 'space-in-parens: off'"
+      let g:ale_javascript_eslint_options = "--rule 'indent: off' --rule 'object-curly-spacing: off' --rule 'space-in-parens: off' --rule 'no-multi-spaces: off'"
     " }
 
     " lexima.vim {
