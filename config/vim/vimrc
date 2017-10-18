@@ -211,8 +211,9 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
     " handy when you are in the middle of a line and would like to go to its end
     " without switching to the normal mode.
     inoremap <C-e> <End>
-    inoremap ;; <End>;
-    inoremap ,, <END>,
+    inoremap ;; <End>;<Esc>
+    inoremap ,, <End>,<Esc>
+    nnoremap ,, A,<Esc>
 
     " Yank from the cursor to the end of the line, to be consistent with C and D.
     nnoremap Y y$
