@@ -4,6 +4,7 @@
 [core]
   excludesfile = ~/.gitignore
 	autocrlf = input
+	safecrlf = false
 [status]
 	submoduleSummary = true
 [diff]
@@ -55,8 +56,10 @@
 
   # Stash Shortcuts
   # ---------------
+  s = stash
   sl = stash list
   sa = stash apply
+  sp = stash pop
   ss = stash save
 
   # Logs
