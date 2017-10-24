@@ -106,24 +106,24 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
     set sidescrolloff=15                   " Minimum lines to keep left and right of the cursor
     set sidescroll=1
     let &showbreak='↪ '                    " String to put at the start of lines that have been wrapped
-    " }
+  " }
 
-    " Search Settings {
+  " Search Settings {
     set hlsearch                           " Highlight search terms
     set incsearch                          " Find as you type search
     set ignorecase                         " Ignore case when searching
     set smartcase                          " ...unless there's a capital letter in the query
     set gdefault                           " By default do a search and replace on every match in the line
-    " }
+  " }
 
-                                           " Fuzzy Finding Files {
+  " Fuzzy Finding Files {
     set wildmode=longest:full,full         " Command <Tab> completion, list matches, then longest common part, then all.
     set wildignore+=**/node_modules/**     " Ignores the 'node_modules' directory and its children from wildmenu suggestions
     set wildignore+=**/bower_components/** " Ignores the 'bower_components' directory and its children from wildmenu suggestions
     set wildmenu                           " Show list instead of just completing
-    " }
+  " }
 
-    " General Settings {
+  " General Settings {
     set cursorline                         " Highlight cursor line
     set showmatch                          " Show matching brackets/parenthesis
     set foldenable                         " Auto fold code
