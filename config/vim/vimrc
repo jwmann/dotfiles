@@ -113,6 +113,7 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
     set incsearch                          " Find as you type search
     set ignorecase                         " Ignore case when searching
     set smartcase                          " ...unless there's a capital letter in the query
+    set gdefault                           " By default do a search and replace on every match in the line
     " }
 
                                            " Fuzzy Finding Files {
