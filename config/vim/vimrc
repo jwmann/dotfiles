@@ -728,7 +728,7 @@ call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
     " }
   " }
 
-  " Syntax Helpers {
+  " Syntax Helpers (Linters, Syntax, Indentation) {
     " ALE {
       " Asynchronous Lint Engine
       Plug 'w0rp/ale'
@@ -749,15 +749,20 @@ call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
       " Auto close parentheses and repeat by dot dot dot...
       Plug 'cohama/lexima.vim'
     " }
+
+    " LESS {
+      Plug 'groenewege/vim-less'
+    " }
+
+    " Javascript / JSX {
+      Plug 'pangloss/vim-javascript'
+      Plug 'mxw/vim-jsx'
+
+      let g:jsx_ext_required = 0
+    " }
   " }
 
   " A E S T H E T I C S {
-    " Colour Schemes {
-      " LESS {
-        Plug 'groenewege/vim-less'
-      " }
-    " }
-
     " vim-indent-guides {
       " Shows semi-opaque markings to indicate indent levels
       " TODO: https://github.com/nathanaelkane/vim-indent-guides/issues/55
