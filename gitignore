@@ -44,11 +44,14 @@ Thumbs.db
 tags
 tags.*
 
+# Ignore ctags #
+################
+.notags
+
 # Vim Plugins
 #############
 
-# Ctrl-Space  #
-###############
+# Ctrl-Space #
 .cs_cache
 .cs_workspaces
 .cs_files
