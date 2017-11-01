@@ -172,6 +172,9 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
   " Quick Find File
   nnoremap <Leader>f :find 
 
+  " Quick Find a Buffer
+  nnoremap <CR> :ls<CR>:b<Space>
+
   " For when you forget sudo.. Really Write the file.
   cnoremap w!! w !sudo tee % >/dev/null
 
