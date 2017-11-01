@@ -780,11 +780,29 @@ call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
       " Pretty looking Status Line
       Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 
-      set laststatus=2                             " Always display the statusline in all windows
-      set noshowmode                               " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+      set laststatus=2                                     " Always display the statusline in all windows
+      set noshowmode                                       " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
-      let g:airline_powerline_fonts = 1            " Use special patched fonts to display glyphs on the statusline
-      let g:airline#extensions#tabline#enabled = 1 " Enable Smarter Tab Line
+      let g:airline_powerline_fonts = 1                    " Use special patched fonts to display glyphs on the statusline
+      let g:airline#extensions#tabline#enabled = 1         " Enable Smarter Tab Line
+      let g:airline#extensions#tabline#tab_nr_type = 1     " Tab numbers
+      let g:airline#extensions#tabline#show_tab_nr = 1     " Show Tab Numbers
+      let g:airline#extensions#tabline#buffer_nr_show = 1  " Show buffer numbers
+      let g:airline#extensions#tabline#fnametruncate = 16  " Truncate Filenames to 16 characters
+      let g:airline#extensions#tabline#fnamecollapse = 2   " Collapse filenames to 2 directories
+      let g:airline#extensions#tabline#buffer_idx_mode = 1 " Enable Buffer index Mode (Change buffer based on Tabline position)
+
+      nmap <leader>1 <Plug>AirlineSelectTab1
+      nmap <leader>2 <Plug>AirlineSelectTab2
+      nmap <leader>3 <Plug>AirlineSelectTab3
+      nmap <leader>4 <Plug>AirlineSelectTab4
+      nmap <leader>5 <Plug>AirlineSelectTab5
+      nmap <leader>6 <Plug>AirlineSelectTab6
+      nmap <leader>7 <Plug>AirlineSelectTab7
+      nmap <leader>8 <Plug>AirlineSelectTab8
+      nmap <leader>9 <Plug>AirlineSelectTab9
+
+      " Source for Tabline settings: https://vi.stackexchange.com/a/4367
     " }
 
     " promptline.vim {
