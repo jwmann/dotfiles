@@ -18,11 +18,12 @@
 [branch]
 	autosetupmerge = always
 [alias]
-  ds = diff --staged                                                                 #  git ds - Diff your staged changes == review before committing.
-  st = status -sb                                                                    #  Smarter status - include tag and branch info
-  fup = log --since '1 day ago' --oneline "--author=$(git config --get user.email)"  #  Know what you did yesterday
-  session = "!git diff --name-only -z | xargs -0 bash -c '</dev/tty open \"$@\"' x"  #  Open all modified tracked files within the current repo
-  user = "!bash -c -l \"gituser $1\""                                                #  Set the user profile to be used when commiting by using the gituser function defined in ~/.profile
+  ds = diff --staged                                                                # git ds - Diff your staged changes == review before committing.
+  st = status -sb                                                                   # Smarter status - include tag and branch info
+  fup = log --since '1 day ago' --oneline "--author=$(git config --get user.email)" # Know what you did yesterday
+  session = "!git diff --name-only -z | xargs -0 bash -c '</dev/tty open \"$@\"' x" # Open all modified tracked files within the current repo
+  user = "!bash -c -l \"gituser $1\""                                               # Set the user profile to be used when commiting by using the gituser function defined in ~/.profile
+  cr = commit -eF .git/COMMIT_EDITMSG                                               # If commit fails either due to a failed gpg or whatever, use the last message written when commiting again
 
   # Reset Helpers
   # -------------
