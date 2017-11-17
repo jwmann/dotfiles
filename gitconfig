@@ -79,3 +79,4 @@
   # Generate a .gitignore based on given arguments ( For list of arguments do: gi list )
   # e.g.: git ignore osx, php, node, wordpress >> .gitignore
 	ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
+  fix = "!$EDITOR `git diff --name-only | uniq`"
