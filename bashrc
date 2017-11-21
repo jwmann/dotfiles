@@ -97,6 +97,7 @@ alias show_options='shopt'                      # Show_options: display bash opt
 alias fix_stty='stty sane'                      # fix_stty: Restore terminal settings when screwed up
 alias cic='set completion-ignore-case On'       # cic: Make tab-completion case-insensitive
 mcd () { mkdir -p "$1" && cd "$1"; }            # mcd: Makes new Dir and jumps inside
+alias work='cd ~/work/'                         # work: Changes to the work directory
 alias dotfiles='cd ~/.dotfiles/'                # dotfiles: Changes to the dotfiles directory
 alias config='cd ~/.config/'                    # config: Changes to the directory that contains configs (usually $XDG_CONFIG_HOME)
 alias profile='open ~/.dotfiles/profile'        # profile: Opens Terminal login's config file in the default editor
