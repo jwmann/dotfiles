@@ -185,6 +185,9 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
   nnoremap <Leader>ve :edit <C-r>=resolve($MYVIMRC)<CR><CR>
   nnoremap <Leader>vr :source <C-r>=resolve($MYVIMRC)<CR><CR>:echo "Reloaded."<CR>
 
+  " Mapping for removing console.log only for filetypes that use console.log
+  autocmd vimrc FileType javascript nnoremap <Leader>cc :g/^\s*console\.log/d<CR>
+
   " Quick Bash command (that also uses the login_shell and its profiles and aliases
   nnoremap !! :Bash 
 
