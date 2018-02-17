@@ -202,6 +202,9 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
     nnoremap <C-l> <C-w>l
     nnoremap <Right> <C-w>l
 
+    " Easier mapping to switch back and forth between buffers
+    nnoremap <BS> <C-^>   
+
     " Change the Shift+h / Shift+l to mimic ^ and $ in their respective directions
     nnoremap H ^
     nnoremap L $
