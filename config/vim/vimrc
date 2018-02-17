@@ -132,7 +132,7 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
     set undolevels=1000                    " More undos
     set title                              " Vim can set the title of the terminal window
     set grepprg=rg\ --vimgrep              " Set default grep to use ripgrep
-    set timeoutlen=600                     " Change how long vim waits for double keystroke mappings Default: 1000
+    set timeoutlen=700                     " Change how long vim waits for double keystroke mappings Default: 1000
   " }
 
   " GUI Specifc {
