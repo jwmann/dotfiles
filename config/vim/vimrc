@@ -745,12 +745,16 @@ call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
       " ALE complains that it conflicts with Neomake but I use them for different purposes so tell ALE to shush.
       let g:ale_emit_conflict_warnings = 0
 
+      " Automatically fix files after writing but only for Javascript files
+      " autocmd vimrc FileType javascript let b:ale_fix_on_save = 1
+
       " Navigate errors and warnings
       nmap <silent> [w <Plug>(ale_previous_wrap)
       nmap <silent> ]w <Plug>(ale_next_wrap)
 
       let g:ale_linters = {'jsx': ['stylelint', 'eslint']}
       let g:ale_linter_aliases = {'jsx': 'css'}
+      let g:ale_fixers = {'javascript': ['prettier', 'eslint']}
     " }
 
     " lexima.vim {
