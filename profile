@@ -101,7 +101,7 @@ gituser() {
 #   ---------------------------
 #   Removes Previous Version from the system so that OSX will 'forget' it and force it to use the new version only
 #   Creates a symlink to Applications
-alias macvimup='brew upgrade macvim --with-override-system-vim && brew cleanup -s macvim && brew linkapps macvim'
+alias macvimup='brew upgrade macvim --with-override-system-vim && brew cleanup -s macvim && rm /Applications/MacVim.app && ln -s /usr/local/Cellar/macvim/*/MacVim.app /Applications/'
 
 #   -------------------------------
 #   FILE AND FOLDER MANAGEMENT
