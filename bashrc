@@ -100,7 +100,7 @@ mcd () { mkdir -p "$1" && cd "$1"; }            # mcd: Makes new Dir and jumps i
 alias work='cd ~/work/'                         # work: Changes to the work directory
 alias dotfiles='cd ~/.dotfiles/'                # dotfiles: Changes to the dotfiles directory
 alias config='cd ~/.config/'                    # config: Changes to the directory that contains configs (usually $XDG_CONFIG_HOME)
-alias profile='edit ~/.dotfiles/profile'        # profile: Opens Terminal login's config file in the default editor
-alias bashrc='edit ~/.dotfiles/bashrc'          # bashrc: Opens bash's config file in the default editor
-alias vimrc='edit ~/.dotfiles/config/vim/vimrc' # vimrc: Opens Vim's config file in the default editor
-alias gitconfig='edit ~/.dotfiles/gitconfig'    # gitconfig: Opens git's config file in the default editor
+alias profile='open ~/.dotfiles/profile'        # profile: Opens Terminal login's config file in the default editor
+alias bashrc='open ~/.dotfiles/bashrc'          # bashrc: Opens bash's config file in the default editor
+alias vimrc='open ~/.dotfiles/config/vim/vimrc' # vimrc: Opens Vim's config file in the default editor
+alias gitconfig='open ~/.dotfiles/gitconfig'    # gitconfig: Opens git's config file in the default editor
