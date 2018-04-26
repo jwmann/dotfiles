@@ -4,7 +4,7 @@
     "object-curly-spacing": 0,
     "space-in-parens": 0,
     "no-multi-spaces": 0,
-    "brace-style": [2, 1tbs]
+    "brace-style": [2, "1tbs"]
   }
 }
 
