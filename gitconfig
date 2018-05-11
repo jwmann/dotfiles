@@ -21,8 +21,6 @@
   ds = diff --staged                                                                # git ds - Diff your staged changes == review before committing.
   st = status -sb                                                                   # Smarter status - include tag and branch info
   fup = log --since '1 day ago' --oneline "--author=$(git config --get user.email)" # Know what you did yesterday
-  session = "!git diff --name-only -z | xargs -0 bash -c '</dev/tty open \"$@\"' x" # Open all modified tracked files within the current repo
-  user = "!bash -c -l \"gituser $1\""                                               # Set the user profile to be used when commiting by using the gituser function defined in ~/.profile
   cr = commit -eF .git/COMMIT_EDITMSG                                               # If commit fails either due to a failed gpg or whatever, use the last message written when commiting again
 
   # Reset Helpers
@@ -76,7 +74,9 @@
 
 	# External Commands
 	# -----------------
-  # Generate a .gitignore based on given arguments ( For list of arguments do: gi list )
-  # e.g.: git ignore osx, php, node, wordpress >> .gitignore
-	ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
-  fix = "!$EDITOR `git diff --name-only | uniq`"
+	ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"              # Generate a .gitignore based on given arguments ( For list of arguments do: gi list )
+	                                                                                  # e.g.: git ignore osx, php, node, wordpress >> .gitignore
+  fix = "!$EDITOR `git diff --name-only | uniq`"                                    # Open all conflicted files in the default editor
+  user = "!bash -c -l \"gituser $1\""                                               # Set the user profile to be used when commiting by using the gituser function defined in ~/.profile
+  session = "!git diff --name-only -z | xargs -0 bash -c '</dev/tty open \"$@\"' x" # Open all modified tracked files within the current repo
+  cpc = "!git log -1 --pretty=%B | pbcopy"                                          # Copy last commit message to clipboard
