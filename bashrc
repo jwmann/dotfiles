@@ -70,35 +70,35 @@ alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\
 #   BASH ALIASES
 #   -----------------------------
 
-alias cp='cp -iv'                               # Preferred 'cp' implementation
-alias mv='mv -iv'                               # Preferred 'mv' implementation
-alias mkdir='mkdir -pv'                         # Preferred 'mkdir' implementation
-alias ll='ls -FGlAhp'                           # Preferred 'ls' implementation
-alias less='less -FSRXc'                        # Preferred 'less' implementation
-cdl() { builtin cd "$@"; ll; }                  # List directory contents upon 'cd'
-alias pd='cd -'                                 # Go back to the previous PATH
-alias cd..='cd ../'                             # Go back 1 directory level (for fast typers)
-alias ..='cd ../'                               # Go back 1 directory level
-alias ...='cd ../../'                           # Go back 2 directory levels
-alias ..3='cd ../../../'                        # Go back 3 directory levels
-alias ..4='cd ../../../../'                     # Go back 4 directory levels
-alias ..5='cd ../../../../../'                  # Go back 5 directory levels
-alias ..6='cd ../../../../../../'               # Go back 6 directory levels
-alias edit='mvim'                               # edit: Opens any file in MacVim editor
-alias ~="cd ~"                                  # ~: Go Home
-alias c='clear'                                 # c: Clear terminal display
-alias which='type -all'                         # which: Find executables
-alias path='echo -e ${PATH//:/\\n}'             # path: Echo all executable Paths
-alias show_options='shopt'                      # Show_options: display bash options settings
-alias fix_stty='stty sane'                      # fix_stty: Restore terminal settings when screwed up
-alias cic='set completion-ignore-case On'       # cic: Make tab-completion case-insensitive
-mcd () { mkdir -p "$1" && cd "$1"; }            # mcd: Makes new Dir and jumps inside
-alias work="cd ~/work/"                         # work: Changes to the work directory
+alias cp='cp -iv'                                      # Preferred 'cp' implementation
+alias mv='mv -iv'                                      # Preferred 'mv' implementation
+alias mkdir='mkdir -pv'                                # Preferred 'mkdir' implementation
+alias ll='ls -FGlAhp'                                  # Preferred 'ls' implementation
+alias less='less -FSRXc'                               # Preferred 'less' implementation
+cdl() { builtin cd "$@"; ll; }                         # List directory contents upon 'cd'
+alias pd='cd -'                                        # Go back to the previous PATH
+alias cd..='cd ../'                                    # Go back 1 directory level (for fast typers)
+alias ..='cd ../'                                      # Go back 1 directory level
+alias ...='cd ../../'                                  # Go back 2 directory levels
+alias ..3='cd ../../../'                               # Go back 3 directory levels
+alias ..4='cd ../../../../'                            # Go back 4 directory levels
+alias ..5='cd ../../../../../'                         # Go back 5 directory levels
+alias ..6='cd ../../../../../../'                      # Go back 6 directory levels
+alias edit='mvim'                                      # edit: Opens any file in MacVim editor
+alias ~="cd ~"                                         # ~: Go Home
+alias c='clear'                                        # c: Clear terminal display
+alias which='type -all'                                # which: Find executables
+alias path='echo -e ${PATH//:/\\n}'                    # path: Echo all executable Paths
+alias show_options='shopt'                             # Show_options: display bash options settings
+alias fix_stty='stty sane'                             # fix_stty: Restore terminal settings when screwed up
+alias cic='set completion-ignore-case On'              # cic: Make tab-completion case-insensitive
+mcd () { mkdir -p "$1" && cd "$1"; }                   # mcd: Makes new Dir and jumps inside
+alias work="cd ~/work/"                                # work: Changes to the work directory
 DOTFILESPATH="~/.dotfiles"
-alias dotfiles="cd $DOTFILESPATH/"              # dotfiles: Changes to the dotfiles directory
-alias config="cd $XDG_CONFIG_HOME"              # config: Changes to the directory that contains configs (usually $XDG_CONFIG_HOME)
-alias profile="open $DOTFILESPATH/profile"      # profile: Opens Terminal login's config file in the default editor
-alias bashrc="open $DOTFILESPATH/bashrc"        # bashrc: Opens bash's config file in the default editor
-alias vimrc="open ~/.vimrc"                     # vimrc: Opens Vim's config file in the default editor
-alias nvimrc="open $DOTFILESPATH/nvim/init.vim" # nvimrc: Opens NeoVim's Init.vim config file in the default editor
-alias gitconfig="open $DOTFILESPATH/gitconfig"  # gitconfig: Opens git's config file in the default editor
+alias dotfiles="cd $DOTFILESPATH/"                     # dotfiles: Changes to the dotfiles directory
+alias config="cd $XDG_CONFIG_HOME"                     # config: Changes to the directory that contains configs (usually $XDG_CONFIG_HOME)
+alias profile="open $DOTFILESPATH/profile"             # profile: Opens Terminal login's config file in the default editor
+alias bashrc="open $DOTFILESPATH/bashrc"               # bashrc: Opens bash's config file in the default editor
+alias vimrc="open $DOTFILESPATH/vimrc"                 # vimrc: Opens Vim's config file in the default editor
+alias nvimrc="open $DOTFILESPATH/config/nvim/init.vim" # nvimrc: Opens NeoVim's Init.vim config file in the default editor
+alias gitconfig="open $DOTFILESPATH/gitconfig"         # gitconfig: Opens git's config file in the default editor
