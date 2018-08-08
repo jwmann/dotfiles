@@ -35,7 +35,7 @@ autocmd nvimrc FileType gitcommit setlocal spelllang=en
     hi CursorLine   cterm=NONE ctermbg=234 ctermfg=NONE
   " }
 
-  set guifont=Inconsolata\ for\ Powerline:h14 " Set Default Font ( Font included as a plugin, make sure to install into System )
+  set guifont=Fira\ Code:h12 " Set Default Font
 
   " Indent Settings {
     set tabstop=2 shiftwidth=2 expandtab      " Make my tabs be 2 spaces **BE CAREFUL WITH THIS SETTING**
