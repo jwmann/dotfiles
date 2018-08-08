@@ -7,3 +7,6 @@ com.extropy.oni .java all
 com.extropy.oni .xml all
 com.extropy.oni .pl all
 com.extropy.oni .pm all
+com.extropy.oni .vim all
+com.extropy.oni .less all
+com.extropy.oni .scss all
