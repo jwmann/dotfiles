@@ -1,72 +1,24 @@
-" TODO: Wrap version/command dependencies with IF blocks that check first
-" Use Vim not vi
-set nocompatible
-
-" Fix deprecated warning from python3
-" SOURCE: https://github.com/SirVer/ultisnips/issues/996#issuecomment-403347577 
-if has('python3')
-  silent! python3 1
-endif
-
-" Sets up Vim to use directories specified by XDG environment variables as
-" defined in the specification:
-" https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
-"
-" Implementation inspired by:
-" https://github.com/kaleb/vim-files/blob/master/xdg.vim
-
-if empty($XDG_CACHE_HOME)
-let $XDG_CACHE_HOME = $HOME.'/.cache'
-endif
 if empty($XDG_CONFIG_HOME)
-let $XDG_CONFIG_HOME = $HOME.'/.config'
+  let $XDG_CONFIG_HOME = $HOME.'/.config'
+endif
+if empty($MYNVIM)
+  let $MYNVIM = $XDG_CONFIG_HOME.'/nvim'
+endif
+if empty($MYNVIMRC)
+  let $MYNVIMRC = $MYNVIM.'/init.vim'
 endif
 
-if !isdirectory($XDG_CACHE_HOME . "/vim/swap")
-call mkdir($XDG_CACHE_HOME . "/vim/swap", "p")
-endif
-set directory=$XDG_CACHE_HOME/vim/swap//,/var/tmp//,/tmp//
-
-if !isdirectory($XDG_CACHE_HOME . "/vim/backup")
-call mkdir($XDG_CACHE_HOME . "/vim/backup", "p")
-endif
-set backupdir=$XDG_CACHE_HOME/vim/backup//,/var/tmp//,/tmp//
-
-" Double slash does not actually work for backupdir, here's a fix
-au BufWritePre * let &backupext='@'.substitute(substitute(substitute(expand('%:p:h'), '/', '%', 'g'), '\', '%', 'g'), ':', '', 'g')
-
-" See :help persistent-undo
-if !isdirectory($XDG_CACHE_HOME . "/vim/undo")
-call mkdir($XDG_CACHE_HOME . "/vim/undo", "p")
-endif
-set undodir=$XDG_CACHE_HOME/vim/undo//,/var/tmp//,/tmp//
-set undofile
-
-set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
-
-set runtimepath-=~/.vim
-set runtimepath^=$XDG_CONFIG_HOME/vim
-set runtimepath-=~/.vim/after
-set runtimepath+=$XDG_CONFIG_HOME/vim/after
+" Define a group 'vimrc' to be used for all auto commands and initialize.
+augroup nvimrc
+  autocmd!
+augroup END
 
 " The default leader is '\', but many people prefer ',' as it's in a standard location
 let g:mapleader = "\<Space>"                  " Use the <Space> key as leader, key size is reachable from anywhere and its default function is not very useful
 
-" Define a group 'vimrc' to be used for all auto commands and initialize.
-augroup vimrc
-  autocmd!
-augroup END
-
-" Deletes swapfiles for unmodified buffers -- Provided by tpope from #vim
-autocmd vimrc CursorHold,BufWritePost,BufReadPost,BufLeave * if !$VIMSWAP && isdirectory(expand("<aMatch>:h")) | let &swapfile = &modified | endif
-
-" Automatically Save/Load Fold states
-" autocmd vimrc BufWinLeave * silent! mkview
-" autocmd vimrc BufWinEnter * silent! loadview
-
 " Spellcheck for Git Commit messages
-autocmd vimrc FileType gitcommit setlocal spell
-autocmd vimrc FileType gitcommit setlocal spelllang=en
+autocmd nvimrc FileType gitcommit setlocal spell
+autocmd nvimrc FileType gitcommit setlocal spelllang=en
 
 " VimUI {
   " Colors {
@@ -88,7 +40,7 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
   " Indent Settings {
     set tabstop=2 shiftwidth=2 expandtab      " Make my tabs be 2 spaces **BE CAREFUL WITH THIS SETTING**
     set softtabstop=2                         " Let backspace delete indent
-    set autoindent                            " Indent at the same level of the previous line
+    set shiftround    " round indent to multiple of 'shiftwidth'
     set copyindent                            " Copy the indentation of the previous line if auto indent doesn't know what to do
   " }
 
@@ -115,8 +67,6 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
   " }
 
   " Search Settings {
-    set hlsearch                           " Highlight search terms
-    set incsearch                          " Find as you type search
     set ignorecase                         " Ignore case when searching
     set smartcase                          " ...unless there's a capital letter in the query
     set gdefault                           " By default do a search and replace on every match in the line
@@ -126,7 +76,6 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
     set wildmode=longest:full,full         " Command <Tab> completion, list matches, then longest common part, then all.
     set wildignore+=**/node_modules/**     " Ignores the 'node_modules' directory and its children from wildmenu suggestions
     set wildignore+=**/bower_components/** " Ignores the 'bower_components' directory and its children from wildmenu suggestions
-    set wildmenu                           " Show list instead of just completing
   " }
 
   " General Settings {
@@ -139,24 +88,6 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
     set title                              " Vim can set the title of the terminal window
     set grepprg=rg\ --vimgrep              " Set default grep to use ripgrep
     set timeoutlen=700                     " Change how long vim waits for double keystroke mappings Default: 1000
-  " }
-
-  " GUI Specifc {
-    if has("gui_running")
-      " Removing the toolbar
-      set guioptions=mrg
-
-      " Set Default Window Size
-      set lines=80
-      set columns=200
-
-      " MacVim Specifc {
-      if has("gui_macvim")
-        " Set my transparency
-        set transparency=10
-      endif
-      " }
-    endif
   " }
 " }
 
@@ -188,14 +119,15 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
   nnoremap <Leader>= :exec "normal! gg=G"<CR>
 
   " Edit or Reload vimrc on the fly
-  nnoremap <Leader>ve :edit <C-r>=resolve($MYVIMRC)<CR><CR>
-  nnoremap <Leader>vr :source <C-r>=resolve($MYVIMRC)<CR><CR>:echo "Reloaded."<CR>
+  nnoremap <Leader>ve :edit <C-r>=resolve($MYNVIMRC)<CR><CR>
+  nnoremap <Leader>vr :source <C-r>=resolve($MYNVIMRC)<CR><CR>:echo "Reloaded."<CR>
 
   " Mapping for removing console.log only for filetypes that use console.log
-  autocmd vimrc FileType javascript nnoremap <Leader>cc :g/^\s*console\.log/d<CR>
+  autocmd nvimrc FileType javascript nnoremap <Leader>cc :g/^\s*console\.log/d<CR>
 
   " Quick Bash command (that also uses the login_shell and its profiles and aliases
-  nnoremap !! :Bash 
+  nnoremap !! :terminal<CR> 
+  tnoremap <Esc> <C-\><C-n>
 
   " Extend/Improve upon Default Vim mapping conventions {
     " Easy Split Window Pane Navigation
@@ -270,26 +202,11 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
     noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
     noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
   " }
-
-  " Logging {
-    " Follow current file's symlink to edit the source file instead
-    nnoremap <Leader>L :<C-u>execute 'file '.fnameescape(resolve(expand('%:p')))<Bar>
-          \ call fugitive#detect(fnameescape(expand('%:p:h')))<CR>:AirlineRefresh<CR>
-          \ :echo "Followed Symlink to: '<C-r>=expand('%:p')<CR>'"<CR>
-
-    " Quickly Debug Vim within a log
-    nnoremap <Leader>LL :profile start vim.log<CR> :profile func *<CR> :profile file *<CR> :echo "Ready to debug..."<CR>
-    nnoremap <Leader>LS :profile pause<CR> :echo "Debugging Paused, Quit Vim to Generate Log." <CR>
-  " }
 " }
 
 " Commands & Functions {
   " Convert Tabs to Spaces
   :command! -range=% -nargs=0 Tab2Space execute '<line1>,<line2>s#^\t\+#\=repeat(" ", len(submatch(0))*' . &ts . ')'
-
-  " Use bash command as if it were invoked by the login shell
-  " This allows aliases and functions from .bashrc/.bash_profile/.profile to be used
-  :command! -nargs=* Bash !bash -c -l "<Args>"
 
   " Allow the ability to execute a Macro over a Visual Line Range
   " Source: https://github.com/stoeffel/.dotfiles/blob/master/vim/visual-at.vim
@@ -303,23 +220,24 @@ autocmd vimrc FileType gitcommit setlocal spelllang=en
 
 " Setting up vim-plug - the vim plugin bundler
 " If vim-plug doesn't exist, download it.
-if empty( glob("$XDG_CONFIG_HOME/vim/autoload/plug.vim") )
-  silent !mkdir -p $XDG_CONFIG_HOME/vim/autoload
-  silent !curl -fLo $XDG_CONFIG_HOME/vim/autoload/plug.vim
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd vimrc VimEnter * PlugInstall
+if empty( glob("$MYNVIM/autoload/plug.vim") )
+  silent !mkdir -p $MYNVIM/autoload
+  silent !curl -fLo $MYNVIM/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd nvimrc VimEnter * PlugInstall
 endif
 
 " If our Plugins aren't installed at all, Initate Install before anything
-if empty( glob("$XDG_CONFIG_HOME/vim/bundle") )
-  autocmd vimrc VimEnter * PlugInstall
+if empty( glob("$MYNVIM/bundle") )
+  autocmd nvimrc VimEnter * PlugInstall
 endif
 
 " Begin vim-plug!
-call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
+call plug#begin("$MYNVIM/bundle")
 
 " Plugins, and their Mappings, Settings, etc... {
   " Utilities {
+    if !exists("g:gui_oni")
     " vim-rooter {
       " Changes Vim working directory to project root (identified by presence of known directory or file).
       Plug 'airblade/vim-rooter'
@@ -334,8 +252,9 @@ call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
       " Using the User event 'RooterChDir' set by vim-rooter as a trigger
       " the Path is then set using the found project root
       " This allows for some decent dynamic file finding regardless of project structure
-      autocmd vimrc User RooterChDir let &path = FindRootDirectory() . '/**'
+      autocmd nvimrc User RooterChDir let &path = FindRootDirectory() . '/**'
     " }
+    endif
 
     " Git {
       " Fugitive {
@@ -343,7 +262,7 @@ call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
         Plug 'tpope/vim-fugitive'
 
         " Auto-delete vim buffers when browsing git object history using Fugitive
-        autocmd vimrc BufReadPost fugitive://* set bufhidden=delete
+        autocmd nvimrc BufReadPost fugitive://* set bufhidden=delete
 
         " Mappings for most used commands
         nmap <silent> <Leader>gs :Gstatus<CR>gg<C-n>
@@ -377,50 +296,15 @@ call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
       Plug 'kshenoy/vim-signature'
     " }
 
-    " Ultisnips {
-      " TODO: Fix template insertion, current stops working after the first entry
-      " Easily accessible, configurable and reusable snippets of code.
-      " Track the engine.
-      Plug 'SirVer/ultisnips'
-
-      " Snippets are separated from the engine.
-      " Add default snippets.
-      Plug 'honza/vim-snippets'
-
-      " Add additional use-case snippets
-      Plug 'bonsaiben/bootstrap-snippets'
-
-      " Trigger configuration. Do not use <Tab> if you use https://github.com/Valloric/YouCompleteMe.
-      let g:UltiSnipsExpandTrigger = '<C-l>'
-      let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-      let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
-      let g:UltiSnipsListSnippets = '<C-Tab>'
-      let g:ulti_expand_or_jump_res = 0
-
-      " UltiSnips works with MUcomplete this way on ENTER
-      " https://github.com/SirVer/ultisnips/issues/376#issuecomment-69033351
-      " Config shared by dza from #vim
-      function! <SID>ExpandSnippetOrReturn()
-        let snippet = UltiSnips#ExpandSnippetOrJump()
-        if g:ulti_expand_or_jump_res > 0
-          return snippet
-        else
-          return "\<C-Y>"
-        endif
-      endfunction
-
-      inoremap <silent> <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "\<CR>"
-    " }
-
     " vim-better-whitespace {
       " Better whitespace highlighting and stripping for Vim
       Plug 'ntpeters/vim-better-whitespace'
 
       " Use Syntax Based highlighting to reduce performance hit
-      autocmd vimrc VimEnter * silent! CurrentLineWhitespaceOff soft
+      autocmd nvimrc VimEnter * silent! CurrentLineWhitespaceOff soft
 
       " Trailing Whitespace Autofix
-      autocmd vimrc BufWritePre *.{rb,py,js,php,html,xml,css,less} StripWhitespace
+      autocmd nvimrc BufWritePre *.{rb,py,js,php,html,xml,css,less} StripWhitespace
 
       " Define custom highlight color ( Based on 'DiffDelete' color group in :highlight list )
       highlight ExtraWhitespace term=bold ctermfg=16 ctermbg=52 guifg=#40000A guibg=#700009
@@ -513,7 +397,7 @@ call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
       let g:neomake_verbose = 2
 
       " Job Finish Message
-      autocmd vimrc User NeomakeFinished echo 'Neomake: [' . g:neomake_hook_context.make_id . '] Complete.'
+      autocmd nvimrc User NeomakeFinished echo 'Neomake: [' . g:neomake_hook_context.make_id . '] Complete.'
 
       " Gulp Builder
       let g:neomake_gulp_maker = {
@@ -606,6 +490,7 @@ call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
       " }
     " }
 
+    if !exists("g:gui_oni")
     " Completion {
       " vim-mucomplete {
         " A super simple, super minimal, super light-weight tab completion plugin for Vim.
@@ -643,9 +528,10 @@ call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
         " Update the bult-in CSS complete function to latest CSS standard.
         Plug 'othree/csscomplete.vim'
 
-        autocmd vimrc FileType css,less,scss set omnifunc=csscomplete#CompleteCSS noci
+        autocmd nvimrc FileType css,less,scss set omnifunc=csscomplete#CompleteCSS noci
       " }
     " }
+    endif
 
     " Custom Operators {
       " sad.vim {
@@ -670,15 +556,15 @@ call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
 
         " PHP {
           " Enable PHP tag Surrounds ( 112 ASCII for 'p' ) e.g.: yssp
-          autocmd vimrc FileType php let b:surround_112 = "<?php \r ?>"
+          autocmd nvimrc FileType php let b:surround_112 = "<?php \r ?>"
 
           " Enable easy PHP var_dump() ( 108 ASCII for 'l' ) e.g.: yssl
-          autocmd vimrc FileType php let b:surround_108 = "var_dump( \r );"
+          autocmd nvimrc FileType php let b:surround_108 = "var_dump( \r );"
         " }
 
         " JS {
           " Enable easy JS console.log() ( 108 ASCII for 'l' ) e.g.: yssl
-          autocmd vimrc FileType javascript let b:surround_108 = "console.log( \r );"
+          autocmd nvimrc FileType javascript let b:surround_108 = "console.log( \r );"
         " }
 
         " Surround Specifc Mappings {
@@ -751,7 +637,7 @@ call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
       let g:ale_emit_conflict_warnings = 0
 
       " Automatically fix files after writing but only for Javascript files
-      " autocmd vimrc FileType javascript let b:ale_fix_on_save = 1
+      " autocmd nvimrc FileType javascript let b:ale_fix_on_save = 1
 
       " Navigate errors and warnings
       nmap <silent> [w <Plug>(ale_previous_wrap)
@@ -779,7 +665,8 @@ call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
     " }
   " }
 
-  " A E S T H E T I C S {
+  " A E S T H E T I C S { 
+  if !exists("g:gui_oni")
     " vim-indent-guides {
       " Shows semi-opaque markings to indicate indent levels
       " TODO: https://github.com/nathanaelkane/vim-indent-guides/issues/55
@@ -794,7 +681,6 @@ call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
       " Pretty looking Status Line
       Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 
-      set laststatus=2                                     " Always display the statusline in all windows
       set noshowmode                                       " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
       let g:airline_powerline_fonts = 1                    " Use special patched fonts to display glyphs on the statusline
@@ -824,21 +710,17 @@ call plug#begin("$XDG_CONFIG_HOME/vim/bundle")
       " themes and powerline fonts
       Plug 'edkolev/promptline.vim'
     " }
-  " }
-
-  " Extras {
-    " Powerline pre-patched Fonts {
-      " Special Glyphs for pretty powerline status line
-      Plug 'Lokaltog/powerline-fonts'
-    " }
+  endif
   " }
 " }
 
 " vim-plug is done!
 call plug#end()
 
+if !exists("g:gui_oni")
 " Settings to be loaded AFTER plugins are initialized {
-  if exists( '*promptline#slices#user' )
+  " FIXME: preset isn't set inside the if block. Test exists function
+  " if exists( '*promptline#slices#user' )
     " If this function exists,
     " Set promptline_preset
     let g:promptline_preset = {
@@ -846,5 +728,25 @@ call plug#end()
           \'b' : [ promptline#slices#cwd() ],
           \'y' : [ promptline#slices#vcs_branch() ],
           \'warn' : [ promptline#slices#last_exit_code() ]}
-  endif
+  " endif
 " }
+endif
+
+" Oni specific settings
+if exists("g:gui_oni")
+  set number
+  set noswapfile
+  set smartcase
+
+  " Turn off statusbar, because it is externalized
+  set noshowmode
+  set noruler
+  set laststatus=0
+  set noshowcmd
+
+  " Enable GUI mouse behavior
+  set mouse=a
+
+  set list
+  set listchars=trail:·
+endif

@@ -19,10 +19,6 @@
 #   ------------------------------------------------------------
     export EDITOR=vim
 
-    # Set vimrc's location and source it on vim startup
-    export MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
-    export VIMINIT='source $MYVIMRC'
-
 #   Set Default ReadLine (default is 'emacs')
 #   ------------------------------------------------------------
     set -o vi
@@ -97,10 +93,12 @@ alias show_options='shopt'                      # Show_options: display bash opt
 alias fix_stty='stty sane'                      # fix_stty: Restore terminal settings when screwed up
 alias cic='set completion-ignore-case On'       # cic: Make tab-completion case-insensitive
 mcd () { mkdir -p "$1" && cd "$1"; }            # mcd: Makes new Dir and jumps inside
-alias work='cd ~/work/'                         # work: Changes to the work directory
-alias dotfiles='cd ~/.dotfiles/'                # dotfiles: Changes to the dotfiles directory
-alias config='cd ~/.config/'                    # config: Changes to the directory that contains configs (usually $XDG_CONFIG_HOME)
-alias profile='open ~/.dotfiles/profile'        # profile: Opens Terminal login's config file in the default editor
-alias bashrc='open ~/.dotfiles/bashrc'          # bashrc: Opens bash's config file in the default editor
-alias vimrc='open ~/.dotfiles/config/vim/vimrc' # vimrc: Opens Vim's config file in the default editor
-alias gitconfig='open ~/.dotfiles/gitconfig'    # gitconfig: Opens git's config file in the default editor
+alias work="cd ~/work/"                         # work: Changes to the work directory
+DOTFILESPATH="~/.dotfiles"
+alias dotfiles="cd $DOTFILESPATH/"              # dotfiles: Changes to the dotfiles directory
+alias config="cd $XDG_CONFIG_HOME"              # config: Changes to the directory that contains configs (usually $XDG_CONFIG_HOME)
+alias profile="open $DOTFILESPATH/profile"      # profile: Opens Terminal login's config file in the default editor
+alias bashrc="open $DOTFILESPATH/bashrc"        # bashrc: Opens bash's config file in the default editor
+alias vimrc="open ~/.vimrc"                     # vimrc: Opens Vim's config file in the default editor
+alias nvimrc="open $DOTFILESPATH/nvim/init.vim" # nvimrc: Opens NeoVim's Init.vim config file in the default editor
+alias gitconfig="open $DOTFILESPATH/gitconfig"  # gitconfig: Opens git's config file in the default editor
