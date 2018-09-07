@@ -18,6 +18,7 @@
 [branch]
 	autosetupmerge = always
 [alias]
+  d = diff
   ds = diff --staged                                                                # git ds - Diff your staged changes == review before committing.
   st = status -sb                                                                   # Smarter status - include tag and branch info
   fup = log --since '1 day ago' --oneline "--author=$(git config --get user.email)" # Know what you did yesterday
