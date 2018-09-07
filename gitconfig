@@ -18,11 +18,19 @@
 [branch]
 	autosetupmerge = always
 [alias]
-  d = diff
-  ds = diff --staged                                                                # git ds - Diff your staged changes == review before committing.
+  # Basic Shortcuts
+  # ---------------
   st = status -sb                                                                   # Smarter status - include tag and branch info
-  fup = log --since '1 day ago' --oneline "--author=$(git config --get user.email)" # Know what you did yesterday
-  cr = commit -eF .git/COMMIT_EDITMSG                                               # If commit fails either due to a failed gpg or whatever, use the last message written when commiting again
+  cp = cherry-pick
+  cl = clone
+  co = checkout
+  cob = checkout -b
+  br = branch
+  a = add
+  aa = add --all
+  A = add -A
+  au = add -u
+  mr = merge --no-edit
 
   # Reset Helpers
   # -------------
@@ -37,22 +45,18 @@
   rh1 = reset HEAD^ --hard
   rh2 = reset HEAD^^ --hard
 
-  # Basic Shortcuts
+  # Commit Shortcuts
   # ---------------
-  cp = cherry-pick
-  cl = clone
   c = commit
   cs = commit -S
-  co = checkout
-  cob = checkout -b
-  br = branch
+  cr = commit -eF .git/COMMIT_EDITMSG                                               # If commit fails either due to a failed gpg or whatever, use the last message written when commiting again
+
+  # Diff Shortcuts
+  # ---------------
   diff = diff --word-diff
+  d = diff --word-diff
   dc = diff --cached
-  a = add
-  aa = add --all
-  A = add -A
-  au = add -u
-  mr = merge --no-edit
+  ds = diff --staged                                                                # git ds - Diff your staged changes == review before committing.
 
   # Stash Shortcuts
   # ---------------
@@ -62,8 +66,8 @@
   sp = stash pop
   ss = stash save
 
-  # Logs
-  # ----
+  # Log Shortcuts
+  # ---------------
   l = log --show-signature
   ls = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short                       #  Pretty one-line log with tags, branches and authors
   lsv = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short --numstat            #  A verbose ls, shows changed files too
@@ -72,6 +76,7 @@
   la = !git lh --date-order --all 2> /dev/null
   lb = log --graph --simplify-by-decoration
   lba = !git lb --all
+  fup = log --since '1 day ago' --oneline "--author=$(git config --get user.email)" # Know what you did yesterday
 
 	# External Commands
 	# -----------------
