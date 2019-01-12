@@ -49,6 +49,26 @@
     export PS1="$GREEN\w$WHITE\$(git branch 2>/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/$YELLOW {\1}$WHITE/') \$ "
 
 
+#   Change iTerm2 tab title
+#   Source: https://gist.github.com/phette23/5270658#gistcomment-2765858
+#   ------------------------------------------------------------
+    if [[ $ITERM_SESSION_ID ]]; then
+      # Display the current git repo, or directory, in iterm tabs.
+      get_iterm_label() {
+        local directory
+        directory=${PWD##*/}
+
+        if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+          echo -ne "\\033];$directory\\007"
+        else
+          local branch
+          # branch=$(basename "$(git rev-parse --show-toplevel)")
+          branch=$(git branch 2>/dev/null | grep -e '\* ' | sed "s/^..\(.*\)/{\1}/")
+          echo -ne "\\033];$directory $branch\\007"
+        fi
+      }
+      export PROMPT_COMMAND=get_iterm_label;"${PROMPT_COMMAND}"
+    fi
 
 #   lr:  Full Recursive Directory Listing
 #   ------------------------------------------
