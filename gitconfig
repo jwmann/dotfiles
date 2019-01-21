@@ -48,7 +48,9 @@
   # Commit Shortcuts
   # ---------------
   c = commit
+  cnv = commit --no-verify
   cs = commit -S
+  csnv = commit -S --no-verify
   cr = commit -eF .git/COMMIT_EDITMSG                                               # If commit fails either due to a failed gpg or whatever, use the last message written when commiting again
 
   # Diff Shortcuts
