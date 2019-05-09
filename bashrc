@@ -52,23 +52,23 @@
 #   Change iTerm2 tab title
 #   Source: https://gist.github.com/phette23/5270658#gistcomment-2765858
 #   ------------------------------------------------------------
-    if [[ $ITERM_SESSION_ID ]]; then
-      # Display the current git repo, or directory, in iterm tabs.
-      get_iterm_label() {
-        if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-          local directory
-          directory=${PWD##*/}
-          echo -ne "\\033];$directory\\007"
-        else
-          local branch
-          local branchdir
-          branchdir=$(basename "$(git rev-parse --show-toplevel)")
-          branch=$(git branch 2>/dev/null | grep -e '\* ' | sed "s/^..\(.*\)/{\1}/")
-          echo -ne "\\033];$branchdir $branch\\007"
-        fi
-      }
-      export PROMPT_COMMAND=get_iterm_label;"${PROMPT_COMMAND}"
-    fi
+#   if [[ $ITERM_SESSION_ID ]]; then
+#     # Display the current git repo, or directory, in iterm tabs.
+#     get_iterm_label() {
+#       if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+#         local directory
+#         directory=${PWD##*/}
+#         echo -ne "\\033];$directory\\007"
+#       else
+#         local branch
+#         local branchdir
+#         branchdir=$(basename "$(git rev-parse --show-toplevel)")
+#         branch=$(git branch 2>/dev/null | grep -e '\* ' | sed "s/^..\(.*\)/{\1}/")
+#         echo -ne "\\033];$branchdir $branch\\007"
+#       fi
+#     }
+#     export PROMPT_COMMAND=get_iterm_label;"${PROMPT_COMMAND}"
+#   fi
 
 #   lr:  Full Recursive Directory Listing
 #   ------------------------------------------
