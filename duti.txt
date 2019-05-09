@@ -6,6 +6,7 @@ com.microsoft.VSCode .js all
 com.microsoft.VSCode .jsx all
 com.microsoft.VSCode .json all
 com.microsoft.VSCode .php all
+com.microsoft.VSCode .yml all
 com.microsoft.VSCode .java all
 com.microsoft.VSCode .xml all
 com.microsoft.VSCode .py all
