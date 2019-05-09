@@ -9,6 +9,12 @@
       alias vim='mvim -v'
     fi
 
+#   Set Variables for NVM (node) for Homebrew
+#   ------------------------------------------------------------
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+    [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+
 #   Set Variables for Ruby Gems for Homebrew
 #   ------------------------------------------------------------
     export GEM_HOME="/usr/local/Cellar/gems"
