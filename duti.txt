@@ -3,6 +3,7 @@ com.microsoft.VSCode public.plain-text   all
 com.microsoft.VSCode .txt all
 com.microsoft.VSCode .sh all
 com.microsoft.VSCode .js all
+com.microsoft.VSCode .ts all
 com.microsoft.VSCode .jsx all
 com.microsoft.VSCode .json all
 com.microsoft.VSCode .php all
