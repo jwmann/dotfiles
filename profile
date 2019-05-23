@@ -30,6 +30,11 @@
       source ~/.shell_prompt.sh
     fi
 
+#   Set python virtual environment auto-activation
+#   ------------------------------------------------------------
+    if which pyenv > /dev/null; then  eval "$(pyenv init -)"; fi
+    if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
 #   Check for brew bash_completion and add it if it exists
 #   ------------------------------------------------------------
     if [ -f $(brew --prefix)/etc/bash_completion ]; then
