@@ -48,6 +48,10 @@ tags.*
 ################
 .notags
 
+# VSCode Files #
+################
+*.code-workspace
+
 # Vim Plugins
 #############
 
