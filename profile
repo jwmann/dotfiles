@@ -41,6 +41,17 @@
       . $(brew --prefix)/etc/bash_completion
     fi
 
+#   Set GDAL and GEOS Path for Django 1.11
+#   Source: https://www.alextomkins.com/2017/08/fixing-gdal-geos-django-macos/
+#   ------------------------------------------------------------
+    export GDAL_LIBRARY_PATH="/Library/Frameworks/GDAL.framework/Versions/2.1/GDAL"
+    export GEOS_LIBRARY_PATH="/Library/Frameworks/GEOS.framework/Versions/3/GEOS"
+
+#   Set Android SDK Root and PATH
+#   ------------------------------------------------------------
+    export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
+    [[ -L "$ANDROID_SDK_ROOT" && -d "$ANDROID_SDK_ROOT" ]] && export ANDROID_HOME=$ANDROID_SDK_ROOT
+
 #   -----------------------------
 #   TERMINAL (MacOS) SPECIFIC ALIASES
 #   -----------------------------
