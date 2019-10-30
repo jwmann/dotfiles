@@ -30,6 +30,7 @@
   aa = add --all
   A = add -A
   au = add -u
+  m = merge
   mr = merge --no-edit
 
   # Reset Helpers
@@ -67,6 +68,9 @@
   sa = stash apply
   sp = stash pop
   ss = stash save
+  slst = !git stash show 'stash@{$1}'
+  slsd = !git stash show -p 'stash@{$1}'
+  ps = !git s && git pull && git sp
 
   # Log Shortcuts
   # ---------------
@@ -78,13 +82,29 @@
   la = !git lh --date-order --all 2> /dev/null
   lb = log --graph --simplify-by-decoration
   lba = !git lb --all
-  fup = log --since '1 day ago' --oneline "--author=$(git config --get user.email)" # Know what you did yesterday
+  fup = !git log --oneline --author=\"$(git config --get user.email)\" --since '1 day ago' # Know what you did yesterday
+  today = !git log --oneline --author=\"$(git config --get user.email)\" --since="3am" --no-merges
+  mylog = !git today --no-decorate --pretty=format:%s
 
 	# External Commands
 	# -----------------
-	ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"              # Generate a .gitignore based on given arguments ( For list of arguments do: gi list )
-	                                                                                  # e.g.: git ignore osx, php, node, wordpress >> .gitignore
-  fix = "!$EDITOR `git diff --name-only | uniq`"                                    # Open all conflicted files in the default editor
-  user = "!bash -c -l \"gituser $1\""                                               # Set the user profile to be used when commiting by using the gituser function defined in ~/.profile
-  session = "!git diff --name-only -z | xargs -0 bash -c '</dev/tty open \"$@\"' x" # Open all modified tracked files within the current repo
-  cpc = "!git log -1 --pretty=%B | pbcopy"                                          # Copy last commit message to clipboard
+  # Generate a .gitignore based on given arguments ( For list of arguments do: gi list )
+	# e.g.: git ignore osx, php, node, wordpress >> .gitignore
+	ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
+
+  # Open all conflicted files in the default editor
+  fix = "!$EDITOR `git diff --name-only | uniq`"
+
+  # Set the user profile to be used when commiting by using the gituser function defined in ~/.profile
+  user = "!bash -c -l \"gituser $1\""
+
+  # Open all modified tracked files within the current repo
+  session = "!git diff --name-only -z | xargs -0 bash -c '</dev/tty open \"$@\"' x"
+
+  sd = stash list | awk -F: '{ print "\n\n\n\n"; print $0; print "\n\n"; system("git stash show -p " $1); }'
+
+  # Copy last commit message to clipboard
+  cpc = !git log -1 --pretty=%B | pbcopy
+
+  # Copy todays git commit messages into one line
+  cplog = !git mylog | awk '{print $0}' ORS='. ' | pbcopy
