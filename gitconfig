@@ -108,3 +108,7 @@
 
   # Copy todays git commit messages into one line
   cplog = !git mylog | awk '{print $0}' ORS='. ' | pbcopy
+
+  # Edit recently modified files
+  edit = !vim $(git status --porcelain | awk '{print $2}')
+  code = !code $(git status --porcelain | awk '{print $2}')
