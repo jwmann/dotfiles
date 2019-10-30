@@ -48,6 +48,9 @@
 #   ------------------------------------------------------------
     export PS1="$GREEN\w$WHITE\$(git branch 2>/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/$YELLOW {\1}$WHITE/') \$ "
 
+#   Initialize phpbrew config
+#   ------------------------------------------------------------
+    [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
 
 #   Change iTerm2 tab title
 #   Source: https://gist.github.com/phette23/5270658#gistcomment-2765858
