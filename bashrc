@@ -111,6 +111,14 @@
 #   ------------------------------------------------------------
     [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
 
+
+#   Initialize rupa z
+#   ------------------------------------------------------------
+if  [ -f "$(brew --prefix)/etc/profile.d/z.sh" ]; then
+    # Load rupa's z (https://github.com/rupa/z) if installed
+    . "$(brew --prefix)/etc/profile.d/z.sh"
+fi
+
 #   Change iTerm2 tab title
 #   Source: https://gist.github.com/phette23/5270658#gistcomment-2765858
 #   ------------------------------------------------------------
