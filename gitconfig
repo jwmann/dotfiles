@@ -76,15 +76,17 @@
   # ---------------
   l = log --show-signature
   ls = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short                       #  Pretty one-line log with tags, branches and authors
-  lsv = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short --numstat            #  A verbose ls, shows changed files too
-  sig = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short --show-signature -1  #  Check for GPG signatures
+  lsv = !git ls --numstat            #  A verbose ls, shows changed files too
+  sig = !git ls --show-signature -1  #  Check for GPG signatures
   lh = log --graph
   la = !git lh --date-order --all 2> /dev/null
   lb = log --graph --simplify-by-decoration
   lba = !git lb --all
-  fup = !git log --oneline --author=\"$(git config --get user.email)\" --since '1 day ago' # Know what you did yesterday
-  today = !git log --oneline --author=\"$(git config --get user.email)\" --since="3am" --no-merges
-  mylog = !git today --no-decorate --pretty=format:%s
+  lme = !git ls --author=\"$(git config --get user.email)\" --no-merges
+  lod = "!f() { git lme --after=\"$1 0:00\" --before=\"$1 23:59\"; }; f"
+  lsd = "!f() { git lme --since=\"$1\"; }; f"
+  yesterday = !git lsd '1 day ago' # Know what you did yesterday
+  today = !git lod today
 
 	# External Commands
 	# -----------------
@@ -107,7 +109,9 @@
   cpc = !git log -1 --pretty=%B | pbcopy
 
   # Copy todays git commit messages into one line
-  cplog = !git mylog | awk '{print $0}' ORS='. ' | pbcopy
+  cptoday = !git today --oneline --no-decorate --pretty=format:%s | awk '{print $0}' ORS='. ' | pbcopy
+  cplod = "!f() { git lme --after=\"$1 0:00\" --before=\"$1 23:59\" --oneline --no-decorate --pretty=format:%s | awk '{print $0}' ORS='. ' | pbcopy; }; f"
+  cplsd = "!f() { git lme --since=\"$1\" --oneline --no-decorate --pretty=format:%s | awk '{print $0}' ORS='. ' | pbcopy; }; f"
 
   # Edit recently modified files
   edit = !vim $(git status --porcelain | awk '{print $2}')
