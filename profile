@@ -2,6 +2,12 @@
 #   ENVIRONMENT CONFIGURATION
 #   -------------------------------
 
+#   Check for promptline.vim shell script output and source it if it exists
+#   ------------------------------------------------------------
+    if [ -f ~/.shell_prompt.sh ]; then
+      source ~/.shell_prompt.sh
+    fi
+
 #   Set Variables for NVM (node) for Homebrew
 #   ------------------------------------------------------------
     export NVM_DIR="$HOME/.nvm"
@@ -17,16 +23,14 @@
 #   ------------------------------------------------------------
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-#   Check for promptline.vim shell script output and source it if it exists
-#   ------------------------------------------------------------
-    if [ -f ~/.shell_prompt.sh ]; then
-      source ~/.shell_prompt.sh
-    fi
-
 #   Set python virtual environment auto-activation
 #   ------------------------------------------------------------
     if which pyenv > /dev/null; then  eval "$(pyenv init -)"; fi
     if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
+#   Load phpbrew initialization
+#   ------------------------------------------------------------
+    [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
 
 #   Check for brew bash_completion and add it if it exists
 #   ------------------------------------------------------------
@@ -111,12 +115,6 @@ gituser() {
 
   return 0
 }
-
-#   UPDATE MACVIM FROM HOMEBREW
-#   ---------------------------
-#   Removes Previous Version from the system so that OSX will 'forget' it and force it to use the new version only
-#   Creates a symlink to Applications
-alias macvimup='brew upgrade macvim --with-override-system-vim && brew cleanup -s macvim && rm /Applications/MacVim.app && ln -s /usr/local/Cellar/macvim/*/MacVim.app /Applications/'
 
 #   -------------------------------
 #   FILE AND FOLDER MANAGEMENT
