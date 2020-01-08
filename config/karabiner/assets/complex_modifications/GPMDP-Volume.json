@@ -1,0 +1,34 @@
+{
+  "title": "GPMDP Volume Control Shortcuts using System Volume Keys",
+  "rules": [
+    {
+      "description": "GPMDP Volume Control Shortcuts using System Volume Keys",
+      "manipulators": [
+        {
+          "from": {
+            "consumer_key_code": "volume_increment"
+          },
+          "to": [
+            {
+              "key_code": "k",
+              "modifiers": ["control", "option", "shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "consumer_key_code": "volume_decrement"
+          },
+          "to": [
+            {
+              "key_code": "j",
+              "modifiers": ["control", "option", "shift"]
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    }
+  ]
+}
