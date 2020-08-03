@@ -32,6 +32,7 @@
   au = add -u
   m = merge
   mr = merge --no-edit
+  pu = push -u
 
   # Reset Helpers
   # -------------

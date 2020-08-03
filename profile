@@ -49,6 +49,10 @@
     export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
     [[ -L "$ANDROID_SDK_ROOT" && -d "$ANDROID_SDK_ROOT" ]] && export ANDROID_HOME=$ANDROID_SDK_ROOT
 
+#   Set Composer Memory Limit to Unlimited
+#   ------------------------------------------------------------
+    COMPOSER_MEMORY_LIMIT=-1
+
 #   -----------------------------
 #   TERMINAL (MacOS) SPECIFIC ALIASES
 #   -----------------------------
