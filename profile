@@ -14,6 +14,10 @@
     [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
     [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
+#   Set global Node Options
+#   ------------------------------------------------------------
+    export NODE_OPTIONS=--max_old_space_size=4096
+    
 #   Set Variables for Ruby Gems for Homebrew
 #   ------------------------------------------------------------
     export GEM_HOME="/usr/local/Cellar/gems"
