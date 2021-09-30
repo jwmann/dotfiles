@@ -1,19 +1,18 @@
 #   -------------------------------
 #   ENVIRONMENT CONFIGURATION
 #   -------------------------------
-
 #   Check for promptline.vim shell script output and source it if it exists
 #   ------------------------------------------------------------
     if [ -f ~/.shell_prompt.sh ]; then
       source ~/.shell_prompt.sh
     fi
-
+    
 #   Set Variables for NVM (node) for Homebrew
 #   ------------------------------------------------------------
     export NVM_DIR="$HOME/.nvm"
     [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
     [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
-
+    
 #   Set global Node Options
 #   ------------------------------------------------------------
     export NODE_OPTIONS=--max_old_space_size=4096
@@ -22,11 +21,11 @@
 #   ------------------------------------------------------------
     export GEM_HOME="/usr/local/Cellar/gems"
     export GEM_PATH="/usr/local/Cellar/gems/gems"
-
+    
 #   Load RVM into a shell session *as a function*
 #   ------------------------------------------------------------
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
+    
 #   Set python virtual environment auto-activation
 #   ------------------------------------------------------------
     export PYENV_VIRTUALENV_DISABLE_PROMPT=1
@@ -35,50 +34,45 @@
     export PATH="$PYENV_ROOT/shims:$PATH"
     if which pyenv > /dev/null; then  eval "$(pyenv init -)"; fi
     if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-
+    
 #   Load phpbrew initialization
 #   ------------------------------------------------------------
     [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
-
+    
 #   Check for brew bash_completion and add it if it exists
 #   ------------------------------------------------------------
     if [ -f $(brew --prefix)/etc/bash_completion ]; then
       . $(brew --prefix)/etc/bash_completion
     fi
-
+    
 #   Set GDAL and GEOS Path for Django 1.11
 #   Source: https://www.alextomkins.com/2017/08/fixing-gdal-geos-django-macos/
 #   ------------------------------------------------------------
     export GDAL_LIBRARY_PATH="/Library/Frameworks/GDAL.framework/Versions/2.1/GDAL"
     export GEOS_LIBRARY_PATH="/Library/Frameworks/GEOS.framework/Versions/3/GEOS"
-
+    
 #   Set Android SDK Root and PATH
 #   ------------------------------------------------------------
     export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
     [[ -L "$ANDROID_SDK_ROOT" && -d "$ANDROID_SDK_ROOT" ]] && export ANDROID_HOME=$ANDROID_SDK_ROOT
-
+    
 #   Set Composer Memory Limit to Unlimited
 #   ------------------------------------------------------------
     COMPOSER_MEMORY_LIMIT=-1
-
+    
 #   -----------------------------
 #   TERMINAL (MacOS) SPECIFIC ALIASES
 #   -----------------------------
-
 trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
 ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
 alias blockreload='sudo launchctl unload /Library/LaunchDaemons/com.objectiveSee.blockblock.plist && launchctl load /Library/LaunchDaemons/com.objectiveSee.blockblock.plist'
-
-
 #   -----------------------------
 #   FUNCTIONS FOR EXTERNAL APPLICATIONS
 #   -----------------------------
-
 #   Git Functions
 #   ------------------------------------------------------------
-
 # GIT USER PROFILE SETTING / SWITCHING
 # This will strip the current static User from the current repo and Include an external User profile.
 # This function relies on: Git, A Git Repo, a config file located in ~/config/git/profilename.user.config
@@ -88,28 +82,24 @@ alias blockreload='sudo launchctl unload /Library/LaunchDaemons/com.objectiveSee
 gituser() {
   # Set the directory where these configs exist
   configdir="$HOME/.config/git"
-
   # Sanity check
   if [ -z "$(which git)" ]
   then
     echo "Error: git binary not found" >&2
     return 255
   fi
-
   # Check if the directory has a git repo
   if [ -z "$(git status)" ]
   then
     echo "Error: Current directory does not contain a git repository (or any of the parent directories): .git" >&2
     return 255
   fi
-
   # Check for the config file
   if [ ! -e "$configdir/$1.user.config" ]
   then
     echo "Error: '$1.user.config' not found in: $configdir" >&2
     return 255
   fi
-
   # Remove current static User Name and Email for the repo
   if [ -n "$(git config --local user.name)" ] || [ -n "$(git config --local user.email)" ]
   then
@@ -120,24 +110,113 @@ gituser() {
     echo "User's Name: $username has been removed."
     echo "User's Email: $useremail has been removed."
   fi
-
   # Time to include the user profile!
   git config include.path "$configdir/$1.user.config"
   echo "User Profile: $1.user.config has been included."
-
   return 0
 }
+#   -----------------------------
+#   Docker Functions
+#   Source: https://gist.github.com/jgrodziski/9ed4a17709baad10dbcd4530b60dfcbb
+#   ------------------------------------------------------------
+
+function dnames-fn {
+	for ID in `docker ps | awk '{print $1}' | grep -v 'CONTAINER'`
+	do
+    	docker inspect $ID | grep Name | head -1 | awk '{print $2}' | sed 's/,//g' | sed 's%/%%g' | sed 's/"//g'
+	done
+}
+
+function dip-fn {
+    echo "IP addresses of all named running containers"
+
+    for DOC in `dnames-fn`
+    do
+        IP=`docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}} {{end}}' "$DOC"`
+        OUT+=$DOC'\t'$IP'\n'
+    done
+    echo -e $OUT | column -t
+    unset OUT
+}
+
+function dex-fn {
+	docker exec -it $1 ${2:-bash}
+}
+
+function di-fn {
+	docker inspect $1
+}
+
+function dl-fn {
+	docker logs -f $1
+}
+
+function drun-fn {
+	docker run -it $1 $2
+}
+
+function dcr-fn {
+	docker-compose run $@
+}
+
+function dsr-fn {
+	docker stop $1;docker rm $1
+}
+
+function drmc-fn {
+  docker rm $(docker ps --all -q -f status=exited)
+}
+
+function drmid-fn {
+  imgs=$(docker images -q -f dangling=true)
+  [ ! -z "$imgs" ] && docker rmi "$imgs" || echo "no dangling images."
+}
+
+# in order to do things like dex $(dlab label) sh
+function dlab {
+  docker ps --filter="label=$1" --format="{{.ID}}"
+}
+
+function dc-fn {
+  docker-compose $*
+}
+
+function d-aws-cli-fn {
+  docker run \
+         -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+         -e AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION \
+         -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
+         amazon/aws-cli:latest $1 $2 $3
+}
+
+alias daws=d-aws-cli-fn
+alias dc=dc-fn
+alias dcu="docker-compose up -d"
+alias dcub="docker-compose up -d --build"
+alias dcd="docker-compose down"
+alias dcr=dcr-fn
+alias dex=dex-fn
+alias di=di-fn
+alias dim="docker images"
+alias dip=dip-fn
+alias dl=dl-fn
+alias dnames=dnames-fn
+alias dps="docker ps"
+alias dpsa="docker ps -a"
+alias drmc=drmc-fn
+alias drmid=drmid-fn
+alias drun=drun-fn
+alias dsp="docker system prune --all"
+alias dsr=dsr-fn
 
 #   -------------------------------
 #   FILE AND FOLDER MANAGEMENT
 #   -------------------------------
-
 zipf () { zip -r "$1".zip "$1" ; }          # zipf:         To create a ZIP archive of a folder
 alias numFiles='echo $(ls -1 | wc -l)'      # numFiles:     Count of non-hidden files in current dir
 alias make1mb='mkfile 1m ./1MB.dat'         # make1mb:      Creates a file of 1mb size (all zeros)
 alias make5mb='mkfile 5m ./5MB.dat'         # make5mb:      Creates a file of 5mb size (all zeros)
 alias make10mb='mkfile 10m ./10MB.dat'      # make10mb:     Creates a file of 10mb size (all zeros)
-
 #   cdf:  'Cd's to frontmost window of MacOS Finder
 #   ------------------------------------------------------
     cdf () {
@@ -155,7 +234,7 @@ alias make10mb='mkfile 10m ./10MB.dat'      # make10mb:     Creates a file of 10
         echo "cd to \"$currFolderPath\""
         cd "$currFolderPath"
     }
-
+    
 #   extract:  Extract most know archives with one command
 #   ---------------------------------------------------------
     extract () {
@@ -178,26 +257,21 @@ alias make10mb='mkfile 10m ./10MB.dat'      # make10mb:     Creates a file of 10
              echo "'$1' is not a valid file"
          fi
     }
-
-
+    
 #   ---------------------------
 #   SEARCHING
 #   ---------------------------
-
 alias qfind="find . -name "                 # qfind:    Quickly search for file
 ff () { /usr/bin/find . -name "$@" ; }      # ff:       Find file under the current directory
 ffs () { /usr/bin/find . -name "$@"'*' ; }  # ffs:      Find file whose name starts with a given string
 ffe () { /usr/bin/find . -name '*'"$@" ; }  # ffe:      Find file whose name ends with a given string
-
 #   spotlight: Search for a file using MacOS Spotlight's metadata
 #   -----------------------------------------------------------
     spotlight () { mdfind "kMDItemDisplayName == '$@'wc"; }
-
-
+    
 #   ---------------------------
 #   PROCESS MANAGEMENT
 #   ---------------------------
-
 #   findPid: find out the pid of a specified process
 #   -----------------------------------------------------
 #       Note that the command name can be specified via a regex
@@ -205,36 +279,32 @@ ffe () { /usr/bin/find . -name '*'"$@" ; }  # ffe:      Find file whose name end
 #       Without the 'sudo' it will only find processes of the current user
 #   -----------------------------------------------------
     findPid () { lsof -t -c "$@" ; }
-
+    
 #   memHogsTop, memHogsPs:  Find memory hogs
 #   -----------------------------------------------------
     alias memHogsTop='top -l 1 -o rsize | head -20'
     alias memHogsPs='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
-
+    
 #   cpuHogs:  Find CPU hogs
 #   -----------------------------------------------------
     alias cpu_hogs='ps wwaxr -o pid,stat,%cpu,time,command | head -10'
-
+    
 #   topForever:  Continual 'top' listing (every 10 seconds)
 #   -----------------------------------------------------
     alias topForever='top -l 9999999 -s 10 -o cpu'
-
 #   ttop:  Recommended 'top' invocation to minimize resources
 #   ------------------------------------------------------------
 #       Taken from this macosxhints article
 #       http://www.macosxhints.com/article.php?story=20060816123853639
 #   ------------------------------------------------------------
     alias ttop="top -R -F -s 10 -o rsize"
-
+    
 #   my_ps: List processes owned by my user:
 #   ------------------------------------------------------------
     my_ps() { ps $@ -u $USER -o pid,%cpu,%mem,start,time,bsdtime,command ; }
-
-
 #   ---------------------------
 #   NETWORKING
 #   ---------------------------
-
 alias myip='curl ip.appspot.com'                    # myip:         Public facing IP Address
 alias netCons='lsof -i'                             # netCons:      Show all open TCP/IP sockets
 alias flushDNS='dscacheutil -flushcache'            # flushDNS:     Flush out the DNS Cache
@@ -245,7 +315,6 @@ alias ipInfo0='ipconfig getpacket en0'              # ipInfo0:      Get info on 
 alias ipInfo1='ipconfig getpacket en1'              # ipInfo1:      Get info on connections for en1
 alias openPorts='sudo lsof -i | grep LISTEN'        # openPorts:    All listening connections
 alias showBlocked='sudo ipfw list'                  # showBlocked:  All ipfw rules inc/ blocked IPs
-
 #   ii:  display useful host related informaton
 #   -------------------------------------------------------------------
     ii() {
@@ -259,72 +328,60 @@ alias showBlocked='sudo ipfw list'                  # showBlocked:  All ipfw rul
         #echo -e "\n${RED}DNS Configuration:$NC " ; scutil --dns
         echo
     }
-
-
+    
 #   ---------------------------------------
 #   SYSTEMS OPERATIONS & INFORMATION
 #   ---------------------------------------
-
 alias mountReadWrite='/sbin/mount -uw /'    # mountReadWrite:   For use when booted into single-user
-
 #   cleanupDS:  Recursively delete .DS_Store files
 #   -------------------------------------------------------------------
     alias cleanupDS="find . -type f -name '*.DS_Store' -ls -delete"
-
+    
 #   finderShowHidden:   Show hidden files in Finder
 #   finderHideHidden:   Hide hidden files in Finder
 #   -------------------------------------------------------------------
     alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
     alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
-
+    
 #   cleanupLS:  Clean up LaunchServices to remove duplicates in the "Open With" menu
 #   -----------------------------------------------------------------------------------
     alias cleanupLS="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
-
+    
 #    screensaverDesktop: Run a screensaver on the Desktop
 #   -----------------------------------------------------------------------------------
     alias screensaverDesktop='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine -background'
-
-
+    
 #   ---------------------------------------
 #   WEB DEVELOPMENT
 #   ---------------------------------------
-
 alias apacheEdit='sudo edit /etc/httpd/httpd.conf'      # apacheEdit:       Edit httpd.conf
 alias apacheRestart='sudo apachectl graceful'           # apacheRestart:    Restart Apache
 alias editHosts='sudo edit /etc/hosts'                  # editHosts:        Edit /etc/hosts file
 alias herr='tail /var/log/httpd/error_log'              # herr:             Tails HTTP error logs
 alias apacheLogs="less +F /var/log/apache2/error_log"   # Apachelogs:   Shows apache error logs
 httpHeaders () { /usr/bin/curl -I -L $@ ; }             # httpHeaders:      Grabs headers from web page
-
 #   httpDebug:  Download a web page and show info on what took time
 #   -------------------------------------------------------------------
     httpDebug () { /usr/bin/curl $@ -o /dev/null -w "dns: %{time_namelookup} connect: %{time_connect} pretransfer: %{time_pretransfer} starttransfer: %{time_starttransfer} total: %{time_total}\n" ; }
-
-
+    
 #   ---------------------------------------
 #   REMINDERS & NOTES
 #   ---------------------------------------
-
 #   remove_disk: spin down unneeded disk
 #   ---------------------------------------
 #   diskutil eject /dev/disk1s3
-
 #   to change the password on an encrypted disk image:
 #   ---------------------------------------
 #   hdiutil chpass /path/to/the/diskimage
-
 #   to mount a read-only disk image as read-write:
 #   ---------------------------------------
 #   hdiutil attach example.dmg -shadow /tmp/example.shadow -noverify
-
 #   mounting a removable drive (of type msdos or hfs)
 #   ---------------------------------------
 #   mkdir /Volumes/Foo
 #   ls /dev/disk*   to find out the device to use in the mount command)
 #   mount -t msdos /dev/disk1s1 /Volumes/Foo
 #   mount -t hfs /dev/disk1s1 /Volumes/Foo
-
 #   to create a file of a given size: /usr/sbin/mkfile or /usr/bin/hdiutil
 #   ---------------------------------------
 #   e.g.: mkfile 10m 10MB.dat
