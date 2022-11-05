@@ -51,8 +51,10 @@ ENABLE_CORRECTION="true"
 
 # Load pyenv before pyenv plugin is loaded
 # src: https://github.com/pyenv/pyenv/issues/2041#issuecomment-990253001
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$PYENV_ROOT/shims:$PATH"
 eval "$(pyenv init --path)"
 
 plugins=(macos z wd zsh-interactive-cd safe-paste rsync sudo urltools tmux git gitignore vscode nvm npm yarn pyenv docker docker-compose dotenv lpass)
