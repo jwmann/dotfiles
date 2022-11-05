@@ -77,6 +77,7 @@ This allows you to change various config setting per repo easily depending on th
 2. [oh-my-zsh - Plugins](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins)
 3. http://natelandau.com/my-mac-osx-bash_profile
 4. http://stefaanlippens.net/bashrc_and_others
+5. [Generating new SSH keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
 [1]: https://github.com/thoughtbot/rcm
 [2]: https://github.com/junegunn/vim-plug
