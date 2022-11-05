@@ -73,8 +73,8 @@ This allows you to change various config setting per repo easily depending on th
 
 #### Setup Sources & Quick Links
 
-1. [oh-my-zsh - Wiki][https://github.com/ohmyzsh/ohmyzsh/wiki]
-2. [oh-my-zsh - Plugins][https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins]
+1. [oh-my-zsh - Wiki](https://github.com/ohmyzsh/ohmyzsh/wiki)
+2. [oh-my-zsh - Plugins](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins)
 3. http://natelandau.com/my-mac-osx-bash_profile
 4. http://stefaanlippens.net/bashrc_and_others
 
