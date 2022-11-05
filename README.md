@@ -30,7 +30,7 @@ $ rcup -v
 Setting up a new machine?
 Run this initalization script for common homebrew apps
 
-[brew-init][https://gist.github.com/jwmann/db1b4d900c1de8a695118c6279a95d11]
+[brew-init](https://gist.github.com/jwmann/db1b4d900c1de8a695118c6279a95d11)
 
 ### Configs
 
