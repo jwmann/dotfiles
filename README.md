@@ -4,26 +4,42 @@ Some of my dotfiles made public, managed via [rcm][1].
 
 ### Install
 
-1) Install rcm via homebrew.
+1. Install rcm via homebrew.
 
 ```
 $ brew tap thoughtbot/formulae
 $ brew install rcm
 ```
 
-2) Clone this repository into your $HOME.
+2. Clone this repository into your $HOME.
 
 ```
 $ git clone git@github.com:jwmann/dotfiles.git ~/.dotfiles
 ```
 
-3) Link up dotfiles using `rcup`.
+3. Link up dotfiles using `rcup`.
 
 ```
 $ rcup -v
 ```
 
 ## Sections & Info
+
+### New host setup
+
+Setting up a new machine?
+Run this initalization script for common homebrew apps
+
+[brew-init][https://gist.github.com/jwmann/db1b4d900c1de8a695118c6279a95d11]
+
+### Configs
+
+Sync common configs outside of this repo from NAS
+Make sure to Sync the Drive and make 'home/AppPrefs/config' available offline
+
+```
+$ ln -s ~/Library/CloudStorage/SynologyDrive-home/AppPrefs/config/* ~/.config/
+```
 
 ### Vim
 
@@ -42,7 +58,6 @@ Specifically not including a default editor as to rely on the terminal's set def
 
 ### Bash
 
-
 Various useful aliases and configs.
 
 - `.profile` is for things that are not specifically related to Bash, like environment variables $PATH and friends, and should be available anytime. For example, `.profile` should also be loaded when starting a graphical desktop session.
@@ -56,10 +71,12 @@ This command looks for 'config' files within `~/config/git/`
 A file named this `work.user.config` can be included into the current git repo's config by doing `gituser work`.  
 This allows you to change various config setting per repo easily depending on the context. ( e.g.: Work, Personal, School, etc.. )
 
-#### Bash Setup Sources
+#### Setup Sources & Quick Links
 
-1. http://natelandau.com/my-mac-osx-bash_profile
-2. http://stefaanlippens.net/bashrc_and_others
+1. [oh-my-zsh - Wiki][https://github.com/ohmyzsh/ohmyzsh/wiki]
+2. [oh-my-zsh - Plugins][https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins]
+3. http://natelandau.com/my-mac-osx-bash_profile
+4. http://stefaanlippens.net/bashrc_and_others
 
-[1]: https://github.com/thoughtbot/rcm 
+[1]: https://github.com/thoughtbot/rcm
 [2]: https://github.com/junegunn/vim-plug
