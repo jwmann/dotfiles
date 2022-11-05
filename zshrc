@@ -55,7 +55,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 
-plugins=(macos z scd wd zsh-interactive-cd safe-paste rsync sudo urltools tmux git gitignore vscode nvm npm yarn pyenv docker docker-compose dotenv lpass)
+plugins=(macos z wd zsh-interactive-cd safe-paste rsync sudo urltools tmux git gitignore vscode nvm npm yarn pyenv docker docker-compose dotenv lpass)
 
 source $ZSH/oh-my-zsh.sh
 
