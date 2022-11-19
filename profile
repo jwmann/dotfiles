@@ -5,6 +5,7 @@ trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the 
 ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
+alias afk="sleep 1 && pmset sleepnow"       # afk:          Sleep computer
 
 #   -----------------------------
 #   FUNCTIONS
