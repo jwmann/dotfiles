@@ -57,6 +57,8 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$PYENV_ROOT/shims:$PATH"
 eval "$(pyenv init --path)"
 
+zstyle ':omz:plugins:nvm' autoload true
+
 plugins=(macos z wd zsh-interactive-cd safe-paste rsync sudo urltools tmux git gitignore vscode nvm npm yarn pyenv docker docker-compose dotenv lpass)
 
 source $ZSH/oh-my-zsh.sh
