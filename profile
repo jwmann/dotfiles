@@ -1,3 +1,4 @@
+export PATH="/Applications/MAMP/bin/php/php7.4.33/bin:${PATH}"
 #   -----------------------------
 #   TERMINAL (MacOS) SPECIFIC ALIASES
 #   -----------------------------
@@ -6,7 +7,6 @@ ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in Ma
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
 alias afk="sleep 1 && pmset sleepnow"       # afk:          Sleep computer
-
 #   -----------------------------
 #   FUNCTIONS
 #   -----------------------------
@@ -54,3 +54,14 @@ gituser() {
   echo "User Profile: $1.user.config has been included."
   return 0
 }
+alias php74='/Applications/MAMP/bin/php/php7.4.33/bin/php -c "/Library/Application Support/appsolute/MAMP PRO/conf/php7.4.33.ini"'
+alias php81='/Applications/MAMP/bin/php/php8.1.13/bin/php -c "/Library/Application Support/appsolute/MAMP PRO/conf/php8.1.13.ini"'
+alias mampcomposer='/Applications/MAMP/bin/php/composer'
+alias php='/Applications/MAMP/bin/php/php7.4.33/bin/php -c "/Library/Application Support/appsolute/MAMP PRO/conf/php7.4.33.ini"'
+alias composer='/Applications/MAMP/bin/php/composer'
+alias php-config='/Applications/MAMP/bin/php/php7.4.33/bin/php-config'
+alias phpdbg='/Applications/MAMP/bin/php/php7.4.33/bin/phpdbg'
+alias phpize='/Applications/MAMP/bin/php/php7.4.33/bin/phpize'
+alias pear='/Applications/MAMP/bin/php/php7.4.33/bin/pear'
+alias peardev='/Applications/MAMP/bin/php/php7.4.33/bin/peardev'
+alias pecl='/Applications/MAMP/bin/php/php7.4.33/bin/pecl'

@@ -43,7 +43,9 @@ Thumbs.db
 .netrwhist
 tags
 !tags/
+!Tags/
 tags.*
+!Tags.*
 
 # Ignore ctags #
 ################

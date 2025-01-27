@@ -30,9 +30,18 @@
   aa = add --all
   A = add -A
   au = add -u
+  pu = push -u
+  p = push -u
+  pnv = push -u --no-verify
+
+  # Merge Helpers
+  # -------------
   m = merge
   mr = merge --no-edit
-  pu = push -u
+  md = "!git merge $1 && git branch -d $1; #"
+  mD = "!git merge $1 && git branch -D $1; #"
+  mdp = "!git merge @{-1} && git branch -d @{-1}; #"
+  mDp = "!git merge @{-1} && git branch -D @{-1}; #"
 
   # Reset Helpers
   # -------------
@@ -117,3 +126,5 @@
   # Edit recently modified files
   edit = !vim $(git status --porcelain | awk '{print $2}')
   code = !code $(git status --porcelain | awk '{print $2}')
+[init]
+	defaultBranch = main
