@@ -23,6 +23,12 @@ $ git clone git@github.com:jwmann/dotfiles.git ~/.dotfiles
 $ rcup -v
 ```
 
+You can add a new dotfile using `mkrc`
+
+```
+$ mkrc -v ~/.mynewdotfile
+```
+
 ## Sections & Info
 
 ### New host setup
