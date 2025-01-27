@@ -1,0 +1,3 @@
+tag-version-prefix=v
+message="v%s"
+sign-git-tag=true
