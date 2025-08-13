@@ -117,6 +117,8 @@ alias gtd="git tag -d" # Delete tag locally
 alias gtdp="git tag -d $1 && git push --delete origin $1" # Delete tag locally and remotely
 alias gtdd="git tag -d $(git describe --tags --abbrev=0)" # Delete current tag locally
 alias gtddp="git tag -d $(git describe --tags --abbrev=0) && git push --delete origin" # Delete current tag locally and remotely
+alias gbl="git branch -l" # List all local branches
+alias gB="git blame -w" # Git blame, ignore whitespace changes
 
 # Set ZSH in Vim Insert Mode
 bindkey -A viins main
