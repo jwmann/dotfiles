@@ -1,2 +1,3 @@
 # Ignore Directories for Private Dotfiles
 filezilla
+ssh/config
