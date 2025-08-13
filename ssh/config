@@ -1,5 +1,3 @@
-Include ~/.colima/ssh_config
-
 Host *
   UseKeychain yes
   AddKeysToAgent yes
