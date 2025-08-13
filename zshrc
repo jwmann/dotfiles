@@ -31,7 +31,7 @@ ENABLE_CORRECTION="true"
 # You can also set it to another string to have that shown instead of the default red dots.
 # e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 # Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -96,21 +96,27 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias gcsnv="git commit -S --no-verify"
-alias 'gcs!'="git commit -S --verbose --amend"
-alias gpnv="git push --no-verify"
-alias gpt="git push --tags"
+alias gcsnv="git commit -S --no-verify" # Commit with signing, without pre-commit hook
+alias 'gcs!'="git commit -S --verbose --amend" # Re-commit last commit, with signing and verbose
+alias gpnv="git push --no-verify" # Push without pre-push hook
+alias gpt="git push --tags" # Push all tags
 alias gls="git log --all --oneline --date=format:%Y-%m-%d --pretty=format:\"%C(yellow)%h %C(blue)%cd%Creset%C(auto)%d%  %s\""
 alias glsa="git log --all --oneline --date=format:%Y-%m-%d --pretty=format:\"%C(yellow)%h %C(blue)%cd %C(green)[%cn]%Creset%C(auto)%d%  %s\""
-alias gmd="git merge $1 && git branch -d $1; #"
-alias gmD="git merge $1 && git branch -D $1; #"
-alias gmdp="git merge @{-1} && git branch -d @{-1}; #"
-alias gmDp="git merge @{-1} && git branch -D @{-1}; #"
-alias gcmp="git checkout - && git merge @{-1}; #"
-alias gcmdp="git checkout - && git merge @{-1} && git branch -d @{-1}; #"
-alias gcmDp="git checkout - && git merge @{-1} && git branch -D @{-1}; #"
-alias gu="git checkout HEAD --"
-alias gua="git checkout -f"
+alias gmd="git merge $1 && git branch -d $1; #" # Merge with specified branch, delete specified branch
+alias gmD="git merge $1 && git branch -D $1; #" # Merge with specified branch, force delete specified branch
+alias gmdp="git merge @{-1} && git branch -d @{-1}; #" # Merge with previous branch, delete previous branch
+alias gmDp="git merge @{-1} && git branch -D @{-1}; #" # Merge with previous branch, force delete previous branch
+alias gcmp="git checkout - && git merge @{-1}; #" # Checkout previous branch and merge with it
+alias gcmdp="git checkout - && git merge @{-1} && git branch -d @{-1}; #" # Checkout previous branch and merge with it, delete previous branch
+alias gcmDp="git checkout - && git merge @{-1} && git branch -D @{-1}; #" # Checkout previous branch and merge with it, force delete previous branch
+alias gu="git checkout HEAD --" # Discard/Undo local changes to a file
+alias gua="git checkout -f" # Discard/Undo all local changes in working directory
+alias gstm="git stash push -m" # Stash with message
+alias gtsf="git tag -s -f" # Create or update signed tag
+alias gtd="git tag -d" # Delete tag locally
+alias gtdp="git tag -d $1 && git push --delete origin $1" # Delete tag locally and remotely
+alias gtdd="git tag -d $(git describe --tags --abbrev=0)" # Delete current tag locally
+alias gtddp="git tag -d $(git describe --tags --abbrev=0) && git push --delete origin" # Delete current tag locally and remotely
 
 # Set ZSH in Vim Insert Mode
 bindkey -A viins main
